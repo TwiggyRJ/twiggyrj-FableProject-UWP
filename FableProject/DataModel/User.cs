@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FableProject.DataModel
 {
-    class User
+    public class User
     {
         public string ID { get; set; }
 
@@ -18,15 +18,20 @@ namespace FableProject.DataModel
 
         public string Name { get; set; }
 
-        public DateTime Joined { get; set; }
+        public DateTime DOB { get; set; }
 
         public string Avatar { get; set; }
 
+        public string Email { get; set; }
+
+        public DateTime Joined { get; set; }
+
     }
+
     public class UserSorted
     {
         public string Name { get; set; }
-        //public List<User> Users { get; set; }
+        public List<User> Users { get; set; }
 
     }
 
@@ -34,7 +39,7 @@ namespace FableProject.DataModel
     {
 
         public List<UserSorted> Users { get; set; }
-        /*
+
         public UserDataSource(string JSON, string username, string password)
         {
             List<User> users = JsonConvert.DeserializeObject<List<User>>(JSON);
@@ -53,8 +58,8 @@ namespace FableProject.DataModel
             storage.SaveSettings(sDataKey, JSON);
             storage.SaveSettings(uDataKey, username);
             storage.SaveSettings(pDataKey, password);
-           
+
         }
- */
+
     }
 }

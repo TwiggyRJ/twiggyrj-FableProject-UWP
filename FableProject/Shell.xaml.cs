@@ -43,6 +43,7 @@ namespace FableProject
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 1", PageType = typeof(Page1) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 2", PageType = typeof(Page2) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 3", PageType = typeof(Page3) });
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Settings", PageType = typeof(SettingsPage) });
 
             // select the first menu item
             vm.SelectedMenuItem = vm.MenuItems.First();
