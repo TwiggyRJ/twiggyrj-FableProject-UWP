@@ -39,30 +39,25 @@
         </Style>
 
 
-        <Style x:Key="KshatriyaLargeTitleTextBlockStyleProfileBrush" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+        <Style x:Key="KshatriyaLargeTitleTextBlockStyleNoBrush" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
             <Setter Property="FontSize" Value="26"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="White" />
         </Style>
 
-        <Style x:Key="KshatriyaTitleTextBlockStyleProfileBrush" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+        <Style x:Key="KshatriyaTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         </Style>
 
-        <Style x:Key="KshatriyaSmallTitleTextBlockStyleProfileBrush" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+        <Style x:Key="KshatriyaSmallTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
             <Setter Property="FontSize" Value="22"/>
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         </Style>
 
-        <Style x:Key="KshatriyaSubtitleTextBlockStyleProfileBrush" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
-            <Setter Property="Foreground" Value="White" />
-        </Style>
-
-        <Style x:Key="KshatriyaSubtitleTextBlockStyleNoBrush" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
-            
+        <Style x:Key="KshatriyaSubtitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
+            <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}" />
         </Style>
 
         <Style x:Key="KshatriyaSubtitleSmallTextBlockStyleNoBrush" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
