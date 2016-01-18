@@ -64,10 +64,21 @@
         <Style x:Key="KshatriyaSubtitleTextBlockStyleNoBrush" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
 
         </Style>
+        <Style x:Key="KshatriyaSubtitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
+            <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
+        </Style>
 
         <Style x:Key="KshatriyaSubtitleSmallTextBlockStyleNoBrush" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
             <Setter Property="FontSize" Value="16"/>
         </Style>
+
+
+        <Style TargetType="Button" x:Key="EditMenuButtonStyle">
+            <Setter Property="Foreground" Value="{ThemeResource SearchButtonForegroundBrush}" />
+            <Setter Property="FontSize" Value="{ThemeResource SearchBoxFontSize}" />
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        </Style>
+
 
         <Style TargetType="TextBox" x:Key="SearchBarBoxStyle">
             <Setter Property="VerticalAlignment" Value="Center" />

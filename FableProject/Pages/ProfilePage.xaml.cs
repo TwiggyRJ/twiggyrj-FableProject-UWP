@@ -165,5 +165,20 @@ namespace FableProject.Pages
             await EmailManager.ShowComposeNewEmailAsync(emailMessage);
         }
 
+        private void Edit_Profile_Button(object sender, RoutedEventArgs e)
+        {
+
+            if(About.Visibility == Visibility.Visible)
+            {
+                About.Visibility = Visibility.Collapsed;
+                Editable.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                About.Visibility = Visibility.Visible;
+                Editable.Visibility = Visibility.Collapsed;
+            }
+
+        }
     }
 }
