@@ -20,41 +20,47 @@
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
-            <StackPanel x:Name="UserData" DataContext="{Binding Source={StaticResource ProfileViewSource}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Canvas.ZIndex="1">
-                <Grid Canvas.ZIndex="1">
+        <ScrollViewer HorizontalAlignment="Stretch" Style="{StaticResource PageScrollViewerStyleNoPadding}">
+            <StackPanel x:Name="UserData" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding Source={StaticResource ProfileViewSource}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Canvas.ZIndex="1">
+                <Grid Canvas.ZIndex="1" Background="{ThemeResource SystemAccentColor}">
 
-                    <TextBlock x:Name="UsernameHeading" Text="{Binding Username}" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleNoBrush}" />
+                    <Button HorizontalAlignment="Right" Content=""/>
 
-                    <TextBlock x:Name="NameHeading" Margin="0,32,0,0" Text="{Binding Name}" Style="{StaticResource KshatriyaSmallTitleTextBlockStyle}" />
+                    <TextBlock x:Name="UsernameHeading" HorizontalAlignment="Center" Text="{Binding Username}" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleProfileBrush}" />
 
-                    <Ellipse Width="150" Height="150" Margin="10,-150,2,37" HorizontalAlignment="Left">
+                    <Ellipse Width="150" Height="150" Margin="0,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <Ellipse.Fill>
                             <ImageBrush x:Name="UserAvatar" ImageSource="{Binding Avatar}" AutomationProperties.Name="{Binding Name}"/>
                         </Ellipse.Fill>
                     </Ellipse>
 
-                        
+                    <Grid Margin="0,190,0,0" Padding="0,25,0,25">
+
+                        <TextBlock x:Name="NameHeading" HorizontalAlignment="Center" Text="{Binding Name}" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}" />
+
+                        <TextBlock x:Name="EmailHeading" HorizontalAlignment="Right" Margin="0,50,10,0" Text="{Binding Email}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="EmailClick"/>
+
+                        <TextBlock x:Name="WebsiteHeading" HorizontalAlignment="Left" Margin="10,50,0,0" Text="{Binding Website}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="WebsiteClick" />
+
+                    </Grid>
 
 
-                    <TextBlock x:Name="EmailHeading" Text="{Binding Email}" Margin="165,120,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}" Tapped="EmailClick"/>
+                </Grid>
 
-                    <TextBlock x:Name="WebsiteHeading" Text="{Binding Website}" Margin="165,155,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}" Tapped="WebsiteClick"/>
-
-
-                    <TextBlock x:Name="DOBDateHeading" Text="{Binding modDOB}" Margin="10,280,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                <Grid Canvas.ZIndex="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <TextBlock x:Name="DOBDateHeading" Text="{Binding modDOB}" Margin="10,280,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
 
                     <TextBlock x:Name="YourDOBDateHeading" Text="Date of Birth" Margin="10,310,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
 
-                    <TextBlock x:Name="JoinedDateHeading" Text="{Binding modJoined}" Margin="200,280,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                    <TextBlock x:Name="JoinedDateHeading" Text="{Binding modJoined}" Margin="200,280,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
 
                     <TextBlock x:Name="YourJoinedDateHeading" Text="Joined" Margin="200,310,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
 
-                    <TextBlock x:Name="AcountTypeHeading" Text="{Binding modAccountType}" Margin="10,370,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                    <TextBlock x:Name="AcountTypeHeading" Text="{Binding modAccountType}" Margin="10,370,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
 
                     <TextBlock x:Name="YourAccountTypeHeading" Text="Member Type" Margin="10,400,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
 
-                    <TextBlock x:Name="CreatedContentHeading" Text="{Binding Stories}" Margin="200,370,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                    <TextBlock x:Name="CreatedContentHeading" Text="{Binding Stories}" Margin="200,370,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
 
                     <TextBlock x:Name="YourCreatedContentHeading" Text="Stories Created" Margin="200,400,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
 
