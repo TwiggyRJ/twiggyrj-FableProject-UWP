@@ -88,6 +88,7 @@ namespace FableProject.DataModel
             string pDataKey = "passwordDetails";
             string rDatakey = "roamingDetails";
             string aDataKey = "authorDetails";
+            string avDataKey = "avatarDetails";
             string idDataKey = "userIdDetails";
 
             Storage storage = new Storage();
@@ -99,6 +100,7 @@ namespace FableProject.DataModel
                 storage.SaveRoamingSettings(sDataKey, JSON);
                 storage.SaveRoamingSettings(uDataKey, username);
                 storage.SaveRoamingSettings(pDataKey, password);
+                storage.SaveRoamingSettings(avDataKey, users[0].Avatar);
                 storage.SaveRoamingSettings(aDataKey, users[0].Author);
                 storage.SaveRoamingSettings(idDataKey, users[0].ID);
             }
@@ -107,6 +109,7 @@ namespace FableProject.DataModel
                 storage.SaveSettings(sDataKey, JSON);
                 storage.SaveSettings(uDataKey, username);
                 storage.SaveSettings(pDataKey, password);
+                storage.SaveSettings(avDataKey, users[0].Avatar);
                 storage.SaveSettings(aDataKey, users[0].Author);
                 storage.SaveSettings(idDataKey, users[0].ID);
             }
@@ -115,6 +118,7 @@ namespace FableProject.DataModel
                 storage.SaveSettings(sDataKey, JSON);
                 storage.SaveSettings(uDataKey, username);
                 storage.SaveSettings(pDataKey, password);
+                storage.SaveSettings(avDataKey, users[0].Avatar);
                 storage.SaveSettings(aDataKey, users[0].Author);
                 storage.SaveSettings(idDataKey, users[0].ID);
             }
