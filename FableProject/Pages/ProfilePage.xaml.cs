@@ -180,5 +180,10 @@ namespace FableProject.Pages
             }
 
         }
+
+        private void updateProfile(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -38,6 +38,8 @@ namespace FableProject.DataModel
 
         public string modDOB { get; set; }
 
+        public int modAge { get; set; }
+
     }
 
     public class UserSorted
@@ -58,9 +60,16 @@ namespace FableProject.DataModel
 
             users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
 
-            users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
+            //users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
+            users[0].modDOB = users[0].DOB.ToString("d MMMM");
 
-            if(users[0].Author == "1")
+            DateTime today = DateTime.Today;
+            int age = today.Year - users[0].DOB.Year;
+            if (users[0].DOB > today.AddYears(-age)) age--;
+
+            users[0].modAge = age;
+
+            if (users[0].Author == "1")
             {
                 users[0].modAccountType = "Author";
             }

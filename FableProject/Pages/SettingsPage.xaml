@@ -143,6 +143,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="10,409,0,0"
                                 VerticalAlignment="Top"
+                                Style="{StaticResource GeneralButtonStyle}"
                                 Click="WebK_OnClick"/>
 
                             <Button
@@ -150,6 +151,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="180,409,0,0"
                                 VerticalAlignment="Top"
+                                Style="{StaticResource GeneralButtonStyle}"
                                 Click="EmailK_OnClick"/>
 
                             <TextBlock

@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FableProject.Pages"
+    xmlns:gif="using:XamlAnimatedGif"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -24,7 +25,7 @@
             <StackPanel x:Name="UserData" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding Source={StaticResource ProfileViewSource}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Canvas.ZIndex="1">
                 <Grid Canvas.ZIndex="1" Background="{ThemeResource SystemAccentColor}">
 
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,0,0" Style="{StaticResource EditMenuButtonStyle}" Click="Edit_Profile_Button" Content="&#xE70F;"/>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,0,0" Style="{StaticResource EditMenuButtonStyle}" Click="Edit_Profile_Button" Content="&#xE70F;" ToolTipService.ToolTip="Click to edit your profile"/>
 
                     <TextBlock x:Name="UsernameHeading" HorizontalAlignment="Center" Margin="0,10,0,0" Text="{Binding Username}" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleProfileBrush}" />
 
@@ -47,28 +48,22 @@
                 </Grid>
 
                 <Grid x:Name="About" Visibility="Visible" Canvas.ZIndex="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                    <TextBlock x:Name="DOBDateHeading" Text="{Binding modDOB}" Margin="10,0,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
-
-                    <TextBlock x:Name="YourDOBDateHeading" Text="Date of Birth" Margin="10,310,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
-
-                    <TextBlock x:Name="JoinedDateHeading" Text="{Binding modJoined}" Margin="200,280,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
-
-                    <TextBlock x:Name="YourJoinedDateHeading" Text="Joined" Margin="200,310,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
-
-                    <TextBlock x:Name="AcountTypeHeading" Text="{Binding modAccountType}" Margin="10,370,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
-
-                    <TextBlock x:Name="YourAccountTypeHeading" Text="Member Type" Margin="10,400,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
-
-                    <TextBlock x:Name="CreatedContentHeading" Text="{Binding Stories}" Margin="200,370,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyleNoBrush}"/>
-
-                    <TextBlock x:Name="YourCreatedContentHeading" Text="Stories Created" Margin="200,400,2,37" Style="{StaticResource KshatriyaSubtitleSmallTextBlockStyleNoBrush}"/>
-
-                    <Button x:Name="logoffButton" Content="Log Off" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="10,450,2,37" VerticalAlignment="Top" Click="Login_Off_Event" Height="47" Width="141" ToolTipService.ToolTip="Click to Log Off"/>
+                    
 
                 </Grid>
 
                 <Grid x:Name="Editable" Visibility="Collapsed" Canvas.ZIndex="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+                    <TextBlock x:Name="UpdateFormHeading" Text="Update Your Account" Margin="10,10,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                    
+                    <TextBox x:Name="myUpdNameBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" PlaceholderText="Name" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Name Here"/>
+                    <PasswordBox x:Name="myUpdPasswordBox" FontSize="24" HorizontalAlignment="Left" Margin="10,104,0,0" PlaceholderText="Password" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Password Here"/>
+
+                    <TextBox x:Name="myUpdEmailBox" FontSize="24" HorizontalAlignment="Left" Margin="10,156,0,0" PlaceholderText="Email" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Email Here"/>
+                    <TextBox x:Name="myUpdAvatarBox" FontSize="24" HorizontalAlignment="Left" Margin="10,208,0,0" PlaceholderText="Avatar URL" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Avatar URL"/>
+
+                    <Button x:Name="updateProfileButton" Content="Update Profile" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Click="updateProfile"  ToolTipService.ToolTip="Click to Update Profile" Width="163"/>
+                    
                 </Grid>
 
                 <ProgressRing

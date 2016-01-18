@@ -120,6 +120,11 @@
             <Setter Property="FontSize" Value="{ThemeResource SearchBoxFontSize}" />
         </Style>
 
+        <Style TargetType="Button" x:Key="GeneralButtonStyle">
+            <Setter Property="Background" Value="{ThemeResource SearchButtonBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{ThemeResource SearchButtonForegroundBrush}" />
+        </Style>
+
         <SolidColorBrush x:Key="SearchButtonBackgroundBrush" Color="{ThemeResource SystemAccentColor}" />
         <SolidColorBrush x:Key="SearchButtonForegroundBrush" Color="White" />
         <SolidColorBrush x:Key="SearchBoxTextForegroundBrush" Color="{ThemeResource SystemAccentColor}" />
