@@ -1,5 +1,7 @@
-﻿using FableProject.Pages;
+﻿using FableProject.Data;
+using FableProject.Pages;
 using FableProject.Presentation;
+using FableProject.Themes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,24 +28,100 @@ namespace FableProject
         public Shell()
         {
             // Setting the stage
-            statusHide();
+
+            Storage storage = new Storage();
+            Icons icons = new Icons();
+
+            var accentColor = (Color)this.Resources["SystemAccentColor"];
 
             var kshatriyaCobolt = Color.FromArgb(0, 63, 81, 181);
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.BackgroundColor = kshatriyaCobolt;
+            titleBar.BackgroundColor = accentColor;
             titleBar.ForegroundColor = Colors.White;
-            titleBar.ButtonBackgroundColor = kshatriyaCobolt;
+            titleBar.ButtonBackgroundColor = accentColor;
             titleBar.ButtonForegroundColor = Colors.White;
+
+
+            string sDataKey = "userDetails";
+            string uDataKey = "usernameDetails";
+            string pDataKey = "passwordDetails";
+            string rDatakey = "roamingDetails";
+            string stDatakey = "statusBarDetails";
+            string aDataKey = "authorDetails";
+
+            string roamingSetting = storage.LoadSettings(rDatakey);
+
+            string userData = "Null";
+            string usernameDetails = "Null";
+            string authorData = "Null";
+            
+            if (roamingSetting == "true")
+            {
+                userData = storage.LoadRoamingSettings(sDataKey);
+                usernameDetails = storage.LoadRoamingSettings(uDataKey);
+                string passwordDetails = storage.LoadRoamingSettings(pDataKey);
+                string statusData = storage.LoadRoamingSettings(stDatakey);
+                authorData = storage.LoadRoamingSettings(aDataKey);
+
+                if (statusData == "false")
+                {
+                    statusHide();
+                }
+                
+            }
+            else if (roamingSetting == "false")
+            {
+                userData = storage.LoadSettings(sDataKey);
+                usernameDetails = storage.LoadSettings(uDataKey);
+                string passwordDetails = storage.LoadSettings(pDataKey);
+                authorData = storage.LoadSettings(aDataKey);
+
+                string statusData = storage.LoadSettings(stDatakey);
+
+                if (statusData == "false")
+                {
+                    statusHide();
+                }
+            }
+            else if (roamingSetting == "Null")
+            {
+                userData = storage.LoadSettings(sDataKey);
+                usernameDetails = storage.LoadSettings(uDataKey);
+                string passwordDetails = storage.LoadSettings(pDataKey);
+                authorData = storage.LoadSettings(aDataKey);
+
+                string statusData = storage.LoadSettings(stDatakey);
+
+                if (statusData == "false")
+                {
+                    statusHide();
+                }
+            }
+
 
             this.InitializeComponent();
 
             //SplitView "Hamburger" Menu items
             var vm = new ShellViewModel();
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Welcome", PageType = typeof(WelcomePage) });
+            vm.MenuItems.Add(new MenuItem { Icon = icons.EmojiIcon(), Title = "Welcome", PageType = typeof(WelcomePage) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 1", PageType = typeof(Page1) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 2", PageType = typeof(Page2) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 3", PageType = typeof(Page3) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Settings", PageType = typeof(SettingsPage) });
+            vm.MenuItems.Add(new MenuItem { Icon = icons.BookIcon(), Title = "Stories", PageType = typeof(Stories) });
+            
+
+            if (userData != "Null")
+            {
+                vm.MenuItems.Add(new MenuItem { Icon = icons.PersonIcon(), Title = usernameDetails, PageType = typeof(ProfilePage) });
+
+                if(authorData == "1")
+                {
+                    vm.MenuItems.Add(new MenuItem { Icon = icons.NewIcon(), Title = "Create New Content", PageType = typeof(AuthorPage) });
+                }
+
+            }
+
+            vm.MenuItems.Add(new MenuItem { Icon = icons.SettingsIcon(), Title = "Settings", PageType = typeof(SettingsPage) });
+
 
             // select the first menu item
             vm.SelectedMenuItem = vm.MenuItems.First();

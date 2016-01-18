@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace FableProject.Presentation
@@ -26,6 +28,25 @@ namespace FableProject.Presentation
                 {
                     var btn = sender as Button;
                     btn.Content = $"Result: {result.Label} ({result.Id})";
+                }
+
+            }
+            if (commands == 99)
+            {
+                dialog.Commands.Add(new Windows.UI.Popups.UICommand("Restart App") { Id = 0 });
+
+                dialog.DefaultCommandIndex = 0;
+
+                var result = await dialog.ShowAsync();
+
+                if (sender == null)
+                {
+                    var btn = sender as Button;
+                    btn.Content = $"Result: {result.Label} ({result.Id})";
+                    btn.Click += delegate
+                    {
+                        CoreApplication.Exit();
+                    };
                 }
 
             }
@@ -72,6 +93,5 @@ namespace FableProject.Presentation
             }
 
         }
-
     }
 }

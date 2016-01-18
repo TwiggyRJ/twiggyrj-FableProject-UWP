@@ -27,6 +27,10 @@ namespace FableProject.Data
         {
             ApplicationData.Current.LocalSettings.Values[key] = contents;
         }
+        public void SaveRoamingSettings(string key, string contents)
+        {
+            ApplicationData.Current.RoamingSettings.Values[key] = contents;
+        }
 
         public string LoadSettings(string key)
         {
@@ -51,6 +55,33 @@ namespace FableProject.Data
                 return settings.Values[key].ToString();
             }
         }
+
+
+        public string LoadRoamingSettings(string key)
+        {
+
+            var SettingIsSet = 0;
+
+            if (ApplicationData.Current.RoamingSettings.Values.Keys.Contains(key))
+            {
+                SettingIsSet = 1;
+            }
+            if (SettingIsSet == 1)
+            {
+                var settings = ApplicationData.Current.RoamingSettings;
+                return settings.Values[key].ToString();
+            }
+            else
+            {
+                string contents = "Null";
+                SaveRoamingSettings(key, contents);
+
+                var settings = ApplicationData.Current.RoamingSettings;
+                return settings.Values[key].ToString();
+            }
+        }
+
+
         public void SaveSettingsInContainer(string user, string key, string contents)
         {
             var localSetting = ApplicationData.Current.LocalSettings;
@@ -60,6 +91,18 @@ namespace FableProject.Data
             if (localSetting.Containers.ContainsKey(user))
             {
                 localSetting.Containers[user].Values[key] = contents;
+            }
+        }
+
+        public void SaveRoamingSettingsInContainer(string user, string key, string contents)
+        {
+            var roamingSetting = ApplicationData.Current.RoamingSettings;
+
+            roamingSetting.CreateContainer(user, ApplicationDataCreateDisposition.Always);
+
+            if (roamingSetting.Containers.ContainsKey(user))
+            {
+                roamingSetting.Containers[user].Values[key] = contents;
             }
         }
     }

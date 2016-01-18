@@ -9,18 +9,35 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
-            <StackPanel Width="321">
+            <StackPanel>
                 <TextBlock Text="Settings" Style="{StaticResource TitleTextBlockStyle}" />
 
-                <Pivot Margin="-13.1,-20,0,0" Height="585">
+                <Pivot x:Name="SettingsPivot" Margin="-10,-20,0,0" Height="585">
                     <PivotItem Header="General">
-                        <CheckBox x:Name="roamingEnable" Tag="1" ToolTipService.ToolTip="Click to enable settings to roam with your Microsoft Account" Content="Enable Settings to Roam" Margin="0,5,0,500" Checked="roamingSet" Unchecked="roamingUnset" />
+
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
+                            
+                            <Grid Margin="0,-50,0,0" Canvas.ZIndex="1">
+
+                                <ToggleSwitch x:Name="hideStatus" Tag="1" ToolTipService.ToolTip="Click to hide the system status bar" Header="Hide Status Bar (Phone Only)" Toggled="statusToggled"/>
+
+                                <ToggleSwitch x:Name="roamingEnable" Tag="1" ToolTipService.ToolTip="Click to enable settings to roam with your Microsoft Account" Header="Enable Settings to Roam" Toggled="roamingToggled" Margin="0,55,0,-55" />
+
+                                <TextBlock x:Name="headerClearCache" Text="Clear Application Data" Margin="0,120,0,-120"/>
+
+                                <Button x:Name="clearCache" Style="{ThemeResource LoginMenuButtonStyle}" ToolTipService.ToolTip="Click to clear all application data" Content="Clear Cache" Margin="0,152,0,-131" Click="clearCache_Click"/>
+
+                            </Grid>
+                            
+                        </StackPanel>
+
+
                     </PivotItem>
 
 
-                    <PivotItem Header="Authentication">
+                    <PivotItem x:Name="AuthForm" Header="Authentication">
 
-                        <StackPanel x:Name="LoginForm" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
                             <Grid Margin="0,-50,0,0" Canvas.ZIndex="1">
 
                                 <TextBlock x:Name="LoginFormHeading" Text="Please Login" Margin="10,10,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
@@ -41,9 +58,9 @@
                     </PivotItem>
 
 
-                    <PivotItem Header="Authentication Continued">
+                    <PivotItem x:Name="RegForm" Header="Authentication Continued">
 
-                        <StackPanel x:Name="RegisterForm" Visibility="Visible" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
 
                             <Grid Margin="0,-50,0,0" Canvas.ZIndex="1">
 
@@ -54,9 +71,9 @@
 
                                 <TextBox x:Name="myRegEmailBox" FontSize="24" HorizontalAlignment="Left" Margin="10,210,0,0" PlaceholderText="Email" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Email Here"/>
 
-                                <DatePicker x:Name="myDOB" FontSize="20" Margin="10,263,0,52" ToolTipService.ToolTip="Please Select Your Date of Birth"/>
+                                <DatePicker x:Name="myDOB" FontSize="20" Margin="10,263,0,52" ToolTipService.ToolTip="Please Select Your Date of Birth" Width="290"/>
 
-                                <Button x:Name="registerButton" Content="Register" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="71,310,0,-54" VerticalAlignment="Top" Click="Register_Event" Width="163" ToolTipService.ToolTip="Click to Login"/>
+                                <Button x:Name="registerButton" Content="Register" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="71,310,0,-54" VerticalAlignment="Top" Click="Register_Event" Width="163" ToolTipService.ToolTip="Click to Register"/>
 
                             </Grid>
 
@@ -65,6 +82,10 @@
                                 Height="125"
                                 Width="125"
                                 Margin="-0,-400,0,0"/>
+
+                            <Grid x:Name="authed" Visibility="Collapsed" Canvas.ZIndex="1">
+                                <TextBlock Text="You have been authenticated"/>
+                            </Grid>
 
                         </StackPanel>
 

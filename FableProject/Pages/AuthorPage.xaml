@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="FableProject.Pages.AuthorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FableProject.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding StoryViewModel, RelativeSource={RelativeSource Self}}">
+
+
+    <Page.Resources>
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource
+                x:Name="StoryViewSource"
+                Source="{Binding Stories}"
+                IsSourceGrouped="true"
+                ItemsPath="Stories"/>
+    </Page.Resources>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
+            <StackPanel>
+                <TextBlock Text="Create Content on Fable Time" Style="{StaticResource TitleTextBlockStyle}" />
+
+                <Pivot x:Name="AuthorPivot" Margin="-10,-20,0,0" Height="585">
+
+                    <PivotItem Header="Story Overview">
+
+                        <StackPanel>
+
+                            <TextBox x:Name="storyTitleBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Title" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Story Title Here"/>
+
+                            <RichEditBox x:Name="storyDescriptionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Description" Width="290" Height="176" ToolTipService.ToolTip="Enter the Story's Description in Here"/>
+
+                            <ComboBox x:Name="storyCategory" Margin="0,10,0,0" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Story Category" ToolTipService.ToolTip="Select the Category that best applies to the Story.">
+
+                                <ComboBoxItem Content="Fantasy Adventure"/>
+                                <ComboBoxItem Content="Puzzle"/>
+                                <ComboBoxItem Content="Magic"/>
+
+                            </ComboBox>
+
+                            <TextBox x:Name="storyImageBox" Margin="0, 10, 0, 0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Image URL: No Uploads :(" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Place the URL of the image here due to file uploads not being implemented as of yet."/>
+
+                            <Button x:Name="newStoryButton" Content="Create Story" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createStory"  ToolTipService.ToolTip="Click to Login" Width="163"/>
+
+                        </StackPanel>
+
+                    </PivotItem>
+
+                    <PivotItem Header="Pages">
+
+                        <StackPanel>
+
+                            <ComboBox x:Name="selectedStory" Margin="0,10,0,0" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Select a Story" ToolTipService.ToolTip="Select the Story you want to add a Page to">
+
+                                <ComboBoxItem x:Name="selectedStoryDrop"/>
+
+                            </ComboBox>
+
+                        </StackPanel>
+
+                    </PivotItem>
+
+                </Pivot>
+            </StackPanel>
+        </ScrollViewer>
+        <AppBar VerticalAlignment="Bottom">
+            <AppBarButton x:Name="storyHelp" Click="storyHelper" Label="Help For Stories" >
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE11B;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </AppBar>
+    </Grid>
+</Page>
