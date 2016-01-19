@@ -191,6 +191,7 @@ namespace FableProject.Pages
             Storage storage = new Storage();
 
             string rDatakey = "roamingDetails";
+            string uDataKey = "usernameDetails";
             string pDataKey = "passwordDetails";
             string roamingSetting = storage.LoadSettings(rDatakey);
 
@@ -198,13 +199,22 @@ namespace FableProject.Pages
             string email = myUpdEmailBox.Text;
             string avatar = myUpdAvatarBox.Text;
             string newPassword = myUpdPasswordBox.Password;
+            string website = myUpdWebsiteBox.Text;
 
             if (name == null)
             {
                 name = NameHeading.Text;
             }
+            else if (name == "")
+            {
+                name = NameHeading.Text;
+            }
 
             if (email == null)
+            {
+                email = EmailHeading.Text;
+            }
+            else if (email == "")
             {
                 email = EmailHeading.Text;
             }
@@ -227,6 +237,54 @@ namespace FableProject.Pages
                 }
 
             }
+            else if (avatar == "")
+            {
+                string avDataKey = "avatarDetails";
+
+                if (roamingSetting == "true")
+                {
+                    avatar = storage.LoadRoamingSettings(avDataKey);
+                }
+                else if (roamingSetting == "false")
+                {
+                    avatar = storage.LoadSettings(avDataKey);
+                }
+                else if (roamingSetting == "Null")
+                {
+                    avatar = storage.LoadSettings(avDataKey);
+                }
+            }
+
+            if (website == null)
+            {
+                if (WebsiteHeading.Text == null)
+                {
+                    website = "";
+                }
+                else if (WebsiteHeading.Text == "")
+                {
+                    website = "";
+                }
+                else
+                {
+                    website = WebsiteHeading.Text;
+                }
+            }
+            else if (website == "")
+            {
+                if (WebsiteHeading.Text == null)
+                {
+                    website = "";
+                }
+                else if (WebsiteHeading.Text == "")
+                {
+                    website = "";
+                }
+                else
+                {
+                    website = WebsiteHeading.Text;
+                }
+            }
 
             if (newPassword == null)
             {
@@ -244,29 +302,45 @@ namespace FableProject.Pages
                     newPassword = storage.LoadSettings(pDataKey);
                 }
             }
+            else if (newPassword == "")
+            {
+                if (roamingSetting == "true")
+                {
+                    newPassword = storage.LoadRoamingSettings(pDataKey);
+                }
+                else if (roamingSetting == "false")
+                {
+                    newPassword = storage.LoadSettings(pDataKey);
+                }
+                else if (roamingSetting == "Null")
+                {
+                    newPassword = storage.LoadSettings(pDataKey);
+                }
+            }
 
-
+            string username = "";
             string password = "";
 
             if (roamingSetting == "true")
             {
                 password = storage.LoadRoamingSettings(pDataKey);
+                username = storage.LoadRoamingSettings(uDataKey);
             }
             else if (roamingSetting == "false")
             {
                 password = storage.LoadSettings(pDataKey);
+                username = storage.LoadSettings(uDataKey);
             }
             else if (roamingSetting == "Null")
             {
                 password = storage.LoadSettings(pDataKey);
+                username = storage.LoadSettings(uDataKey);
             }
 
-            string username = UsernameHeading.Text;
-
-            createURI(username, name, newPassword, password, email, avatar, "http://www.kshatriya.co.uk/dev/project/service/auth.php");
+            createURI(username, name, newPassword, password, email, website, avatar, "http://www.kshatriya.co.uk/dev/project/service/auth.php");
         }
 
-        private async void createURI(string username, string name, string newPassword, string password, string email, string avatar, string target)
+        private async void createURI(string username, string name, string newPassword, string password, string email, string website, string avatar, string target)
         {
             //This is initiated if a registration event has been initiated
 
@@ -283,7 +357,8 @@ namespace FableProject.Pages
                 new KeyValuePair<string, string>("email", email),
                 new KeyValuePair<string, string>("avatar", avatar),
                 new KeyValuePair<string, string>("newPassword", newPassword),
-                new KeyValuePair<string, string>("action", "post")
+                new KeyValuePair<string, string>("website", website),
+                new KeyValuePair<string, string>("action", "put")
             };
 
             //Encodes the Key Value Pairs into POST Data
@@ -296,13 +371,13 @@ namespace FableProject.Pages
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
 
             // activates the request to the Web Service
-            var response = client.PutAsync(target, content).Result;
+            var response = client.PostAsync(target, content).Result;
 
             //Checks if the response from the client is successful
             if (response.IsSuccessStatusCode)
             {
                 //It is successful log that user in
-                createURI(username, password, target);
+                createURI(username, newPassword, target);
             }
             else
             {
@@ -372,8 +447,11 @@ namespace FableProject.Pages
                     //Disable the login progress ring
                     updateProgressRing.IsActive = false;
 
-                    //Sets the dialog box title
-                    string title = "Update Successful";
+                //Sets the data context for the page with the login data
+                this.DataContext = loginData;
+
+                //Sets the dialog box title
+                string title = "Update Successful";
 
                     // the message that will be displayed to the user the {0} is a placeholder that will be replaced by the content of the username variable
                     string template = "Your user credentials for {0} are confirmed, we will store your details to allow unguided login when you open the app. Your details will now be displayed and used to access the Fable Project. Please Restart the app for the application to enable content for logged in Users.";
