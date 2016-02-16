@@ -43,7 +43,7 @@
                                 <TextBlock x:Name="LoginFormHeading" Text="Please Login" Margin="10,10,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
                                 <TextBox x:Name="myUsernameBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" PlaceholderText="Username" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Username Here"/>
                                 <PasswordBox x:Name="myPasswordBox" FontSize="24" HorizontalAlignment="Left" Margin="10,104,0,0" PlaceholderText="Password" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Password Here"/>
-                                <Button x:Name="loginButton" Content="Login" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="70,176,0,-57" VerticalAlignment="Top" Click="Login_Event"  ToolTipService.ToolTip="Click to Login" Width="163"/>
+                                <Button x:Name="loginButton" Content="Login" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="10,160,0,-57" VerticalAlignment="Top" Click="Login_Event"  ToolTipService.ToolTip="Click to Login" Width="163"/>
 
                             </Grid>
 
@@ -73,7 +73,7 @@
 
                                 <DatePicker x:Name="myDOB" FontSize="20" Margin="10,263,0,52" ToolTipService.ToolTip="Please Select Your Date of Birth" Width="290"/>
 
-                                <Button x:Name="registerButton" Content="Register" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="71,310,0,-54" VerticalAlignment="Top" Click="Register_Event" Width="163" ToolTipService.ToolTip="Click to Register"/>
+                                <Button x:Name="registerButton" Content="Register" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="10,305,0,-54" VerticalAlignment="Top" Click="Register_Event" Width="163" ToolTipService.ToolTip="Click to Register"/>
 
                             </Grid>
 

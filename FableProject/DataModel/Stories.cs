@@ -68,6 +68,7 @@ namespace FableProject.DataModel
                 {
                     storage.SaveRoamingSettings(createdStoryTitleDataKey, stories[0].Title);
                     storage.SaveRoamingSettings(createdStoryIDDataKey, stories[0].ID);
+                    
                 }
                 
             }

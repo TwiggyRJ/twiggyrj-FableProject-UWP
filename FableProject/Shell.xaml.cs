@@ -48,13 +48,15 @@ namespace FableProject
             string rDatakey = "roamingDetails";
             string stDatakey = "statusBarDetails";
             string aDataKey = "authorDetails";
+            string adDatakey = "adminDetails";
 
             string roamingSetting = storage.LoadSettings(rDatakey);
 
             string userData = "Null";
             string usernameDetails = "Null";
             string authorData = "Null";
-            
+            string adminData = "Null";
+
             if (roamingSetting == "true")
             {
                 userData = storage.LoadRoamingSettings(sDataKey);
@@ -62,6 +64,7 @@ namespace FableProject
                 string passwordDetails = storage.LoadRoamingSettings(pDataKey);
                 string statusData = storage.LoadRoamingSettings(stDatakey);
                 authorData = storage.LoadRoamingSettings(aDataKey);
+                adminData = storage.LoadRoamingSettings(adDatakey);
 
                 if (statusData == "false")
                 {
@@ -75,6 +78,7 @@ namespace FableProject
                 usernameDetails = storage.LoadSettings(uDataKey);
                 string passwordDetails = storage.LoadSettings(pDataKey);
                 authorData = storage.LoadSettings(aDataKey);
+                adminData = storage.LoadSettings(adDatakey);
 
                 string statusData = storage.LoadSettings(stDatakey);
 
@@ -89,6 +93,7 @@ namespace FableProject
                 usernameDetails = storage.LoadSettings(uDataKey);
                 string passwordDetails = storage.LoadSettings(pDataKey);
                 authorData = storage.LoadSettings(aDataKey);
+                adminData = storage.LoadSettings(adDatakey);
 
                 string statusData = storage.LoadSettings(stDatakey);
 
@@ -105,21 +110,29 @@ namespace FableProject
             var vm = new ShellViewModel();
             vm.MenuItems.Add(new MenuItem { Icon = icons.EmojiIcon(), Title = "Welcome", PageType = typeof(WelcomePage) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 1", PageType = typeof(Page1) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 2", PageType = typeof(Page2) });
-            vm.MenuItems.Add(new MenuItem { Icon = icons.BookIcon(), Title = "Stories", PageType = typeof(Stories) });
-            
+            vm.MenuItems.Add(new MenuItem { Icon = icons.BookIcon(), Title = "Stories", PageType = typeof(StoriesPage) });
+
 
             if (userData != "Null")
             {
-                vm.MenuItems.Add(new MenuItem { Icon = icons.PersonIcon(), Title = usernameDetails, PageType = typeof(ProfilePage) });
 
-                if(authorData == "1")
+                vm.MenuItems.Add(new MenuItem { Icon = icons.PersonIcon(), Title = usernameDetails, PageType = typeof(ProfilePage) });
+  
+
+                if (adminData == "1")
                 {
-                    vm.MenuItems.Add(new MenuItem { Icon = icons.NewIcon(), Title = "Create New Content", PageType = typeof(AuthorPage) });
+                    vm.MenuItems.Add(new MenuItem { Icon = icons.AdminIcon(), Title = "Administration Panel", PageType = typeof(AdminPage) });
                 }
 
             }
+            else
+            {
 
+                vm.MenuItems.Add(new MenuItem { Icon = icons.PersonIcon(), Title = "Profile Page", PageType = typeof(ProfilePage) });
+
+            }
+
+            vm.MenuItems.Add(new MenuItem { Icon = icons.NewIcon(), Title = "Create New Content", PageType = typeof(AuthorPage) });
             vm.MenuItems.Add(new MenuItem { Icon = icons.SettingsIcon(), Title = "Settings", PageType = typeof(SettingsPage) });
 
 
@@ -134,7 +147,6 @@ namespace FableProject
             transitions.Add(transition);
             this.Frame.ContentTransitions = transitions;
 
-            
         }
 
         private void statusHide()
@@ -144,6 +156,7 @@ namespace FableProject
                 var i = Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
             }
         }
+
 
         public ShellViewModel ViewModel { get; private set; }
 

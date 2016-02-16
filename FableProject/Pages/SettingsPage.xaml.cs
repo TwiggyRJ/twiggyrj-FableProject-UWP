@@ -30,6 +30,7 @@ namespace FableProject.Pages
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+
         public SettingsPage()
         {
             this.InitializeComponent();
@@ -41,6 +42,7 @@ namespace FableProject.Pages
             string pDataKey = "passwordDetails";
             string rDatakey = "roamingDetails";
             string stDatakey = "statusBarDetails";
+            string adDatakey = "adminDetails";
 
             string roamingSetting = storage.LoadSettings(rDatakey);
 

@@ -22,49 +22,125 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
             <StackPanel>
-                <TextBlock Text="Create Content on Fable Time" Style="{StaticResource TitleTextBlockStyle}" />
+                <StackPanel Visibility="Visible" x:Name="NewStoriesPage">
+                    <TextBlock Text="Create Content on Fable Time" Style="{StaticResource TitleTextBlockStyle}" />
 
-                <Pivot x:Name="AuthorPivot" Margin="-10,-20,0,0" Height="585">
+                    <Pivot x:Name="AuthorPivot" Margin="-10,-20,0,0" Height="700">
 
-                    <PivotItem Header="Story Overview">
+                        <PivotItem Header="Story Overview">
 
-                        <StackPanel>
+                            <StackPanel>
 
-                            <TextBox x:Name="storyTitleBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Title" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Story Title Here"/>
+                                <TextBox x:Name="storyTitleBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Title" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Story Title Here"/>
 
-                            <RichEditBox x:Name="storyDescriptionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Description" Width="290" Height="176" ToolTipService.ToolTip="Enter the Story's Description in Here"/>
+                                <RichEditBox x:Name="storyDescriptionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Description" Width="290" Height="176" ToolTipService.ToolTip="Enter the Story's Description in Here"/>
 
-                            <ComboBox x:Name="storyCategory" Margin="0,10,0,0" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Story Category" ToolTipService.ToolTip="Select the Category that best applies to the Story.">
+                                <ComboBox x:Name="storyCategory" Margin="0,10,0,0" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Story Category" ToolTipService.ToolTip="Select the Category that best applies to the Story.">
 
-                                <ComboBoxItem Content="Fantasy Adventure"/>
-                                <ComboBoxItem Content="Puzzle"/>
-                                <ComboBoxItem Content="Magic"/>
+                                    <ComboBoxItem Content="Fantasy Adventure"/>
+                                    <ComboBoxItem Content="Puzzle"/>
+                                    <ComboBoxItem Content="Magic"/>
 
-                            </ComboBox>
+                                </ComboBox>
 
-                            <TextBox x:Name="storyImageBox" Margin="0, 10, 0, 0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Image URL: No Uploads :(" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Place the URL of the image here due to file uploads not being implemented as of yet."/>
+                                <TextBox x:Name="storyImageBox" Margin="0, 10, 0, 0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Image URL: No Uploads :(" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Place the URL of the image here due to file uploads not being implemented as of yet."/>
 
-                            <Button x:Name="newStoryButton" Content="Create Story" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createStory"  ToolTipService.ToolTip="Click to Login" Width="163"/>
+                                <Button x:Name="newStoryButton" Content="Create Story" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createStory"  ToolTipService.ToolTip="Click to Login" Width="163"/>
 
-                        </StackPanel>
+                            </StackPanel>
 
-                    </PivotItem>
+                        </PivotItem>
 
-                    <PivotItem Header="Pages">
+                        <PivotItem Header="Pages">
 
-                        <StackPanel>
+                            <StackPanel x:Name="PageData" DataContext="{Binding Source={StaticResource StoryViewSource}}">
 
-                            <ComboBox x:Name="selectedStory" Margin="0,10,0,0" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Select a Story" ToolTipService.ToolTip="Select the Story you want to add a Page to">
+                                <ComboBox x:Name="selectedStory" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Select a Story" ToolTipService.ToolTip="Select the Story you want to add a Page to"/>
 
-                                <ComboBoxItem x:Name="selectedStoryDrop"/>
+                                <TextBox x:Name="pageTitleBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Title" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Page Title Here"/>
 
-                            </ComboBox>
+                                <RichEditBox x:Name="pageContentsTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Make the Page Here" Width="290" Height="200" ToolTipService.ToolTip="Enter the Page's Content in Here"/>
 
-                        </StackPanel>
+                                <RichEditBox x:Name="pageInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
-                    </PivotItem>
+                                <TextBox x:Name="pageInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
-                </Pivot>
+                                <CheckBox x:Name="pageDefaultCheck" Content="Stories First Page" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTipService.ToolTip="Check this box if the Page is the first page that will be viewed by the page"/>
+
+                                <Button x:Name="newPageButton" Content="Create Page" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createStory"  ToolTipService.ToolTip="Click to Login" Width="163"/>
+
+                            </StackPanel>
+
+                        </PivotItem>
+
+                    </Pivot>
+                </StackPanel>
+                
+                <StackPanel x:Name="Authenticate">
+                    
+                    <TextBlock Margin="10,10,0,0" Text="You are not logged in :(" Style="{StaticResource TitleTextBlockStyle}" />
+
+                    <Pivot x:Name="AuthPivot" Margin="0,40,0,0" Height="585">
+
+                        <PivotItem x:Name="AuthForm" Header="Authentication">
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
+                                <Grid Margin="0,-50,0,0" Canvas.ZIndex="1">
+
+                                    <TextBlock x:Name="LoginFormHeading" Text="Please Login" Margin="10,10,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                                    <TextBox x:Name="myUsernameBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" PlaceholderText="Username" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Username Here"/>
+                                    <PasswordBox x:Name="myPasswordBox" FontSize="24" HorizontalAlignment="Left" Margin="10,104,0,0" PlaceholderText="Password" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Password Here"/>
+                                    <Button x:Name="loginButton" Content="Login" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="70,176,0,-57" VerticalAlignment="Top" Click="Login_Event"  ToolTipService.ToolTip="Click to Login" Width="163"/>
+
+                                </Grid>
+
+                                <ProgressRing
+                                x:Name="loginProgressRing"
+                                Height="125"
+                                Width="125"
+                                Margin="-0,-400,0,0"/>
+
+                            </StackPanel>
+
+                        </PivotItem>
+
+
+                        <PivotItem x:Name="RegForm" Header="Registration">
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
+
+                                <Grid Margin="0,-50,0,0" Canvas.ZIndex="1">
+
+                                    <TextBlock x:Name="RegisterFormHeading" Text="Register for an Account" Margin="10,10,2,37" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                                    <TextBox x:Name="myRegUsernameBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" PlaceholderText="Username" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Username Here"/>
+                                    <TextBox x:Name="myRegNameBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" Margin="10,104,0,0" TextWrapping="Wrap" PlaceholderText="Name" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Name Here"/>
+                                    <PasswordBox x:Name="myRegPasswordBox" FontSize="24" HorizontalAlignment="Left" Margin="10,156,0,0" PlaceholderText="Password" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Password Here"/>
+
+                                    <TextBox x:Name="myRegEmailBox" FontSize="24" HorizontalAlignment="Left" Margin="10,210,0,0" PlaceholderText="Email" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Email Here"/>
+
+                                    <DatePicker x:Name="myDOB" FontSize="20" Margin="10,263,0,52" ToolTipService.ToolTip="Please Select Your Date of Birth" Width="290"/>
+
+                                    <Button x:Name="registerButton" Content="Register" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="71,310,0,-54" VerticalAlignment="Top" Click="Register_Event" Width="163" ToolTipService.ToolTip="Click to Register"/>
+
+                                </Grid>
+
+                                <ProgressRing
+                                x:Name="registerProgressRing"
+                                Height="125"
+                                Width="125"
+                                Margin="-0,-400,0,0"/>
+
+                                <Grid x:Name="authed" Visibility="Collapsed" Canvas.ZIndex="1">
+                                    <TextBlock Text="You have been authenticated"/>
+                                </Grid>
+
+                            </StackPanel>
+
+                        </PivotItem>
+
+                    </Pivot>
+                </StackPanel>
+                
             </StackPanel>
         </ScrollViewer>
         <AppBar VerticalAlignment="Bottom">

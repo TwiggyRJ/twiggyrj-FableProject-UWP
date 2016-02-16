@@ -9,6 +9,12 @@ namespace FableProject.Themes
     class Icons
     {
 
+        public string AdminIcon()
+        {
+            string icon = "";
+            return icon;
+        }
+
         public string BookIcon()
         {
             string icon = "";
