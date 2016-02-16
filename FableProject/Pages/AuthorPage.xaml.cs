@@ -87,6 +87,18 @@ namespace FableProject.Pages
         }
 
 
+        private void pageHelper(object sender, RoutedEventArgs e)
+        {
+            string title = "Creating a Page for your Story";
+            string messageInitial = "Complete the {0} form to create a Page, you will need to name the page, create the content for the page and the interaction for it that will be displayed at the end. If this is the first page or you have not set a first page yet then click the first page checkbox.";
+            string context = "Story";
+            string message = string.Format(messageInitial, context);
+
+
+            helperBox(title, message, context);
+        }
+
+
         private void helperBox(string title, string message, string context)
         {
             string template = "To create a new {0} you will need to go to the {1} page. {2}";

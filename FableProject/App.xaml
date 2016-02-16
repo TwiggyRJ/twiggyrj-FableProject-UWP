@@ -14,7 +14,18 @@
 
         <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
         </Style>
+
+
+        <Style x:Key="ParagraphTitleBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+            <Setter Property="Margin" Value="0,1,0,18" />
+            <Setter Property="FontSize" Value="21.333"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
+        </Style>
+
 
         <SolidColorBrush x:Key="kBrush" Color="#3f51b5"/>
         <Style x:Key="KTextStyle" TargetType="TextBlock">

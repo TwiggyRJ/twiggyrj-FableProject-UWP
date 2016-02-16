@@ -65,6 +65,8 @@
 
                                 <TextBox x:Name="pageInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
+                                <TextBox x:Name="pageNumberBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Page Number" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
+                                
                                 <CheckBox x:Name="pageDefaultCheck" Content="Stories First Page" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTipService.ToolTip="Check this box if the Page is the first page that will be viewed by the page"/>
 
                                 <Button x:Name="newPageButton" Content="Create Page" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createStory"  ToolTipService.ToolTip="Click to Login" Width="163"/>
@@ -144,11 +146,18 @@
             </StackPanel>
         </ScrollViewer>
         <AppBar VerticalAlignment="Bottom">
-            <AppBarButton x:Name="storyHelp" Click="storyHelper" Label="Help For Stories" >
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE11B;"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
+            <CommandBar>
+                <AppBarButton x:Name="storyHelp" Click="storyHelper" Label="Help For Creating Stories" >
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE11B;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="pageHelp" Click="pageHelper" Label="Help For Creating Pages" >
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE11B;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar>
         </AppBar>
     </Grid>
 </Page>
