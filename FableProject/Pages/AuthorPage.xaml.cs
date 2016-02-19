@@ -269,8 +269,8 @@ namespace FableProject.Pages
             }
             else
             {
-                var dialogTitle = "Error with finding the Story";
-                var message = "Unable to find your Story Unfortunately :(";
+                var dialogTitle = "You don't have any Stories";
+                var message = "You don't have any Stories on Fable Time Yet, but we can Fix that right away";
                 feedbackDialog(dialogTitle, message);
             }
         }
@@ -297,8 +297,8 @@ namespace FableProject.Pages
             }
             else
             {
-                var dialogTitle = "Error displaying the Story";
-                var message = "Unable to display the story unfortuantely :(";
+                var dialogTitle = "You don't have any Stories";
+                var message = "You don't have any Stories on Fable Time Yet, but we can Fix that right away.";
                 feedbackDialog(dialogTitle, message);
             }
         }
@@ -555,6 +555,12 @@ namespace FableProject.Pages
             string pageMInteractionAnswer = pageMInteractionAnswerBox.Text;
             string pageHInteraction = Convert.ToString(pageHInteractionTextBox.Document);
             string pageHInteractionAnswer = pageHInteractionAnswerBox.Text;
+            string pageJInteraction = Convert.ToString(pageJInteractionTextBox.Document);
+            string pageJInteractionAnswer = pageJInteractionAnswerBox.Text;
+            string pageOptionA = pageOptionABox.Text;
+            string pageOptionB = pageOptionBBox.Text;
+            string pageInteractionOption = pageInteractionRewardBox.Text;
+            string pageReward = Convert.ToString(pageRewardBox.Document);
 
 
             Storage storage = new Storage();
@@ -619,12 +625,65 @@ namespace FableProject.Pages
                 string message = string.Format(template, messageDetails);
                 feedbackDialog(title, message);
             }
+            else if(pageOptionA == "" || pageOptionA == null)
+            {
+                string messageDetails = "not entered the next page number! How is the user supposed to progress?";
+                string message = string.Format(template, messageDetails);
+                feedbackDialog(title, message);
+            }
             else
             {
-                
+                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/page.php", pageRoot, pageTitle, pageContent, pageNumber, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionB, pageInteractionOption, pageReward);
             }
 
 
         }
+
+        private void sendPage(string username, string password, string target, string storyTitle, string pageTitle, string pageContent, string pageNumber, string pageEInteraction, string pageEInteractionAnswer, string pageMInteraction, string pageMInteractionAnswer, string pageHInteraction, string pageHInteractionAnswer, string pageJInteraction, string pageJInteractionAnswer, string pageOptionA, string pageOptionB, string pageInteractionOption, string pageReward)
+        {
+
+            var client = new HttpClient();
+
+            var postData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("storyTitle", storyTitle),
+                new KeyValuePair<string, string>("title", pageTitle),
+                new KeyValuePair<string, string>("content", pageContent),
+                new KeyValuePair<string, string>("pageNumber", pageNumber),
+                new KeyValuePair<string, string>("pageEInteraction", pageEInteraction),
+                new KeyValuePair<string, string>("pageEInteractionAnswer", pageEInteractionAnswer),
+                new KeyValuePair<string, string>("pageMInteraction", pageMInteraction),
+                new KeyValuePair<string, string>("pageMInteractionAnswer", pageMInteractionAnswer),
+                new KeyValuePair<string, string>("pageHInteraction", pageHInteraction),
+                new KeyValuePair<string, string>("pageHInteractionAnswer", pageHInteractionAnswer),
+                new KeyValuePair<string, string>("pageJInteraction", pageJInteraction),
+                new KeyValuePair<string, string>("pageJInteractionAnswer", pageEInteractionAnswer),
+                new KeyValuePair<string, string>("pageOptionA", pageOptionA),
+                new KeyValuePair<string, string>("pageOptionB", pageOptionB),
+                new KeyValuePair<string, string>("pageInteractionOption", pageInteractionOption),
+                new KeyValuePair<string, string>("pageReward", pageReward),
+                new KeyValuePair<string, string>("action", "post")
+            };
+
+            var content = new FormUrlEncodedContent(postData);
+
+            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password)));
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+            // call sync
+            var response = client.PostAsync(target, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                //storyGet(storyTitle, target);
+            }
+            else
+            {
+                var title = "Error with adding the Page";
+                var message = "Unable to add your Page Unfortunately :(";
+                feedbackDialog(title, message);
+            }
+        }
+
     }
 }

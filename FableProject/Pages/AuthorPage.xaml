@@ -247,6 +247,7 @@
                         <AdaptiveTrigger MinWindowWidth="700" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="AuthorPivot.Height" Value="1600" />
                         <Setter Target="pageOptionABox.Width" Value="700" />
                         <Setter Target="pageOptionBBox.Width" Value="700" />
                         <Setter Target="pageRewardBox.Width" Value="700" />
@@ -277,28 +278,29 @@
                         <AdaptiveTrigger MinWindowWidth="400" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="pageOptionABox.Width" Value="370" />
-                        <Setter Target="pageOptionBBox.Width" Value="370" />
-                        <Setter Target="pageRewardBox.Width" Value="370" />
-                        <Setter Target="pageInteractionRewardBox.Width" Value="370" />
-                        <Setter Target="pageEInteractionTextBox.Width" Value="370" />
-                        <Setter Target="pageHInteractionTextBox.Width" Value="370" />
-                        <Setter Target="pageMInteractionTextBox.Width" Value="370" />
-                        <Setter Target="pageJInteractionTextBox.Width" Value="370" />
-                        <Setter Target="pageEInteractionAnswerBox.Width" Value="370" />
-                        <Setter Target="pageHInteractionAnswerBox.Width" Value="370" />
-                        <Setter Target="pageMInteractionAnswerBox.Width" Value="370" />
-                        <Setter Target="pageJInteractionAnswerBox.Width" Value="370" />
-                        <Setter Target="pageTitleBox.Width" Value="370" />
-                        <Setter Target="pageContentsTextBox.Width" Value="370" />
-                        <Setter Target="pageContentsTextBox.Height" Value="300" />
-                        <Setter Target="pageNumberBox.Width" Value="370" />
-                        <Setter Target="selectedStory.Width" Value="370" />
-                        <Setter Target="storyCategory.Width" Value="370" />
-                        <Setter Target="storyDescriptionTextBox.Width" Value="370" />
-                        <Setter Target="storyDescriptionTextBox.Height" Value="300" />
-                        <Setter Target="storyImageBox.Width" Value="370" />
-                        <Setter Target="storyTitleBox.Width" Value="370" />
+                        <Setter Target="AuthorPivot.Height" Value="1600" />
+                        <Setter Target="pageOptionABox.Width" Value="350" />
+                        <Setter Target="pageOptionBBox.Width" Value="350" />
+                        <Setter Target="pageRewardBox.Width" Value="350" />
+                        <Setter Target="pageInteractionRewardBox.Width" Value="350" />
+                        <Setter Target="pageEInteractionTextBox.Width" Value="350" />
+                        <Setter Target="pageHInteractionTextBox.Width" Value="350" />
+                        <Setter Target="pageMInteractionTextBox.Width" Value="350" />
+                        <Setter Target="pageJInteractionTextBox.Width" Value="350" />
+                        <Setter Target="pageEInteractionAnswerBox.Width" Value="350" />
+                        <Setter Target="pageHInteractionAnswerBox.Width" Value="350" />
+                        <Setter Target="pageMInteractionAnswerBox.Width" Value="350" />
+                        <Setter Target="pageJInteractionAnswerBox.Width" Value="350" />
+                        <Setter Target="pageTitleBox.Width" Value="350" />
+                        <Setter Target="pageContentsTextBox.Width" Value="350" />
+                        <Setter Target="pageContentsTextBox.Height" Value="270" />
+                        <Setter Target="pageNumberBox.Width" Value="350" />
+                        <Setter Target="selectedStory.Width" Value="350" />
+                        <Setter Target="storyCategory.Width" Value="350" />
+                        <Setter Target="storyDescriptionTextBox.Width" Value="350" />
+                        <Setter Target="storyDescriptionTextBox.Height" Value="270" />
+                        <Setter Target="storyImageBox.Width" Value="350" />
+                        <Setter Target="storyTitleBox.Width" Value="350" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="SmallPhoneState">
@@ -306,6 +308,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="AuthorPivot.Height" Value="1500" />
                         <Setter Target="pageOptionABox.Width" Value="290" />
                         <Setter Target="pageOptionBBox.Width" Value="290" />
                         <Setter Target="pageRewardBox.Width" Value="290" />
