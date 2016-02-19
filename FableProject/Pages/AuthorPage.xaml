@@ -79,6 +79,14 @@
 
                                 <TextBox x:Name="pageJInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Humourous)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
+                                <TextBox x:Name="pageInteractionRewardBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Interaction Destination" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Where the interaction will take the player"/>
+
+                                <TextBox x:Name="pageOptionABox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Option A Destination" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Where Option A will take the player"/>
+
+                                <TextBox x:Name="pageOptionBBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Option B Destination" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Where Option B will take the player"/>
+
+                                <RichEditBox x:Name="pageRewardBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="What Goodies will you give the player" Width="290" Height="100" ToolTipService.ToolTip="Enter the goodies the player will get on this page"/>
+
                                 <CheckBox x:Name="pageDefaultCheck" Content="Stories First Page" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTipService.ToolTip="Check this box if the Page is the first page that will be viewed by the page"/>
 
                                 <Button x:Name="newPageButton" Content="Create Page" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createPage"  ToolTipService.ToolTip="Click to Login" Width="163"/>
@@ -177,7 +185,12 @@
                         <AdaptiveTrigger MinWindowWidth="1500" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1500" />
+                        <Setter Target="AuthorPivot.Height" Value="1800" />
+                        <Setter Target="pageOptionABox.Width" Value="1400" />
+                        <Setter Target="pageOptionBBox.Width" Value="1400" />
+                        <Setter Target="pageRewardBox.Width" Value="1400" />
+                        <Setter Target="pageRewardBox.Height" Value="200"/>
+                        <Setter Target="pageInteractionRewardBox.Width" Value="1400" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="1400" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="1400" />
                         <Setter Target="pageMInteractionTextBox.Width" Value="1400" />
@@ -203,6 +216,12 @@
                         <AdaptiveTrigger MinWindowWidth="1100" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="AuthorPivot.Height" Value="1600" />
+                        <Setter Target="pageOptionABox.Width" Value="1100" />
+                        <Setter Target="pageOptionBBox.Width" Value="1100" />
+                        <Setter Target="pageRewardBox.Width" Value="1100" />
+                        <Setter Target="pageRewardBox.Height" Value="200"/>
+                        <Setter Target="pageInteractionRewardBox.Width" Value="1100" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="1100" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="1100" />
                         <Setter Target="pageMInteractionTextBox.Width" Value="1100" />
@@ -228,6 +247,11 @@
                         <AdaptiveTrigger MinWindowWidth="700" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="pageOptionABox.Width" Value="700" />
+                        <Setter Target="pageOptionBBox.Width" Value="700" />
+                        <Setter Target="pageRewardBox.Width" Value="700" />
+                        <Setter Target="pageRewardBox.Height" Value="200"/>
+                        <Setter Target="pageInteractionRewardBox.Width" Value="700" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="700" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="700" />
                         <Setter Target="pageMInteractionTextBox.Width" Value="700" />
@@ -253,6 +277,10 @@
                         <AdaptiveTrigger MinWindowWidth="400" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="pageOptionABox.Width" Value="370" />
+                        <Setter Target="pageOptionBBox.Width" Value="370" />
+                        <Setter Target="pageRewardBox.Width" Value="370" />
+                        <Setter Target="pageInteractionRewardBox.Width" Value="370" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="370" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="370" />
                         <Setter Target="pageMInteractionTextBox.Width" Value="370" />
@@ -278,6 +306,10 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="pageOptionABox.Width" Value="290" />
+                        <Setter Target="pageOptionBBox.Width" Value="290" />
+                        <Setter Target="pageRewardBox.Width" Value="290" />
+                        <Setter Target="pageInteractionRewardBox.Width" Value="290" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="290" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="290" />
                         <Setter Target="pageMInteractionTextBox.Width" Value="290" />

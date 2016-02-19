@@ -292,6 +292,7 @@ namespace FableProject.Pages
 
                 selectedStory.ItemsSource = userStories;
                 selectedStory.DisplayMemberPath = "Title";
+                selectedStory.SelectedValuePath = "Title";
 
             }
             else
@@ -301,6 +302,8 @@ namespace FableProject.Pages
                 feedbackDialog(dialogTitle, message);
             }
         }
+
+
 
 
         private void Login_Event(object sender, RoutedEventArgs e)
@@ -544,7 +547,7 @@ namespace FableProject.Pages
 
             string pageTitle = pageTitleBox.Text;
             string pageContent = Convert.ToString(pageContentsTextBox.Document);
-            string pageRoot = ((ComboBoxItem)selectedStory.SelectedItem).Content.ToString();
+            string pageRoot = "";
             string pageNumber = pageNumberBox.Text;
             string pageEInteraction = Convert.ToString(pageEInteractionTextBox.Document);
             string pageEInteractionAnswer = pageEInteractionAnswerBox.Text;
@@ -581,22 +584,44 @@ namespace FableProject.Pages
                 passwordDetails = storage.LoadSettings(pDataKey);
             }
 
-            string title = "New Page For "+ pageRoot;
+            string title = "New Page";
 
-            if (pageTitle == "" || pageTitle == null)
+            if (selectedStory.SelectedIndex != -1)
             {
-                string messageDetails = "not entered a page title";
-                string template = "You have {0} for the page, please complete the form.";
+                pageRoot = selectedStory.SelectedValue.ToString();
+                title = "New Page For " + pageRoot;
+            }
+
+
+            string template = "You have {0} I shake my head....";
+
+            if (selectedStory.SelectedIndex == -1)
+            {
+                string messageDetails = "not selected which story this page belongs to!  How is anyone supposed to enjoy your content if this page is not assigned to a story :(";
                 string message = string.Format(template, messageDetails);
                 feedbackDialog(title, message);
             }
-
-            if (pageContent == "" || pageContent == null)
+            else if (pageTitle == "" || pageTitle == null)
             {
-                string messageDetails = "not entered any content for the Page!";
-                string template = "You have {0} How is anyone supposed to enjoy your content if there isn't any? 0 out of 10 for effort there :( So disappointed in you....";
+                string messageDetails = "not entered a page title!  How is anyone supposed to know the twists in the story!";
                 string message = string.Format(template, messageDetails);
                 feedbackDialog(title, message);
+            }
+            else if(pageContent == "" || pageContent == null)
+            {
+                string messageDetails = "not entered any content for the Page!  How is anyone supposed to enjoy your content if there isn't any? 0 out of 10 for effort there :(";
+                string message = string.Format(template, messageDetails);
+                feedbackDialog(title, message);
+            }
+            else if(pageNumber == "" || pageNumber == null)
+            {
+                string messageDetails = "not entered the page number! How is Fable Time supposed to link the pages together? Telekinesis? I'm just an App! :(";
+                string message = string.Format(template, messageDetails);
+                feedbackDialog(title, message);
+            }
+            else
+            {
+                
             }
 
 
