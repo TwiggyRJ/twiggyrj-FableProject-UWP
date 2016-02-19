@@ -25,7 +25,7 @@
                 <StackPanel Visibility="Visible" x:Name="NewStoriesPage">
                     <TextBlock Text="Create Content on Fable Time" Style="{StaticResource TitleTextBlockStyle}" />
 
-                    <Pivot x:Name="AuthorPivot" Margin="-10,-20,0,0" Height="700">
+                    <Pivot x:Name="AuthorPivot" Margin="-10,-20,0,0" Height="1300">
 
                         <PivotItem Header="Story Overview">
 
@@ -61,15 +61,27 @@
 
                                 <RichEditBox x:Name="pageContentsTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Make the Page Here" Width="290" Height="200" ToolTipService.ToolTip="Enter the Page's Content in Here"/>
 
-                                <RichEditBox x:Name="pageInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+                                <RichEditBox x:Name="pageEInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Easy Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
-                                <TextBox x:Name="pageInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
+                                <TextBox x:Name="pageEInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Easy Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
+                                
+                                <RichEditBox x:Name="pageMInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Medium Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+
+                                <TextBox x:Name="pageMInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Medium Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
                                 <TextBox x:Name="pageNumberBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Page Number" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
-                                
+
+                                <RichEditBox x:Name="pageHInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Hard Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+
+                                <TextBox x:Name="pageHInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Hard Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
+
+                                <RichEditBox x:Name="pageJInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Humourous)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+
+                                <TextBox x:Name="pageJInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Humourous)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
+
                                 <CheckBox x:Name="pageDefaultCheck" Content="Stories First Page" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTipService.ToolTip="Check this box if the Page is the first page that will be viewed by the page"/>
 
-                                <Button x:Name="newPageButton" Content="Create Page" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createStory"  ToolTipService.ToolTip="Click to Login" Width="163"/>
+                                <Button x:Name="newPageButton" Content="Create Page" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Click="createPage"  ToolTipService.ToolTip="Click to Login" Width="163"/>
 
                             </StackPanel>
 
@@ -77,9 +89,9 @@
 
                     </Pivot>
                 </StackPanel>
-                
+
                 <StackPanel x:Name="Authenticate">
-                    
+
                     <TextBlock Margin="10,10,0,0" Text="You are not logged in :(" Style="{StaticResource TitleTextBlockStyle}" />
 
                     <Pivot x:Name="AuthPivot" Margin="0,40,0,0" Height="585">
@@ -142,22 +154,152 @@
 
                     </Pivot>
                 </StackPanel>
-                
+
             </StackPanel>
         </ScrollViewer>
-        <AppBar VerticalAlignment="Bottom">
-            <CommandBar>
-                <AppBarButton x:Name="storyHelp" Click="storyHelper" Label="Help For Creating Stories" >
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE11B;"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton x:Name="pageHelp" Click="pageHelper" Label="Help For Creating Pages" >
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE11B;"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-            </CommandBar>
-        </AppBar>
+        <CommandBar VerticalAlignment="Bottom">
+            <AppBarButton x:Name="storyHelp" Click="storyHelper" Label="Help For Creating Stories" >
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE11B;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="pageHelp" Click="pageHelper" Label="Help For Creating Pages" >
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE11B;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1500" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AuthorPivot.Height" Value="1500" />
+                        <Setter Target="pageEInteractionTextBox.Width" Value="1400" />
+                        <Setter Target="pageHInteractionTextBox.Width" Value="1400" />
+                        <Setter Target="pageMInteractionTextBox.Width" Value="1400" />
+                        <Setter Target="pageJInteractionTextBox.Width" Value="1400" />
+                        <Setter Target="pageEInteractionAnswerBox.Width" Value="1400" />
+                        <Setter Target="pageHInteractionAnswerBox.Width" Value="1400" />
+                        <Setter Target="pageMInteractionAnswerBox.Width" Value="1400" />
+                        <Setter Target="pageJInteractionAnswerBox.Width" Value="1400" />
+                        <Setter Target="pageTitleBox.Width" Value="1400" />
+                        <Setter Target="pageContentsTextBox.Width" Value="1400" />
+                        <Setter Target="pageContentsTextBox.Height" Value="400" />
+                        <Setter Target="pageNumberBox.Width" Value="1400" />
+                        <Setter Target="selectedStory.Width" Value="1400" />
+                        <Setter Target="storyCategory.Width" Value="1400" />
+                        <Setter Target="storyDescriptionTextBox.Width" Value="1400" />
+                        <Setter Target="storyDescriptionTextBox.Height" Value="400" />
+                        <Setter Target="storyImageBox.Width" Value="1400" />
+                        <Setter Target="storyTitleBox.Width" Value="1400" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SemiNarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1100" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pageEInteractionTextBox.Width" Value="1100" />
+                        <Setter Target="pageHInteractionTextBox.Width" Value="1100" />
+                        <Setter Target="pageMInteractionTextBox.Width" Value="1100" />
+                        <Setter Target="pageJInteractionTextBox.Width" Value="1100" />
+                        <Setter Target="pageEInteractionAnswerBox.Width" Value="1100" />
+                        <Setter Target="pageHInteractionAnswerBox.Width" Value="1100" />
+                        <Setter Target="pageMInteractionAnswerBox.Width" Value="1100" />
+                        <Setter Target="pageJInteractionAnswerBox.Width" Value="1100" />
+                        <Setter Target="pageTitleBox.Width" Value="1100" />
+                        <Setter Target="pageContentsTextBox.Width" Value="1100" />
+                        <Setter Target="pageContentsTextBox.Height" Value="300" />
+                        <Setter Target="pageNumberBox.Width" Value="1100" />
+                        <Setter Target="selectedStory.Width" Value="1100" />
+                        <Setter Target="storyCategory.Width" Value="1100" />
+                        <Setter Target="storyDescriptionTextBox.Width" Value="1100" />
+                        <Setter Target="storyDescriptionTextBox.Height" Value="300" />
+                        <Setter Target="storyImageBox.Width" Value="1100" />
+                        <Setter Target="storyTitleBox.Width" Value="1100" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pageEInteractionTextBox.Width" Value="700" />
+                        <Setter Target="pageHInteractionTextBox.Width" Value="700" />
+                        <Setter Target="pageMInteractionTextBox.Width" Value="700" />
+                        <Setter Target="pageJInteractionTextBox.Width" Value="700" />
+                        <Setter Target="pageEInteractionAnswerBox.Width" Value="700" />
+                        <Setter Target="pageHInteractionAnswerBox.Width" Value="700" />
+                        <Setter Target="pageMInteractionAnswerBox.Width" Value="700" />
+                        <Setter Target="pageJInteractionAnswerBox.Width" Value="700" />
+                        <Setter Target="pageTitleBox.Width" Value="700" />
+                        <Setter Target="pageContentsTextBox.Width" Value="700" />
+                        <Setter Target="pageContentsTextBox.Height" Value="300" />
+                        <Setter Target="pageNumberBox.Width" Value="700" />
+                        <Setter Target="selectedStory.Width" Value="700" />
+                        <Setter Target="storyCategory.Width" Value="700" />
+                        <Setter Target="storyDescriptionTextBox.Width" Value="700" />
+                        <Setter Target="storyDescriptionTextBox.Height" Value="300" />
+                        <Setter Target="storyImageBox.Width" Value="700" />
+                        <Setter Target="storyTitleBox.Width" Value="700" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="PhabletState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="400" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pageEInteractionTextBox.Width" Value="370" />
+                        <Setter Target="pageHInteractionTextBox.Width" Value="370" />
+                        <Setter Target="pageMInteractionTextBox.Width" Value="370" />
+                        <Setter Target="pageJInteractionTextBox.Width" Value="370" />
+                        <Setter Target="pageEInteractionAnswerBox.Width" Value="370" />
+                        <Setter Target="pageHInteractionAnswerBox.Width" Value="370" />
+                        <Setter Target="pageMInteractionAnswerBox.Width" Value="370" />
+                        <Setter Target="pageJInteractionAnswerBox.Width" Value="370" />
+                        <Setter Target="pageTitleBox.Width" Value="370" />
+                        <Setter Target="pageContentsTextBox.Width" Value="370" />
+                        <Setter Target="pageContentsTextBox.Height" Value="300" />
+                        <Setter Target="pageNumberBox.Width" Value="370" />
+                        <Setter Target="selectedStory.Width" Value="370" />
+                        <Setter Target="storyCategory.Width" Value="370" />
+                        <Setter Target="storyDescriptionTextBox.Width" Value="370" />
+                        <Setter Target="storyDescriptionTextBox.Height" Value="300" />
+                        <Setter Target="storyImageBox.Width" Value="370" />
+                        <Setter Target="storyTitleBox.Width" Value="370" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SmallPhoneState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pageEInteractionTextBox.Width" Value="290" />
+                        <Setter Target="pageHInteractionTextBox.Width" Value="290" />
+                        <Setter Target="pageMInteractionTextBox.Width" Value="290" />
+                        <Setter Target="pageJInteractionTextBox.Width" Value="290" />
+                        <Setter Target="pageEInteractionAnswerBox.Width" Value="290" />
+                        <Setter Target="pageHInteractionAnswerBox.Width" Value="290" />
+                        <Setter Target="pageMInteractionAnswerBox.Width" Value="290" />
+                        <Setter Target="pageJInteractionAnswerBox.Width" Value="290" />
+                        <Setter Target="pageTitleBox.Width" Value="290" />
+                        <Setter Target="pageContentsTextBox.Width" Value="290" />
+                        <Setter Target="pageContentsTextBox.Height" Value="200" />
+                        <Setter Target="pageNumberBox.Width" Value="290" />
+                        <Setter Target="selectedStory.Width" Value="290" />
+                        <Setter Target="storyCategory.Width" Value="290" />
+                        <Setter Target="storyDescriptionTextBox.Width" Value="290" />
+                        <Setter Target="storyDescriptionTextBox.Height" Value="200" />
+                        <Setter Target="storyImageBox.Width" Value="290" />
+                        <Setter Target="storyTitleBox.Width" Value="290" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
     </Grid>
 </Page>

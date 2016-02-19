@@ -539,7 +539,67 @@ namespace FableProject.Pages
 
         }
 
+        private void createPage(object sender, RoutedEventArgs e)
+        {
+
+            string pageTitle = pageTitleBox.Text;
+            string pageContent = Convert.ToString(pageContentsTextBox.Document);
+            string pageRoot = ((ComboBoxItem)selectedStory.SelectedItem).Content.ToString();
+            string pageNumber = pageNumberBox.Text;
+            string pageEInteraction = Convert.ToString(pageEInteractionTextBox.Document);
+            string pageEInteractionAnswer = pageEInteractionAnswerBox.Text;
+            string pageMInteraction = Convert.ToString(pageMInteractionTextBox.Document);
+            string pageMInteractionAnswer = pageMInteractionAnswerBox.Text;
+            string pageHInteraction = Convert.ToString(pageHInteractionTextBox.Document);
+            string pageHInteractionAnswer = pageHInteractionAnswerBox.Text;
 
 
+            Storage storage = new Storage();
+
+            string uDataKey = "usernameDetails";
+            string pDataKey = "passwordDetails";
+            string rDataKey = "roamingDetails";
+
+            string roamingSetting = storage.LoadSettings(rDataKey);
+
+            string usernameDetails = "";
+            string passwordDetails = "";
+
+            if (roamingSetting == "true")
+            {
+                usernameDetails = storage.LoadRoamingSettings(uDataKey);
+                passwordDetails = storage.LoadRoamingSettings(pDataKey);
+            }
+            else if (roamingSetting == "false")
+            {
+                usernameDetails = storage.LoadSettings(uDataKey);
+                passwordDetails = storage.LoadSettings(pDataKey);
+            }
+            else if (roamingSetting == "Null")
+            {
+                usernameDetails = storage.LoadSettings(uDataKey);
+                passwordDetails = storage.LoadSettings(pDataKey);
+            }
+
+            string title = "New Page For "+ pageRoot;
+
+            if (pageTitle == "" || pageTitle == null)
+            {
+                string messageDetails = "not entered a page title";
+                string template = "You have {0} for the page, please complete the form.";
+                string message = string.Format(template, messageDetails);
+                feedbackDialog(title, message);
+            }
+
+            if (pageContent == "" || pageContent == null)
+            {
+                string messageDetails = "not entered any content for the Page!";
+                string template = "You have {0} How is anyone supposed to enjoy your content if there isn't any? 0 out of 10 for effort there :( So disappointed in you....";
+                string message = string.Format(template, messageDetails);
+                feedbackDialog(title, message);
+            }
+
+
+        }
     }
 }
