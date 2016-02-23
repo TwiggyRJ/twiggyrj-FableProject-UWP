@@ -13,6 +13,7 @@ using System.Text;
 using Windows.ApplicationModel.Email;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Pickers;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -29,6 +30,8 @@ namespace FableProject.Pages
     /// </summary>
     public sealed partial class ProfilePage : Page
     {
+       public FileOpenPicker avatarPicker = null;
+
         public ProfilePage()
         {
             this.InitializeComponent();
@@ -347,6 +350,7 @@ namespace FableProject.Pages
             }
 
             createURI(username, name, newPassword, password, email, website, avatar, "http://www.kshatriya.co.uk/dev/project/service/auth.php");
+
         }
 
         private async void createURI(string username, string name, string newPassword, string password, string email, string website, string avatar, string target)

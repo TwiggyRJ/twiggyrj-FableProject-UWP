@@ -1,0 +1,56 @@
+﻿<Page x:Class="FableProject.Pages.SelectedStoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:FableProject.Pages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Media="using:Microsoft.Xaml.Interactions.Media"
+      DataContext="{Binding StoriesViewModel, RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <!--
+            Collection of grouped items displayed by this page, bound to a subset
+            of the complete item list because items in groups cannot be virtualized
+        -->
+        <CollectionViewSource
+            x:Name="StoriesViewSource"
+            Source="{Binding Stories}"
+            IsSourceGrouped="true"
+            ItemsPath="Stories"/>
+
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer HorizontalAlignment="Stretch" Style="{StaticResource PageScrollViewerStyleNoPadding}">
+            <StackPanel x:Name="StoryData" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding Source={StaticResource StoriesViewSource}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Canvas.ZIndex="1">
+                <Grid x:Name="StoryHeader" Visibility="Visible" Canvas.ZIndex="1">
+
+                    <Image Source="http://www.kshatriya.co.uk/dev/project/images/BrightPeakBarrow.jpg" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                    
+                    <TextBlock x:Name="StoryHeading" HorizontalAlignment="Left" Margin="10,10,0,0" Text="The Tale of Bright Peak Mountain" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleProfileBrush}" />
+
+                    <Ellipse Width="150" Height="150" Margin="0,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="UserAvatar" ImageSource="{Binding Avatar}" AutomationProperties.Name="{Binding Name}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <Grid Margin="0,190,0,0" Padding="0,25,0,25">
+
+                        <TextBlock x:Name="NameHeading" HorizontalAlignment="Center" Text="{Binding Name}" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}" />
+
+                        <TextBlock x:Name="EmailHeading" HorizontalAlignment="Right" Margin="0,50,10,0" Text="{Binding Email}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="EmailClick"/>
+
+                        <TextBlock x:Name="WebsiteHeading" HorizontalAlignment="Left" Margin="10,50,0,0" Text="{Binding Website}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="WebsiteClick" />
+
+                    </Grid>
+
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

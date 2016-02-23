@@ -61,6 +61,8 @@
 
                                 <RichEditBox x:Name="pageContentsTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Make the Page Here" Width="290" Height="200" ToolTipService.ToolTip="Enter the Page's Content in Here"/>
 
+                                <TextBox x:Name="pageNumberBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Page Number" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
+                                
                                 <RichEditBox x:Name="pageEInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Easy Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
                                 <TextBox x:Name="pageEInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Easy Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
@@ -68,8 +70,6 @@
                                 <RichEditBox x:Name="pageMInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Medium Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
                                 <TextBox x:Name="pageMInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Medium Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
-
-                                <TextBox x:Name="pageNumberBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Page Number" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
                                 <RichEditBox x:Name="pageHInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Hard Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 

@@ -636,7 +636,7 @@ namespace FableProject.Pages
             }
             else
             {
-                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/page.php", pageRoot, pageTitle, pageContent, pageNumber, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest pageOptionB, pageOptionBDest, pageInteractionOption, pageReward, pageFirst);
+                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/service/page.php", pageRoot, pageTitle, pageContent, pageNumber, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest, pageOptionB, pageOptionBDest, pageInteractionOption, pageReward, pageFirst);
             }
 
 
