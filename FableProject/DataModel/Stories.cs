@@ -27,6 +27,14 @@ namespace FableProject.DataModel
 
         public string Recommended { get; set; }
 
+        public string modRecommended { get; set; }
+
+        public string modDate { get; set; }
+
+        public DateTime created { get; set; }
+
+        public string vis { get; set; }
+
     }
 
     public class StoriesSorted
@@ -51,6 +59,23 @@ namespace FableProject.DataModel
                                 .Select(x => new StoriesSorted { Title = x.Key, Stories = x.ToList() });
 
             Stories = storiesByTitle.ToList();
+
+            if(stories[0].Recommended == "0")
+            {
+                stories[0].modRecommended = "Nobody has recommended it :(";
+            }
+            else if(stories[0].Recommended == "1")
+            {
+                stories[0].modRecommended = "Yay! 1 person has recommended this story! Well it's better than nothing...";
+            }
+            else
+            {
+                stories[0].modRecommended = stories[0].Recommended + " Times";
+            }
+
+            stories[0].modDate = stories[0].created.ToString("dddd d MMMM yyyy");
+
+            
 
             string storyDataKey = "storyDetails";
             string rDatakey = "roamingDetails";

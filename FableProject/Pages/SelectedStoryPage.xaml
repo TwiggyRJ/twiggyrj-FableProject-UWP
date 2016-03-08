@@ -27,30 +27,88 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer HorizontalAlignment="Stretch" Style="{StaticResource PageScrollViewerStyleNoPadding}">
             <StackPanel x:Name="StoryData" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding Source={StaticResource StoriesViewSource}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Canvas.ZIndex="1">
-                <Grid x:Name="StoryHeader" Visibility="Visible" Canvas.ZIndex="1">
+                <Grid x:Name="StoryHeader" Height="325" Visibility="Visible" Canvas.ZIndex="1">
 
-                    <Image Source="http://www.kshatriya.co.uk/dev/project/images/BrightPeakBarrow.jpg" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                    
-                    <TextBlock x:Name="StoryHeading" HorizontalAlignment="Left" Margin="10,10,0,0" Text="The Tale of Bright Peak Mountain" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleProfileBrush}" />
+                    <Image Source="{Binding Image}" Stretch="Fill"  AutomationProperties.Name="{Binding Title}"/>
 
-                    <Ellipse Width="150" Height="150" Margin="0,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Ellipse.Fill>
-                            <ImageBrush x:Name="UserAvatar" ImageSource="{Binding Avatar}" AutomationProperties.Name="{Binding Name}"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+                    <TextBlock x:Name="StoryHeading" HorizontalAlignment="Left" Margin="10,10,0,0" Text="{Binding Title}" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleProfileBrush}" />
 
-                    <Grid Margin="0,190,0,0" Padding="0,25,0,25">
+                    <Grid Margin="0,190,0,0" VerticalAlignment="Bottom" Padding="0,25,0,25">
 
-                        <TextBlock x:Name="NameHeading" HorizontalAlignment="Center" Text="{Binding Name}" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}" />
+                        <TextBlock x:Name="AuthorHeadingInit" HorizontalAlignment="Left" Text="Author: " Margin="10,0,0,0" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}" />
+                        
+                        <TextBlock x:Name="AuthorHeading" HorizontalAlignment="Left" Margin="88,0,0,0" Text="{Binding OwnerName}" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}" />
 
-                        <TextBlock x:Name="EmailHeading" HorizontalAlignment="Right" Margin="0,50,10,0" Text="{Binding Email}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="EmailClick"/>
+                        <TextBlock x:Name="ReleasedHeadingInit" HorizontalAlignment="Left" Text="Released: " Margin="10,30,0,0" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}"/>
 
-                        <TextBlock x:Name="WebsiteHeading" HorizontalAlignment="Left" Margin="10,50,0,0" Text="{Binding Website}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="WebsiteClick" />
+                        <TextBlock x:Name="ReleasedHeading" HorizontalAlignment="Left" Margin="110,30,0,0" Text="{Binding modDate}" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}"/>
+
+                        <TextBlock x:Name="RatingHeadingInit" HorizontalAlignment="Left" Margin="10,60,0,0" Text="Recommended: " Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}"/>
+
+                        <TextBlock x:Name="RatingHeading" HorizontalAlignment="Left" Margin="170,60,0,0" Text="{Binding modRecommended}" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrush}"/>
 
                     </Grid>
 
                 </Grid>
+
+                <Grid>
+                    <TextBlock x:Name="DescHeadingInit" HorizontalAlignment="Left" Text="Description: " Margin="10,0,0,0" Style="{StaticResource KshatriyaSmallTitleTextBlockStyleProfileBrushAlt}"/>
+                    <TextBlock x:Name="DescHeading" Margin="10,40,0,0" Text="{Binding Description}" Style="{StaticResource ParagraphTextBlockStyle}" />
+                </Grid>
+                <Grid Margin="0,20,0,0">
+                    <Button Content="Play" ToolTipService.ToolTip="Click to Play" VerticalAlignment="Bottom" Style="{StaticResource LoginMenuButtonStyle}" Margin="10,0,0,0"/>
+
+                    <ProgressRing
+                        x:Name="searchProgressRing"
+                        Height="125"
+                        Width="125"
+                        Margin="0,-150,0,0"/>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1100" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StoryHeader.Height" Value="600" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SemiNarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StoryHeader.Height" Value="500" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SlightyNarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StoryHeader.Height" Value="500" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StoryHeader.Height" Value="400" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SmallPhoneState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StoryHeader.Height" Value="325" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

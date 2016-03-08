@@ -64,19 +64,7 @@ namespace FableProject.Pages
             searchProgressRing.IsActive = false;
 
         }
-        /*
-        void gridviewVenues_SelectionClicked(object sender, ItemClickEventArgs e)
-        {
-
-            Venue item = e.ClickedItem as Venue;
-            string itemID = item.ID;
-            string itemName = item.Name;
-
-            CreateWindow(itemID, itemName);
-
-
-        }
-        */
+        
         private async void errorDialog(string title, string messageDetails)
         {
             object sender = null;
@@ -88,7 +76,11 @@ namespace FableProject.Pages
 
         private void gridviewStories_SelectionClicked(object sender, ItemClickEventArgs e)
         {
+            Stories item = e.ClickedItem as Stories;
+            string itemID = item.ID;
+            string itemTitle = item.Title;
 
+            Frame.Navigate(typeof(SelectedStoryPage), itemID);
         }
 
         private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

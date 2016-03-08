@@ -14,8 +14,13 @@
 
         <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
+        </Style>
+
+        <Style x:Key="CaptionTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Normal"/>
         </Style>
 
 
@@ -66,6 +71,11 @@
             <Setter Property="Margin" Value="0,1,0,18" />
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style x:Key="KshatriyaSmallTitleTextBlockStyleProfileBrushAlt" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+            <Setter Property="Margin" Value="0,1,0,18" />
+            <Setter Property="FontSize" Value="22"/>
         </Style>
 
         <Style x:Key="KshatriyaSubtitleTextBlockStyleProfileBrush" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
