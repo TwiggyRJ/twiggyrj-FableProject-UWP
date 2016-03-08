@@ -2,8 +2,22 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
             <StackPanel>
-                <TextBlock Text="Page 1" Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate posuere erat viverra ornare. Proin a massa a mi porttitor consequat vitae non lacus. Vivamus efficitur dui non ipsum sagittis, a maximus neque ornare. Donec vehicula viverra lacus, at placerat odio. Integer at ipsum sed est commodo ultricies et quis ipsum. Vivamus condimentum velit eget diam sodales ullamcorper. Nunc arcu nisl, tincidunt vel iaculis nec, malesuada quis ipsum. Nunc tincidunt risus quis venenatis dictum. Donec cursus ac enim eu pulvinar. Sed ultricies, risus in ullamcorper bibendum, metus sem hendrerit est, ac eleifend neque nulla a risus. Aenean accumsan nunc eu massa fermentum, at pellentesque lorem commodo. Proin congue sagittis ex vitae fermentum. Phasellus rutrum in erat vitae cursus. Quisque quis lacus sed felis dictum tempor nec non orci. In nec risus faucibus, efficitur est eget, luctus tellus." Style="{StaticResource ParagraphTextBlockStyle}" />
+                <TextBlock x:Name="StoryHeading" HorizontalAlignment="Left" Text="The Tale of Bright Peak Barrow" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleProfileBrush}" />
+                <TextBlock Text="Setting Out" Style="{StaticResource TitleTextBlockStyle}" />
+                <Grid>
+                    
+                    <TextBlock Text="You wake up from your slumber, the strong and dazzling sun blinds you as you wake. You climb out of the old straw bed and gaze out into the rustic village of Grimmewater. The villagers were taking out their cows and sheep out into the green planes just south of Bright Peak Mountain. As you gaze you see your destination, the old Nordic ruin at the base of the mountain. As you get ready to go Old Lady Jess bursts in and asks for the rent money…
+You have two Choices:
+1. Pay Old Lady Jess 5 pieces of gold
+2. Run away by attempting to jump out the windows and escape
+" Style="{StaticResource StoryParagraphTextBlockStyle}" />
+                </Grid>
+
+                <Grid>
+                    <Button Content="Pay Old Lady Jess" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left"/>
+                    <Button Content="Run Away" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Right"/>
+                </Grid>
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>
