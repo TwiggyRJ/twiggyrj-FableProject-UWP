@@ -109,7 +109,6 @@ namespace FableProject
             //SplitView "Hamburger" Menu items
             var vm = new ShellViewModel();
             vm.MenuItems.Add(new MenuItem { Icon = icons.EmojiIcon(), Title = "Welcome", PageType = typeof(WelcomePage) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 1", PageType = typeof(Page1) });
             vm.MenuItems.Add(new MenuItem { Icon = icons.BookIcon(), Title = "Stories", PageType = typeof(StoriesPage) });
 
 

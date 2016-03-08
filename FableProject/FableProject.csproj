@@ -110,8 +110,8 @@
     <Compile Include="Pages\SelectedStoryPage.xaml.cs">
       <DependentUpon>SelectedStoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
+    <Compile Include="Pages\StoryPage.xaml.cs">
+      <DependentUpon>StoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
@@ -173,7 +173,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Page1.xaml">
+    <Page Include="Pages\StoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
