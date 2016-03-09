@@ -35,6 +35,15 @@ namespace FableProject.Pages
         {
             this.InitializeComponent();
 
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                hideStatus.Visibility = Visibility.Visible;
+                Thickness myModifiedGrid = roamingGrid.Margin;
+                myModifiedGrid.Top = 0;
+                roamingGrid.Margin = myModifiedGrid;
+            }
+
             Storage storage = new Storage();
 
             string sDataKey = "userDetails";
@@ -587,5 +596,70 @@ namespace FableProject.Pages
 
         }
 
+        private void dateSettingsChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Storage storage = new Storage();
+
+            string rDatakey = "roamingDetails";
+            string dfDatakey = "dateFormatDetails";
+            string roamingSetting = storage.LoadSettings(rDatakey);
+
+            string dateFormat = ((ComboBoxItem)dateSettingsCombo.SelectedItem).Content.ToString();
+
+            if(dateFormat == "Default")
+            {
+                dateFormatHeader.Text = "Default i.e. Changes on the Context";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(dfDatakey, "0");
+                }
+                else
+                {
+                    storage.SaveSettings(dfDatakey, "0");
+                }
+            }
+            else if(dateFormat == "Full 'Proper' Date Layout")
+            {
+                dateFormatHeader.Text = "Wednesday 9 March 2016";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(dfDatakey, "1");
+                }
+                else
+                {
+                    storage.SaveSettings(dfDatakey, "1");
+                }
+            }
+            else if (dateFormat == "Short")
+            {
+                dateFormatHeader.Text = "Wed 9 Mar 2016";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(dfDatakey, "2");
+                }
+                else
+                {
+                    storage.SaveSettings(dfDatakey, "2");
+                }
+            }
+            else if (dateFormat == "Numeric")
+            {
+                dateFormatHeader.Text = "09/03/2016";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(dfDatakey, "3");
+                }
+                else
+                {
+                    storage.SaveSettings(dfDatakey, "3");
+                }
+            }
+
+
+        }
     }
 }

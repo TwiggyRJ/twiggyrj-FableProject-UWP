@@ -16,19 +16,37 @@
                     <PivotItem Header="General">
 
                         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,48,0,28" Canvas.ZIndex="1">
-                            
+
                             <Grid Margin="0,-50,0,0" Canvas.ZIndex="1">
-
-                                <ToggleSwitch x:Name="hideStatus" Tag="1" ToolTipService.ToolTip="Click to hide the system status bar" Header="Hide Status Bar (Phone Only)" Toggled="statusToggled"/>
-
-                                <ToggleSwitch x:Name="roamingEnable" Tag="1" ToolTipService.ToolTip="Click to enable settings to roam with your Microsoft Account" Header="Enable Settings to Roam" Toggled="roamingToggled" Margin="0,55,0,-55" />
-
-                                <TextBlock x:Name="headerClearCache" Text="Clear Application Data" Margin="0,120,0,-120"/>
-
-                                <Button x:Name="clearCache" Style="{ThemeResource LoginMenuButtonStyle}" ToolTipService.ToolTip="Click to clear all application data" Content="Clear Cache" Margin="0,152,0,-131" Click="clearCache_Click"/>
-
+                                <ToggleSwitch x:Name="hideStatus" Visibility="Collapsed" Tag="1" ToolTipService.ToolTip="Click to hide the system status bar" Header="Hide Status Bar" Toggled="statusToggled"/>
                             </Grid>
-                            
+                            <Grid x:Name="roamingGrid" Margin="0,-40,0,0">
+                                <ToggleSwitch x:Name="roamingEnable" Tag="1" ToolTipService.ToolTip="Click to enable settings to roam with your Microsoft Account" Header="Enable Settings to Roam" Toggled="roamingToggled" />
+                            </Grid>
+
+                            <Grid>
+                                <TextBlock Text="What Format would you like dates to be in"/>
+                            </Grid>
+
+                            <Grid Margin="0,5,0,0">
+                                <TextBlock x:Name="dateFormatHeader" Text="Default i.e. Changes on the Context"/>
+                            </Grid>
+                            <Grid Margin="0,5,0,0">
+                                <ComboBox x:Name="dateSettingsCombo" Width="250" SelectionChanged="dateSettingsChanged">
+                                    <ComboBoxItem Content="Default"/>
+                                    <ComboBoxItem Content="Full 'Proper' Date Layout"/>
+                                    <ComboBoxItem Content="Short"/>
+                                    <ComboBoxItem Content="Numeric"/>
+                                </ComboBox>
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+                                <TextBlock x:Name="headerClearCache" Text="Clear Application Data"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <Button x:Name="clearCache" Style="{ThemeResource LoginMenuButtonStyle}" ToolTipService.ToolTip="Click to clear all application data" Content="Clear Cache"  Click="clearCache_Click"/>
+                            </Grid>
+
                         </StackPanel>
 
 
