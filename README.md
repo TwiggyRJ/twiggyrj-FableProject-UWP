@@ -1,14 +1,19 @@
 # twiggyrj-FableProject-UWP
 This is the source code for the universal windows app for the Fable Time Web Service
 
-he requirements for using the service and first party apps are:
+##Requirements##
 
-| **Requirements** | **Desktops** | **Phones** |
-| -- | -- | -- |
-| An Account Needed? | Yes | Yes |
-| Internet Connectivity | Yes | Yes |
-| Operating System | Windows 10 - Build 10240 and above | Windows 10 Mobile - Build 10586 |
-| Permissions | Internet Connection, Storage | Internet Connection, Storage |
-| Where Can I Get it? | Windows Store | Windows Store |
+- Windows 10 SDK
+- Visual Studio
+- Windows 10 to test the UWP App
+- Windows 10 Pro to test the App in a mobile environment
 
-*Please Note: To use all the features of the Service and App you will need to have an Account*
+## How to create an account ##
+
+Open the Hamburger Menu and head down to settings, once there swipe along the Pivot until you reach *Authentication Continued*. Once there you can register.
+
+*At present the App needs to restart after a login, this will be fixed.*
+
+**Please note that there is still a large amount of work to be completed.** 
+
+**Registration for the Service is open but no conformation emails are sent**
