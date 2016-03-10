@@ -128,12 +128,13 @@
                 </VisualStateManager.VisualStateGroups>
             </StackPanel>
         </ScrollViewer>
-        <AppBar VerticalAlignment="Bottom">
+
+        <CommandBar VerticalAlignment="Bottom">
             <AppBarButton x:Name="searchHideButton" Click="searchHide" Label="Hide/Unhide Search Panel" >
                 <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xEA80;"/>
+                    <FontIcon Glyph="&#xE11B;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-        </AppBar>
+        </CommandBar>
     </Grid>
 </Page>
