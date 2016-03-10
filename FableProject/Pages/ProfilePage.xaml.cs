@@ -80,6 +80,7 @@ namespace FableProject.Pages
                 feedbackDialog(dialogTitle, message);
                 UserHeader.Visibility = Visibility.Collapsed;
                 AboutGrid.Visibility = Visibility.Collapsed;
+                aboutMe.Visibility = Visibility.Collapsed;
                 Authenticate.Visibility = Visibility.Visible;
             }
 

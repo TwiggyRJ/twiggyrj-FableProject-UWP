@@ -42,6 +42,10 @@ namespace FableProject.DataModel
 
         public int modAge { get; set; }
 
+        public string modAgeDisplay { get; set; }
+
+        public string modStories { get; set; }
+
     }
 
     public class UserSorted
@@ -59,18 +63,83 @@ namespace FableProject.DataModel
 
         public UserDataSource(string JSON, string username, string password)
         {
+
+            string sDataKey = "userDetails";
+            string uDataKey = "usernameDetails";
+            string pDataKey = "passwordDetails";
+            string rDatakey = "roamingDetails";
+            string aDataKey = "authorDetails";
+            string avDataKey = "avatarDetails";
+            string idDataKey = "userIdDetails";
+            string adDatakey = "adminDetails";
+            string dfDatakey = "dateFormatDetails";
+
+            Storage storage = new Storage();
+
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string dateSetting = "";
+
+            if (roamingSetting == "true")
+            {
+                dateSetting = storage.LoadRoamingSettings(dfDatakey);
+            }
+            else if (roamingSetting == "false")
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+            else if (roamingSetting == "Null")
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+
             List<User> users = JsonConvert.DeserializeObject<List<User>>(JSON);
 
-            users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            
 
             //users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
-            users[0].modDOB = users[0].DOB.ToString("d MMMM");
+
+            if(dateSetting == "0")
+            {
+                users[0].modDOB = users[0].DOB.ToString("d MMMM yy");
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "1")
+            {
+                users[0].modDOB = users[0].DOB.ToString("dddd d MMMM yyyy");
+                users[0].modJoined = users[0].Joined.ToString("dddd d MMMM yyyy");
+            }
+            else if (dateSetting == "2")
+            {
+                users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "3")
+            {
+                users[0].modDOB = users[0].DOB.ToString("dd/MM/yyyy");
+                users[0].modJoined = users[0].Joined.ToString("dd/MM/yyyy");
+            }
+            else if (dateSetting == "4")
+            {
+                users[0].modDOB = users[0].DOB.ToString("M/d/yyyy");
+                users[0].modJoined = users[0].Joined.ToString("M/d/yyyy");
+            }
+            else
+            {
+                users[0].modDOB = users[0].DOB.ToString("d MMMM yy");
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+
+            users[0].modDOB = "Birth Date: " + users[0].modDOB;
+
+            users[0].modStories = "Stories Written: " + users[0].Stories;
+
 
             DateTime today = DateTime.Today;
             int age = today.Year - users[0].DOB.Year;
             if (users[0].DOB > today.AddYears(-age)) age--;
 
             users[0].modAge = age;
+            users[0].modAgeDisplay = "Age: " + age;
 
             if (users[0].Author == "1")
             {
@@ -86,23 +155,12 @@ namespace FableProject.DataModel
                 users[0].modAccountType = "Admin";
             }
 
+            users[0].modAccountType = "Account Type: " + users[0].modAccountType;
+
             var usersByName = users.GroupBy(x => x.Username)
                                 .Select(x => new UserSorted { Name = x.Key, Users = x.ToList() });
 
             Users = usersByName.ToList();
-
-            string sDataKey = "userDetails";
-            string uDataKey = "usernameDetails";
-            string pDataKey = "passwordDetails";
-            string rDatakey = "roamingDetails";
-            string aDataKey = "authorDetails";
-            string avDataKey = "avatarDetails";
-            string idDataKey = "userIdDetails";
-            string adDatakey = "adminDetails";
-
-            Storage storage = new Storage();
-
-            string roamingSetting = storage.LoadSettings(rDatakey);
 
             if (roamingSetting == "true")
             {
@@ -141,16 +199,85 @@ namespace FableProject.DataModel
         {
             List<User> users = JsonConvert.DeserializeObject<List<User>>(JSON);
 
-            users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            //users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
 
             //users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
-            users[0].modDOB = users[0].DOB.ToString("d MMMM");
+            //users[0].modDOB = users[0].DOB.ToString("d MMMM");
+
+            string sDataKey = "userDetails";
+            string uDataKey = "usernameDetails";
+            string pDataKey = "passwordDetails";
+            string rDatakey = "roamingDetails";
+            string aDataKey = "authorDetails";
+            string avDataKey = "avatarDetails";
+            string idDataKey = "userIdDetails";
+            string adDatakey = "adminDetails";
+            string dfDatakey = "dateFormatDetails";
+
+            Storage storage = new Storage();
+
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string dateSetting = "";
+
+            if (roamingSetting == "true")
+            {
+                dateSetting = storage.LoadRoamingSettings(dfDatakey);
+            }
+            else if (roamingSetting == "false")
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+            else if (roamingSetting == "Null")
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+
+
+
+            //users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
+
+            if (dateSetting == "0")
+            {
+                users[0].modDOB = users[0].DOB.ToString("d MMMM yy");
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "1")
+            {
+                users[0].modDOB = users[0].DOB.ToString("dddd d MMMM yyyy");
+                users[0].modJoined = users[0].Joined.ToString("dddd d MMMM yyyy");
+            }
+            else if (dateSetting == "2")
+            {
+                users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "3")
+            {
+                users[0].modDOB = users[0].DOB.ToString("dd/MM/yyyy");
+                users[0].modJoined = users[0].Joined.ToString("dd/MM/yyyy");
+            }
+            else if (dateSetting == "4")
+            {
+                users[0].modDOB = users[0].DOB.ToString("M/d/yyyy");
+                users[0].modJoined = users[0].Joined.ToString("M/d/yyyy");
+            }
+            else
+            {
+                users[0].modDOB = users[0].DOB.ToString("d MMMM yy");
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+
+            users[0].modDOB = "Birth Date: " + users[0].modDOB;
+
+            users[0].modStories = "Stories Written: " + users[0].Stories;
+
 
             DateTime today = DateTime.Today;
             int age = today.Year - users[0].DOB.Year;
             if (users[0].DOB > today.AddYears(-age)) age--;
 
             users[0].modAge = age;
+            users[0].modAgeDisplay = "Age: " + age;
 
             if (users[0].Author == "1")
             {
@@ -166,6 +293,8 @@ namespace FableProject.DataModel
                 users[0].modAccountType = "Admin";
             }
 
+            users[0].modAccountType = "Account Type: " + users[0].modAccountType;
+
             var usersByName = users.GroupBy(x => x.Username)
                                 .Select(x => new UserSorted { Name = x.Key, Users = x.ToList() });
 
@@ -179,19 +308,6 @@ namespace FableProject.DataModel
                                 .Select(x => new StoriesSorted { Title = x.Key, Stories = x.ToList() });
 
             Stories = storiesByTitle.ToList();
-
-            string sDataKey = "userDetails";
-            string uDataKey = "usernameDetails";
-            string pDataKey = "passwordDetails";
-            string rDatakey = "roamingDetails";
-            string aDataKey = "authorDetails";
-            string avDataKey = "avatarDetails";
-            string idDataKey = "userIdDetails";
-            string adDatakey = "adminDetails";
-
-            Storage storage = new Storage();
-
-            string roamingSetting = storage.LoadSettings(rDatakey);
 
             if (roamingSetting == "true")
             {

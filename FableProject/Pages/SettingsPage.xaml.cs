@@ -673,6 +673,19 @@ namespace FableProject.Pages
                     storage.SaveSettings(dfDatakey, "3");
                 }
             }
+            else if (dateFormat == "Numeric (American)")
+            {
+                dateFormatHeader.Text = "3/9/2016";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(dfDatakey, "4");
+                }
+                else
+                {
+                    storage.SaveSettings(dfDatakey, "4");
+                }
+            }
 
 
         }

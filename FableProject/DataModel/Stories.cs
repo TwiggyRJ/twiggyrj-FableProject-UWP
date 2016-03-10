@@ -53,6 +53,32 @@ namespace FableProject.DataModel
         public StoriesDataSource(string JSON, string method)
         {
 
+
+            string storyDataKey = "storyDetails";
+            string rDatakey = "roamingDetails";
+            string createdStoryTitleDataKey = "createdStoryTitleDetails";
+            string createdStoryIDDataKey = "createdStoryIDDetails";
+            string dfDatakey = "dateFormatDetails";
+
+            Storage storage = new Storage();
+
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string dateSetting = "";
+
+            if (roamingSetting == "true")
+            {
+                dateSetting = storage.LoadRoamingSettings(dfDatakey);
+            }
+            else if (roamingSetting == "false")
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+            else if (roamingSetting == "Null")
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+
+
             List<Stories> stories = JsonConvert.DeserializeObject<List<Stories>>(JSON);
 
             var storiesByTitle = stories.GroupBy(x => x.Title)
@@ -73,18 +99,34 @@ namespace FableProject.DataModel
                 stories[0].modRecommended = stories[0].Recommended + " Times";
             }
 
-            stories[0].modDate = stories[0].created.ToString("dddd d MMMM yyyy");
-
             
+            if (dateSetting == "0")
+            {
+                stories[0].modDate = stories[0].created.ToString("dddd d MMMM yyyy");
+            }
+            else if (dateSetting == "1")
+            {
+                stories[0].modDate = stories[0].created.ToString("dddd d MMMM yyyy");
+            }
+            else if (dateSetting == "2")
+            {
+                stories[0].modDate = stories[0].created.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "3")
+            {
+                stories[0].modDate = stories[0].created.ToString("dd/MM/yyyy");
+            }
+            else if (dateSetting == "4")
+            {
+                stories[0].modDate = stories[0].created.ToString("M/d/yyyy");
+            }
+            else
+            {
+                stories[0].modDate = stories[0].created.ToString("dddd d MMMM yyyy");
+            }
 
-            string storyDataKey = "storyDetails";
-            string rDatakey = "roamingDetails";
-            string createdStoryTitleDataKey = "createdStoryTitleDetails";
-            string createdStoryIDDataKey = "createdStoryIDDetails";
 
-            Storage storage = new Storage();
 
-            string roamingSetting = storage.LoadSettings(rDatakey);
 
             if (roamingSetting == "true")
             {

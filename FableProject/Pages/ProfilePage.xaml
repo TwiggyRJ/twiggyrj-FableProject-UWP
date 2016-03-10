@@ -27,8 +27,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer HorizontalAlignment="Stretch" Style="{StaticResource PageScrollViewerStyleNoPadding}">
-            <StackPanel x:Name="UserData" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding Source={StaticResource ProfileViewSource}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Canvas.ZIndex="1">
-                <Grid x:Name="UserHeader" Visibility="Visible" Canvas.ZIndex="1" Background="{ThemeResource SystemAccentColor}">
+            <StackPanel x:Name="UserData" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Canvas.ZIndex="1">
+                <Grid x:Name="UserHeader" DataContext="{Binding Source={StaticResource ProfileViewSource}}" Visibility="Visible" Canvas.ZIndex="1" Background="{ThemeResource SystemAccentColor}">
 
                     <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,0,0" Style="{StaticResource EditMenuButtonStyle}" Click="Edit_Profile_Button" Content="&#xE70F;" ToolTipService.ToolTip="Click to edit your profile"/>
 
@@ -47,6 +47,23 @@
                         <TextBlock x:Name="EmailHeading" HorizontalAlignment="Right" Margin="0,50,10,0" Text="{Binding Email}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="EmailClick"/>
 
                         <TextBlock x:Name="WebsiteHeading" HorizontalAlignment="Left" Margin="10,50,0,0" Text="{Binding Website}" Style="{StaticResource KshatriyaSubtitleTextBlockStyleProfileBrush}" Tapped="WebsiteClick" />
+
+                    </Grid>
+
+
+
+                    <Grid x:Name="aboutMe" Margin="0,312,0,-167" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+                        <Grid Margin="10,0">
+
+                            <TextBlock x:Name="mAboutYou" HorizontalAlignment="Left" Text="More About You: " Style="{StaticResource KshatriyaLargeTitleTextBlockStyleAccentBrush}"/>
+
+                            <TextBlock x:Name="myAccountType" Text="{Binding modAccountType}" Margin="0, 50" HorizontalAlignment="Left" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            <TextBlock x:Name="myAge" Text="{Binding modAgeDisplay}" Margin="0, 100" HorizontalAlignment="Left" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            <TextBlock x:Name="myDOBHeader" Text="{Binding modDOB}" Margin="0, 150" HorizontalAlignment="Left" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            <TextBlock x:Name="myStoriesMade" Text="{Binding modStories}" Margin="0, 200" HorizontalAlignment="Left" Style="{StaticResource SubtitleTextBlockStyle}"/>
+
+                        </Grid>
 
                     </Grid>
 

@@ -53,6 +53,7 @@
                                     <ComboBoxItem Content="Full 'Proper' Date Layout"/>
                                     <ComboBoxItem Content="Short"/>
                                     <ComboBoxItem Content="Numeric"/>
+                                    <ComboBoxItem Content="Numeric (American)"/>
                                 </ComboBox>
                             </Grid>
 
