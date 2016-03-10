@@ -18,6 +18,14 @@ namespace FableProject.DataModel
 
         public string Content_2 { get; set; }
 
+        public string Content_3 { get; set; }
+
+        public string Content_4 { get; set; }
+
+        public string Content_5 { get; set; }
+
+        public string Content_6 { get; set; }
+
         public string About { get; set; }
 
         public DateTime Date { get; set; }

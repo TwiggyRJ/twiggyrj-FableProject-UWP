@@ -44,6 +44,10 @@
                 <TextBlock Style="{StaticResource ParagraphTextBlockStyle}">
                 	<Run Text="{Binding Content}" /><LineBreak />
                 	<Run Text="{Binding Content_2}" /><LineBreak />
+                    <Run Text="{Binding Content_3}" /><LineBreak />
+                    <Run Text="{Binding Content_4}" /><LineBreak />
+                    <Run Text="{Binding Content_5}" /><LineBreak />
+                    <Run Text="{Binding Content_6}" /><LineBreak />
                 </TextBlock>
 
                 <ProgressRing
