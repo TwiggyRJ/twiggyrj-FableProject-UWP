@@ -52,7 +52,15 @@ namespace FableProject.DataModel
 
             List<Updates> updates = JsonConvert.DeserializeObject<List<Updates>>(JSON);
 
+            string bullet = "• ";
+
             updates[0].modDate = updates[0].Date.ToString("ddd d MMM yyy");
+            updates[0].Content = bullet + updates[0].Content;
+            updates[0].Content_2 = bullet + updates[0].Content_2;
+            updates[0].Content_3 = bullet + updates[0].Content_3;
+            updates[0].Content_4 = bullet + updates[0].Content_4;
+            updates[0].Content_5 = bullet + updates[0].Content_5;
+            updates[0].Content_6 = bullet + updates[0].Content_6;
 
             var updatesByVersion = updates.GroupBy(x => x.Version)
                                 .Select(x => new UpdatesSorted { Version = x.Key, Updates = x.ToList() });
