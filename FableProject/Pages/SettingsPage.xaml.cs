@@ -118,6 +118,8 @@ namespace FableProject.Pages
 
             }
 
+            searchPolicies("http://www.kshatriya.co.uk/dev/project/service/updates.php", "privacy");
+
         }
 
         //About Pivot Page
@@ -126,9 +128,22 @@ namespace FableProject.Pages
         {
             var emailMessage = new EmailMessage();
 
-            emailMessage.To.Add(new EmailRecipient("aaron@kshatriya.co.uk"));
+            emailMessage.To.Add(new EmailRecipient("aaronfryer@live.co.uk"));
             emailMessage.Subject = "Feedback";
             emailMessage.Body = "Please Provide your Feedback.";
+
+            // call EmailManager to show the compose UI in the screen
+            await EmailManager.ShowComposeNewEmailAsync(emailMessage);
+
+        }
+
+        private async void EmailFeature_OnClick(object sender, RoutedEventArgs e)
+        {
+            var emailMessage = new EmailMessage();
+
+            emailMessage.To.Add(new EmailRecipient("aaronfryer@live.co.uk"));
+            emailMessage.Subject = "Feature Request";
+            emailMessage.Body = "Please Provide your Feature Request.";
 
             // call EmailManager to show the compose UI in the screen
             await EmailManager.ShowComposeNewEmailAsync(emailMessage);
@@ -661,5 +676,50 @@ namespace FableProject.Pages
 
 
         }
+
+
+
+        private async void searchPolicies(string target, string toGet)
+        {
+
+            var client = new HttpClient();
+
+            var uri = UriExtensions.CreateUriWithQuery(new Uri(target),
+            new NameValueCollection { { "method", toGet } });
+
+            // call sync
+            var response = client.GetAsync(uri).Result;
+            var responseString = "";
+
+            if (response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+                getSearchResults(responseString);
+            }
+            else
+            {
+                var title = "Error with Application";
+                var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
+                errorDialog(title, message);
+            }
+        }
+
+        private async void errorDialog(string title, string messageDetails)
+        {
+            object sender = null;
+            string message = messageDetails;
+            int commands = 1;
+            Dialog.standardDialog(title, message, commands, sender);
+
+        }
+
+        private void getSearchResults(string JSON)
+        {
+            var viewModel = new PoliciesDataSource(JSON);
+            this.DataContext = viewModel;
+
+        }
+
+
     }
 }

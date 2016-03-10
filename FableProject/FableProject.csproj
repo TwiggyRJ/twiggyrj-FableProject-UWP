@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\Policy.cs" />
     <Compile Include="DataModel\Stories.cs" />
     <Compile Include="DataModel\Updates.cs" />
     <Compile Include="DataModel\User.cs" />
