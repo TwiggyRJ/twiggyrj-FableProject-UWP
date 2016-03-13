@@ -27,6 +27,12 @@ namespace FableProject.Themes
             return icon;
         }
 
+        public string HelpIcon()
+        {
+            string icon = "";
+            return icon;
+        }
+
         public string NewIcon()
         {
             string icon = "";

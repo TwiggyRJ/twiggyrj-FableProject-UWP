@@ -131,6 +131,7 @@ namespace FableProject
 
             }
 
+            vm.MenuItems.Add(new MenuItem { Icon = icons.HelpIcon(), Title = "Help", PageType = typeof(HelpPage) });
             vm.MenuItems.Add(new MenuItem { Icon = icons.NewIcon(), Title = "Create New Content", PageType = typeof(AuthorPage) });
             vm.MenuItems.Add(new MenuItem { Icon = icons.SettingsIcon(), Title = "Settings", PageType = typeof(SettingsPage) });
 

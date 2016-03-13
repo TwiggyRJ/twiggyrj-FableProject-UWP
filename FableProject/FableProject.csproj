@@ -108,6 +108,9 @@
     <Compile Include="Pages\AuthorPage.xaml.cs">
       <DependentUpon>AuthorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SelectedStoryPage.xaml.cs">
       <DependentUpon>SelectedStoryPage.xaml</DependentUpon>
     </Compile>
@@ -169,6 +172,10 @@
     <Page Include="Pages\AuthorPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SelectedStoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,16 +1,11 @@
 ﻿<Page x:Class="FableProject.Pages.StoryPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:FableProject.Pages" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core" xmlns:Media="using:Microsoft.Xaml.Interactions.Media">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer HorizontalAlignment="Stretch" Style="{StaticResource PageScrollViewerStyleNoPadding}">
-            <StackPanel Margin="20,20,20,0">
+            <StackPanel Margin="15,15,15,0">
                 <TextBlock x:Name="StoryHeading" HorizontalAlignment="Left" Text="The Tale of Bright Peak Barrow" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleProfileBrush}" />
                 <TextBlock Text="Setting Out" Style="{StaticResource TitleTextBlockStyle}" />
                 <Grid>
-                    
-                    <TextBlock Text="You wake up from your slumber, the strong and dazzling sun blinds you as you wake. You climb out of the old straw bed and gaze out into the rustic village of Grimmewater. The villagers were taking out their cows and sheep out into the green planes just south of Bright Peak Mountain. As you gaze you see your destination, the old Nordic ruin at the base of the mountain. As you get ready to go Old Lady Jess bursts in and asks for the rent money…
-You have two Choices:
-1. Pay Old Lady Jess 5 pieces of gold
-2. Run away by attempting to jump out the windows and escape
-" Style="{StaticResource StoryParagraphTextBlockStyle}" />
+                    <TextBlock Text="You wake up from your slumber, the strong and dazzling sun blinds you as you wake. You climb out of the old straw bed and gaze out into the rustic village of Grimmewater. The villagers were taking out their cows and sheep out into the green planes just south of Bright Peak Mountain…" Style="{StaticResource StoryParagraphTextBlockStyle}" />
                 </Grid>
 
                 <Grid>
@@ -18,15 +13,29 @@ You have two Choices:
                     <Button Content="Run Away" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Right"/>
                 </Grid>
 
-                <Grid x:Name="interactionsGridQuestion" Visibility="Visible" Margin="0,25,0,0">
+                <Grid Margin="0,10,0,0">
                     <TextBlock Text="Or Maybe...." Style="{StaticResource TitleTextBlockStyle}"/>
-                    <TextBlock Margin="0,40,0,0" Text="I could do a teleport spell, I need to calculate the amount of power I need to make the correct jump... The calculation is my weight X height multiplied by distance so its (45 X 1.6) X 60" Style="{StaticResource StoryParagraphTextBlockStyle}"/>
                 </Grid>
-                <Grid x:Name="interactionsGridAnswer" Visibility="Visible" Margin="0,-35,0,0">
-                    <TextBox x:Name="myAnswerBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="My Answer"  Width="290" Height="47" ToolTipService.ToolTip="Enter Your Answer Here"/>
-                    <Button HorizontalAlignment="Left" Margin="0,130,0,0" Content="This is my final Answer!" Style="{StaticResource LoginMenuButtonStyle}"/>
+
+                <Grid>
+                    <TextBlock Text="Once you click the button you have a set time limit to answer otherwise you will not take advantage of the situation." Style="{StaticResource StoryParagraphTextBlockStyle}" />
                 </Grid>
-                
+
+                <Grid Margin="0,-15,0,10">
+                    <Button Visibility="Visible" Content="Be Prepared..." Style="{StaticResource LoginMenuButtonStyle}"/>
+                </Grid>
+
+                <Grid x:Name="interactionsGrid" Visibility="Visible">
+                    <Grid x:Name="interactionsGridQuestion" Visibility="Visible">
+                        <TextBlock Text="I could do a teleport spell, I need to calculate the amount of power I need to make the correct jump..." Style="{StaticResource StoryParagraphTextBlockStyle}"/>
+                    </Grid>
+                    <Grid x:Name="interactionsGridAnswer" Visibility="Visible">
+                        <TextBox x:Name="myAnswerBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="My Answer"  Width="290" Height="47" ToolTipService.ToolTip="Enter Your Answer Here" Margin="0,61,0,101"/>
+                        <TextBlock Text="Aaron... Aaron. You have 15 seconds left!" Margin="0,120,0,0" Style="{StaticResource StoryParagraphTextBlockStyle}"/>
+                        <Button HorizontalAlignment="Left" Margin="0,150,0,0" Content="This is my final Answer!" Style="{StaticResource LoginMenuButtonStyle}"/>
+                    </Grid>
+                </Grid>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>
