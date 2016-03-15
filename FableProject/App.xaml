@@ -69,6 +69,13 @@
             <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
         </Style>
 
+        <Style x:Key="KshatriyaMediumTitleTextBlockStyleAccentBrush" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+            <Setter Property="Margin" Value="0,1,0,18" />
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
+        </Style>
+
         <Style x:Key="KshatriyaTitleTextBlockStyleProfileBrush" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
             <Setter Property="Foreground" Value="White" />
