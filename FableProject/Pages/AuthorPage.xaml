@@ -198,6 +198,7 @@
                         <Setter Target="pageOptionBDestBox.Width" Value="1400" />
                         <Setter Target="pageRewardBox.Width" Value="1400" />
                         <Setter Target="pageRewardBox.Height" Value="200"/>
+                        <Setter Target="pageInteractionFailureBox.Width" Value="1400" />
                         <Setter Target="pageInteractionRewardBox.Width" Value="1400" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="1400" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="1400" />
@@ -231,6 +232,7 @@
                         <Setter Target="pageOptionBDestBox.Width" Value="1100" />
                         <Setter Target="pageRewardBox.Width" Value="1100" />
                         <Setter Target="pageRewardBox.Height" Value="200"/>
+                        <Setter Target="pageInteractionFailureBox.Width" Value="1100" />
                         <Setter Target="pageInteractionRewardBox.Width" Value="1100" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="1100" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="1100" />
@@ -264,6 +266,7 @@
                         <Setter Target="pageOptionBDestBox.Width" Value="700" />
                         <Setter Target="pageRewardBox.Width" Value="700" />
                         <Setter Target="pageRewardBox.Height" Value="200"/>
+                        <Setter Target="pageInteractionFailureBox.Width" Value="700" />
                         <Setter Target="pageInteractionRewardBox.Width" Value="700" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="700" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="700" />
@@ -297,6 +300,7 @@
                         <Setter Target="pageOptionBDestBox.Width" Value="350" />
                         <Setter Target="pageRewardBox.Width" Value="350" />
                         <Setter Target="pageInteractionRewardBox.Width" Value="350" />
+                        <Setter Target="pageInteractionFailureBox.Width" Value="350" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="350" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="350" />
                         <Setter Target="pageMInteractionTextBox.Width" Value="350" />
@@ -328,6 +332,7 @@
                         <Setter Target="pageOptionADestBox.Width" Value="290" />
                         <Setter Target="pageOptionBDestBox.Width" Value="290" />
                         <Setter Target="pageRewardBox.Width" Value="290" />
+                        <Setter Target="pageInteractionFailureBox.Width" Value="290" />
                         <Setter Target="pageInteractionRewardBox.Width" Value="290" />
                         <Setter Target="pageEInteractionTextBox.Width" Value="290" />
                         <Setter Target="pageHInteractionTextBox.Width" Value="290" />

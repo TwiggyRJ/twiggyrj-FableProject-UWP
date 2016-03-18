@@ -58,16 +58,6 @@
                             </Grid>
 
                             <Grid Margin="0,10,0,0">
-                                <TextBlock Style="{StaticResource ParagraphTextBlockStyle}" Text="If you encounter any issues please email the developer with your comments as well as feature requests"/>
-                            </Grid>
-                            <Grid Margin="0,-10,0,0">
-                                <Button Style="{StaticResource LoginMenuButtonStyle}" Click="EmailK_OnClick" Content="Feedback to Developer"/>
-                            </Grid>
-                            <Grid Margin="0,10,0,0">
-                                <Button Style="{StaticResource LoginMenuButtonStyle}" Click="EmailK_OnClick" Content="Feature Requests"/>
-                            </Grid>
-
-                            <Grid Margin="0,10,0,0">
                                 <TextBlock x:Name="headerClearCache" Text="Clear Application Data"/>
                             </Grid>
                             <Grid Margin="0,10,0,0">
@@ -79,6 +69,51 @@
 
                     </PivotItem>
 
+
+                    <PivotItem Header="Game Play">
+
+                        <StackPanel>
+
+                            <Grid>
+                                <TextBlock Text="Difficulty" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                            </Grid>
+                            <Grid>
+                                <TextBlock x:Name="difficultyInfoHeader" Text="Easy: 90 Seconds to answer and easy questions, so no worries" Style="{StaticResource ParagraphTextBlockStyle}"/>
+                            </Grid>
+                            
+                            <Grid Margin="0,-25,0,0">
+                                <ComboBox x:Name="difficultySettingsCombo" Width="250" SelectionChanged="difficultySettingsChanged">
+                                    <ComboBoxItem Content="Easy"/>
+                                    <ComboBoxItem Content="Normal"/>
+                                    <ComboBoxItem Content="Hard"/>
+                                    <ComboBoxItem Content="Very Hard"/>
+                                    <ComboBoxItem Content="Guffaws"/>
+                                </ComboBox>
+                            </Grid>
+
+                        </StackPanel>
+                        
+                    </PivotItem>
+                    
+
+                    <PivotItem Header="Feedback">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,0">
+                                <TextBlock Style="{StaticResource ParagraphTextBlockStyle}" Text="If you encounter any issues please email the developer with your comments as well as feature requests"/>
+                            </Grid>
+                            <Grid Margin="0,-10,0,0">
+                                <Button Style="{StaticResource LoginMenuButtonStyle}" Click="EmailK_OnClick" Content="Feedback to Developer"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <Button Style="{StaticResource LoginMenuButtonStyle}" Click="EmailK_OnClick" Content="Feature Requests"/>
+                            </Grid>
+
+                        </StackPanel>
+                        
+                    </PivotItem>
+                    
 
                     <PivotItem x:Name="AuthForm" Header="Authentication">
 

@@ -691,6 +691,86 @@ namespace FableProject.Pages
         }
 
 
+        private void difficultySettingsChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Storage storage = new Storage();
+
+            string rDatakey = "roamingDetails";
+            string gameDFDatakey = "difficultyDetails";
+            string roamingSetting = storage.LoadSettings(rDatakey);
+
+            string difficulty = ((ComboBoxItem)difficultySettingsCombo.SelectedItem).Content.ToString();
+
+            if (difficulty == "Easy")
+            {
+                difficultyInfoHeader.Text = "Easy: 90 Seconds to answer and easy questions, so no worries then.";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(gameDFDatakey, "0");
+                }
+                else
+                {
+                    storage.SaveSettings(gameDFDatakey, "0");
+                }
+            }
+            else if (difficulty == "Normal")
+            {
+                difficultyInfoHeader.Text = "Normal: 60 Seconds to answer and average difficulty questions, enjoy for your 'meh' experience.";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(gameDFDatakey, "1");
+                }
+                else
+                {
+                    storage.SaveSettings(gameDFDatakey, "1");
+                }
+            }
+            else if (difficulty == "Hard")
+            {
+                difficultyInfoHeader.Text = "Hard: 45 Seconds to answer and hard questions, unleash your inner nerd!";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(gameDFDatakey, "2");
+                }
+                else
+                {
+                    storage.SaveSettings(gameDFDatakey, "2");
+                }
+            }
+            else if (difficulty == "Very Hard")
+            {
+                difficultyInfoHeader.Text = "Very Hard: 30 Seconds to answer but the questions are the same as on hard. Let's do this Countdown style!";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(gameDFDatakey, "3");
+                }
+                else
+                {
+                    storage.SaveSettings(gameDFDatakey, "3");
+                }
+            }
+            else if (difficulty == "Guffaws")
+            {
+                difficultyInfoHeader.Text = "Guffaws: 30 Seconds to answer with funny and ridiculous questions, think of this like '8 out of 10 cats does Fable Time!'";
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(gameDFDatakey, "4");
+                }
+                else
+                {
+                    storage.SaveSettings(gameDFDatakey, "4");
+                }
+            }
+
+
+        }
+
+
 
         private async void searchPolicies(string target, string toGet)
         {

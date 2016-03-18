@@ -18,16 +18,16 @@
                 </Grid>
 
                 <Grid>
-                    <TextBlock Text="Once you click the button you have a set time limit to answer otherwise you will not take advantage of the situation." Style="{StaticResource StoryParagraphTextBlockStyle}" />
+                    <TextBlock Text="I could do a teleport spell, I need to remember the incantation to make the jump..." Style="{StaticResource StoryParagraphTextBlockStyle}" />
                 </Grid>
 
                 <Grid Margin="0,-15,0,10">
-                    <Button Visibility="Visible" Content="Be Prepared..." Style="{StaticResource LoginMenuButtonStyle}"/>
+                    <Button Visibility="Visible" Content="Ready to Answer?" Style="{StaticResource LoginMenuButtonStyle}"/>
                 </Grid>
 
                 <Grid x:Name="interactionsGrid" Visibility="Visible">
                     <Grid x:Name="interactionsGridQuestion" Visibility="Visible">
-                        <TextBlock Text="I could do a teleport spell, I need to calculate the amount of power I need to make the correct jump..." Style="{StaticResource StoryParagraphTextBlockStyle}"/>
+                        <TextBlock Text="Solve this Anagram: UMJP" Style="{StaticResource StoryParagraphTextBlockStyle}"/>
                     </Grid>
                     <Grid x:Name="interactionsGridAnswer" Visibility="Visible">
                         <TextBox x:Name="myAnswerBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="My Answer"  Width="290" Height="47" ToolTipService.ToolTip="Enter Your Answer Here" Margin="0,61,0,101"/>
