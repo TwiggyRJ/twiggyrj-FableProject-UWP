@@ -48,7 +48,7 @@
                                 <TextBlock x:Name="dateFormatHeader" Text="Default i.e. Changes on the Context"/>
                             </Grid>
                             <Grid Margin="0,5,0,0">
-                                <ComboBox x:Name="dateSettingsCombo" Width="250" SelectionChanged="dateSettingsChanged">
+                                <ComboBox x:Name="dateSettingsCombo" Width="250" SelectionChanged="dateSettingsChanged" PlaceholderText="Choose Your Date Format">
                                     <ComboBoxItem Content="Default"/>
                                     <ComboBoxItem Content="Full 'Proper' Date Layout"/>
                                     <ComboBoxItem Content="Short"/>
@@ -82,7 +82,7 @@
                             </Grid>
                             
                             <Grid Margin="0,-25,0,0">
-                                <ComboBox x:Name="difficultySettingsCombo" Width="250" SelectionChanged="difficultySettingsChanged">
+                                <ComboBox x:Name="difficultySettingsCombo" Width="250" SelectionChanged="difficultySettingsChanged" PlaceholderText="Choose Your Difficulty Settings">
                                     <ComboBoxItem Content="Easy"/>
                                     <ComboBoxItem Content="Normal"/>
                                     <ComboBoxItem Content="Hard"/>

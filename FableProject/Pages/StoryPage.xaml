@@ -27,12 +27,13 @@
 
                 <Grid x:Name="interactionsGrid" Visibility="Visible">
                     <Grid x:Name="interactionsGridQuestion" Visibility="Visible">
-                        <TextBlock Text="Solve this Anagram: UMJP" Style="{StaticResource StoryParagraphTextBlockStyle}"/>
+                        <TextBlock Text="Solve this Anagram: UMJP" Style="{StaticResource QuestionParagraphTextBlockStyle}"/>
                     </Grid>
                     <Grid x:Name="interactionsGridAnswer" Visibility="Visible">
                         <TextBox x:Name="myAnswerBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="My Answer"  Width="290" Height="47" ToolTipService.ToolTip="Enter Your Answer Here" Margin="0,61,0,101"/>
-                        <TextBlock Text="Aaron... Aaron. You have 15 seconds left!" Margin="0,120,0,0" Style="{StaticResource StoryParagraphTextBlockStyle}"/>
-                        <Button HorizontalAlignment="Left" Margin="0,150,0,0" Content="This is my final Answer!" Style="{StaticResource LoginMenuButtonStyle}"/>
+                        <TextBlock x:Name="countdownClock" Text="Time Left: 00:15" Margin="0,120,0,0" Style="{StaticResource QuestionParagraphTextBlockStyle}"/>
+                        <TextBlock Text="Aaron... Aaron. You have 15 seconds left!" Margin="0,150,0,0" Style="{StaticResource QuestionParagraphTextBlockStyle}"/>
+                        <Button HorizontalAlignment="Left" Margin="0,180,0,0" Content="This is my final Answer!" Style="{StaticResource LoginMenuButtonStyle}"/>
                     </Grid>
                 </Grid>
 

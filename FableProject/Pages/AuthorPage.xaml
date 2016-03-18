@@ -65,6 +65,12 @@
 
                                 <RichEditBox x:Name="pageInteractionIntroTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Introduce the Optional Question Here" Width="290" Height="150" ToolTipService.ToolTip="Enter the Page's Interaction Question in Here"/>
 
+                                <ComboBox x:Name="interactionTypeCombo" Margin="0,10,0,0" Width="250" PlaceholderText="Type of Question">
+                                    <ComboBoxItem Content="Anagram"/>
+                                    <ComboBoxItem Content="Math Equation"/>
+                                    <ComboBoxItem Content="Question"/>
+                                </ComboBox>
+
                                 <RichEditBox x:Name="pageEInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Easy Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
                                 <TextBox x:Name="pageEInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Easy Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
