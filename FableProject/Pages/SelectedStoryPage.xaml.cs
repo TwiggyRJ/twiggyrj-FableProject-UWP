@@ -27,11 +27,13 @@ namespace FableProject.Pages
 
         public string selectedStory { get; set; }
 
+        public string passedParameter;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
 
         {
 
-            string passedParameter = e.Parameter.ToString();
+            passedParameter = e.Parameter.ToString();
 
             var target = "http://www.kshatriya.co.uk/dev/project/service/stories.php";
 
@@ -88,6 +90,9 @@ namespace FableProject.Pages
 
         }
 
-
+        private void playStory(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(StoryPage), passedParameter);
+        }
     }
 }
