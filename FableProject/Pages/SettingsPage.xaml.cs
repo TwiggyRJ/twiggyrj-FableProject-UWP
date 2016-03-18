@@ -315,7 +315,7 @@ namespace FableProject.Pages
         }
 
         //Overloaded version of the createURI function for registration
-        private async void createURI(string username, string name, string password, string email, string DOB, string target, string method)
+        private void createURI(string username, string name, string password, string email, string DOB, string target, string method)
         {
             //This is initiated if a registration event has been initiated
 
@@ -479,7 +479,7 @@ namespace FableProject.Pages
 
         //Dialog Box
 
-        private async void feedbackDialog(string title, string message)
+        private void feedbackDialog(string title, string message)
         {
             object sender = null;
             int commands = 1;
@@ -487,7 +487,7 @@ namespace FableProject.Pages
 
         }
 
-        private async void feedbackDialog(string title, string message, int commands)
+        private void feedbackDialog(string title, string message, int commands)
         {
             object sender = null;
             Dialog.standardDialog(title, message, commands, sender);
@@ -797,7 +797,7 @@ namespace FableProject.Pages
             }
         }
 
-        private async void errorDialog(string title, string messageDetails)
+        private void errorDialog(string title, string messageDetails)
         {
             object sender = null;
             string message = messageDetails;

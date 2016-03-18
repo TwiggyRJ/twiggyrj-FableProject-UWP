@@ -354,7 +354,7 @@ namespace FableProject.Pages
 
         }
 
-        private async void createURI(string username, string name, string newPassword, string password, string email, string website, string avatar, string target)
+        private void createURI(string username, string name, string newPassword, string password, string email, string website, string avatar, string target)
         {
             //This is initiated if a registration event has been initiated
 
@@ -590,7 +590,7 @@ namespace FableProject.Pages
         }
 
         //Overloaded version of the createURI function for registration
-        private async void createURI(string username, string name, string password, string email, string DOB, string target, string method)
+        private void createURI(string username, string name, string password, string email, string DOB, string target, string method)
         {
             //This is initiated if a registration event has been initiated
 
@@ -754,7 +754,7 @@ namespace FableProject.Pages
 
 
 
-        private async void feedbackDialog(string title, string message)
+        private void feedbackDialog(string title, string message)
         {
             object sender = null;
             int commands = 1;

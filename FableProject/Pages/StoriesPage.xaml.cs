@@ -52,8 +52,8 @@ namespace FableProject.Pages
             else
             {
                 searchProgressRing.IsActive = false;
-                var title = "Error with Application";
-                var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
+                var title = "No Search Results :(";
+                var message = "Uh, Oh, Spadoodios! We could not find any results for your search. We feel sad now...";
                 errorDialog(title, message);
             }
         }
@@ -66,7 +66,7 @@ namespace FableProject.Pages
 
         }
         
-        private async void errorDialog(string title, string messageDetails)
+        private void errorDialog(string title, string messageDetails)
         {
             object sender = null;
             string message = messageDetails;

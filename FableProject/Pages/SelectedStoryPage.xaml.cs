@@ -79,7 +79,7 @@ namespace FableProject.Pages
 
         }
 
-        private async void errorDialog(string title, string messageDetails)
+        private void errorDialog(string title, string messageDetails)
         {
             object sender = null;
             string message = messageDetails;

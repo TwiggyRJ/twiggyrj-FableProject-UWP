@@ -109,7 +109,7 @@ namespace FableProject.Pages
 
         //Dialog Box
 
-        private async void feedbackDialog(string title, string message)
+        private void feedbackDialog(string title, string message)
         {
             object sender = null;
             int commands = 1;
@@ -383,7 +383,7 @@ namespace FableProject.Pages
         }
 
         //Overloaded version of the createURI function for registration
-        private async void createURI(string username, string name, string password, string email, string DOB, string target, string method)
+        private void createURI(string username, string name, string password, string email, string DOB, string target, string method)
         {
             //This is initiated if a registration event has been initiated
 
@@ -549,6 +549,7 @@ namespace FableProject.Pages
             string pageContent = Convert.ToString(pageContentsTextBox.Document);
             string pageRoot = "";
             string pageNumber = pageNumberBox.Text;
+            string pageInteraction = Convert.ToString(pageInteractionIntroTextBox.Document);
             string pageEInteraction = Convert.ToString(pageEInteractionTextBox.Document);
             string pageEInteractionAnswer = pageEInteractionAnswerBox.Text;
             string pageMInteraction = Convert.ToString(pageMInteractionTextBox.Document);
@@ -636,13 +637,13 @@ namespace FableProject.Pages
             }
             else
             {
-                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/service/page.php", pageRoot, pageTitle, pageContent, pageNumber, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest, pageOptionB, pageOptionBDest, pageInteractionOption, pageReward, pageFirst);
+                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/service/page.php", pageRoot, pageTitle, pageContent, pageNumber, pageInteraction, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest, pageOptionB, pageOptionBDest, pageInteractionOption, pageReward, pageFirst);
             }
 
 
         }
 
-        private void sendPage(string username, string password, string target, string storyTitle, string pageTitle, string pageContent, string pageNumber, string pageEInteraction, string pageEInteractionAnswer, string pageMInteraction, string pageMInteractionAnswer, string pageHInteraction, string pageHInteractionAnswer, string pageJInteraction, string pageJInteractionAnswer, string pageOptionA, string pageOptionADest, string pageOptionB, string pageOptionBDest, string pageInteractionOption, string pageReward, string pageFirst)
+        private void sendPage(string username, string password, string target, string storyTitle, string pageTitle, string pageContent, string pageNumber, string pageInteraction, string pageEInteraction, string pageEInteractionAnswer, string pageMInteraction, string pageMInteractionAnswer, string pageHInteraction, string pageHInteractionAnswer, string pageJInteraction, string pageJInteractionAnswer, string pageOptionA, string pageOptionADest, string pageOptionB, string pageOptionBDest, string pageInteractionOption, string pageReward, string pageFirst)
         {
 
             var client = new HttpClient();
@@ -653,6 +654,7 @@ namespace FableProject.Pages
                 new KeyValuePair<string, string>("title", pageTitle),
                 new KeyValuePair<string, string>("content", pageContent),
                 new KeyValuePair<string, string>("pageNumber", pageNumber),
+                new KeyValuePair<string, string>("pageInteraction", pageInteraction),
                 new KeyValuePair<string, string>("pageEInteraction", pageEInteraction),
                 new KeyValuePair<string, string>("pageEInteractionAnswer", pageEInteractionAnswer),
                 new KeyValuePair<string, string>("pageMInteraction", pageMInteraction),
