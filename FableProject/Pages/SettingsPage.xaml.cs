@@ -442,9 +442,9 @@ namespace FableProject.Pages
                     this.DataContext = loginData;
 
                     // the message that will be displayed to the user
-                    string message = "Your user credentials have been registered with the Fable Project, we will store your details to allow unguided login when you open the app. Your details will now be displayed and used to access the Fable Project. Please Restart the app for the application to enable content for logged in Users.";
+                    string message = "Your user credentials have been registered with the Fable Project, we will store your details to allow unguided login when you open the app. Your details will now be displayed and used to access the Fable Project.";
 
-                    feedbackDialog(title, message, 99);
+                    feedbackDialog(title, message);
 
                 }
                 else if (eventStarted == "login")
@@ -466,10 +466,10 @@ namespace FableProject.Pages
                     this.DataContext = loginData;
 
                     // the message that will be displayed to the user the {0} is a placeholder that will be replaced by the content of the username variable
-                    string template = "Your user credentials for {0} are confirmed, we will store your details to allow unguided login when you open the app. Your details will now be displayed and used to access the Fable Project. Please Restart the app for the application to enable content for logged in Users.";
+                    string template = "Your user credentials for {0} are confirmed, we will store your details to allow unguided login when you open the app. Your details will now be displayed and used to access the Fable Project. Please Restart the app if you are an Administrator.";
                     string message = string.Format(template, username);
 
-                    feedbackDialog(title, message, 99);
+                    feedbackDialog(title, message);
                 }
 
             }
