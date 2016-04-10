@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FableProject.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,8 @@ namespace FableProject.DataModel
 
         public string modDate { get; set; }
 
+        public string modTitle { get; set; }
+
     }
 
     public class UpdatesSorted
@@ -50,17 +53,60 @@ namespace FableProject.DataModel
         public UpdatesDataSource(string JSON)
         {
 
+            string dfDatakey = "dateFormatDetails";
+
+            Storage storage = new Storage();
+
+            string rDatakey = "roamingDetails";
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string dateSetting = "";
+
+
+            if (roamingSetting == "true")
+            {
+                dateSetting = storage.LoadRoamingSettings(dfDatakey);
+            }
+            else
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+
             List<Updates> updates = JsonConvert.DeserializeObject<List<Updates>>(JSON);
 
             string bullet = "• ";
 
-            updates[0].modDate = updates[0].Date.ToString("ddd d MMM yyy");
+            updates[0].modTitle = "What's New in " + updates[0].Version + ":";
             updates[0].Content = bullet + updates[0].Content;
             updates[0].Content_2 = bullet + updates[0].Content_2;
             updates[0].Content_3 = bullet + updates[0].Content_3;
             updates[0].Content_4 = bullet + updates[0].Content_4;
             updates[0].Content_5 = bullet + updates[0].Content_5;
             updates[0].Content_6 = bullet + updates[0].Content_6;
+
+            if (dateSetting == "0")
+            {
+                updates[0].modDate = updates[0].Date.ToString("dddd d MMMM yyyy");
+            }
+            else if (dateSetting == "1")
+            {
+                updates[0].modDate = updates[0].Date.ToString("dddd d MMMM yyyy");
+            }
+            else if (dateSetting == "2")
+            {
+                updates[0].modDate = updates[0].Date.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "3")
+            {
+                updates[0].modDate = updates[0].Date.ToString("dd/MM/yyyy");
+            }
+            else if (dateSetting == "4")
+            {
+                updates[0].modDate = updates[0].Date.ToString("M/d/yyyy");
+            }
+            else
+            {
+                updates[0].modDate = updates[0].Date.ToString("ddd d MMM yyy");
+            }
 
             var updatesByVersion = updates.GroupBy(x => x.Version)
                                 .Select(x => new UpdatesSorted { Version = x.Key, Updates = x.ToList() });

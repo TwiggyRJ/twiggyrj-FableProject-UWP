@@ -100,12 +100,7 @@ namespace FableProject.DataModel
                 dateSetting = storage.LoadRoamingSettings(dfDatakey);
                 difficultySetting = storage.LoadRoamingSettings(gameDFDatakey);
             }
-            else if (roamingSetting == "false")
-            {
-                dateSetting = storage.LoadSettings(dfDatakey);
-                difficultySetting = storage.LoadSettings(gameDFDatakey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 dateSetting = storage.LoadSettings(dfDatakey);
                 difficultySetting = storage.LoadSettings(gameDFDatakey);
@@ -141,6 +136,12 @@ namespace FableProject.DataModel
                 pages[0].modAnswer = pages[0].Humour_Interaction_Answer;
                 insult = "you should get your mind out of the gutter!";
             }
+            else
+            {
+                pages[0].modQuestion = questionPrepend + pages[0].Medium_Interaction;
+                pages[0].modAnswer = pages[0].Medium_Interaction_Answer;
+                insult = "you look even more average!";
+            }
 
             pages[0].modContent_2 = pages[0].Content_2 + "...";
             pages[0].modInteraction = pages[0].Interaction + "...";
@@ -157,13 +158,7 @@ namespace FableProject.DataModel
                 storage.SaveRoamingSettings(pageStoryTitle, pages[0].Story);
                 storage.SaveRoamingSettings(pageTitleIDDataKey, pages[0].Title);
             }
-            else if (roamingSetting == "false")
-            {
-                storage.SaveSettings(pageDataKey, JSON);
-                storage.SaveSettings(pageStoryTitle, pages[0].Story);
-                storage.SaveSettings(pageTitleIDDataKey, pages[0].Title);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 storage.SaveSettings(pageDataKey, JSON);
                 storage.SaveSettings(pageStoryTitle, pages[0].Story);

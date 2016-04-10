@@ -69,11 +69,7 @@ namespace FableProject.DataModel
             {
                 dateSetting = storage.LoadRoamingSettings(dfDatakey);
             }
-            else if (roamingSetting == "false")
-            {
-                dateSetting = storage.LoadSettings(dfDatakey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 dateSetting = storage.LoadSettings(dfDatakey);
             }

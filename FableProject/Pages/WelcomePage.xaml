@@ -27,9 +27,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
             <StackPanel DataContext="{Binding Source={StaticResource UpdatesViewSource}}">
-                
-                <TextBlock Text="Readme" Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="{Binding Version}" Margin="90,-50, 0, 0" Style="{StaticResource TitleTextBlockStyle}" />
+
+                <TextBlock Text="{Binding modTitle}" Style="{StaticResource TitleTextBlockStyle}" />
 
                 <TextBlock Text="Updated:" Style="{StaticResource ParagraphTitleBlockStyle}" />
                 <TextBlock Text="{Binding modDate}" Margin="100,-47,0,0" Style="{StaticResource ParagraphTitleBlockStyle}" />

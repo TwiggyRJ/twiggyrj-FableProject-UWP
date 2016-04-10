@@ -84,11 +84,7 @@ namespace FableProject.DataModel
             {
                 dateSetting = storage.LoadRoamingSettings(dfDatakey);
             }
-            else if (roamingSetting == "false")
-            {
-                dateSetting = storage.LoadSettings(dfDatakey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 dateSetting = storage.LoadSettings(dfDatakey);
             }
@@ -174,18 +170,7 @@ namespace FableProject.DataModel
                 storage.SaveRoamingSettings(idDataKey, users[0].ID);
                 storage.SaveRoamingSettings(adDatakey, users[0].Admin);
             }
-            else if (roamingSetting == "false")
-            {
-                storage.SaveSettings(sDataKey, JSON);
-                storage.SaveSettings(uDataKey, username);
-                storage.SaveSettings(pDataKey, password);
-                storage.SaveSettings(nDataKey, users[0].Name);
-                storage.SaveSettings(avDataKey, users[0].Avatar);
-                storage.SaveSettings(aDataKey, users[0].Author);
-                storage.SaveSettings(idDataKey, users[0].ID);
-                storage.SaveSettings(adDatakey, users[0].Admin);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 storage.SaveSettings(sDataKey, JSON);
                 storage.SaveSettings(uDataKey, username);
