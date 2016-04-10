@@ -12,29 +12,26 @@
             <StackPanel>
                 <TextBlock Text="Help" Style="{StaticResource TitleTextBlockStyle}" />
 
-                <Pivot x:Name="helpHeader" Margin="-8,0">
+                <Pivot x:Name="helpHeader" Margin="-8,-10,-8,0">
 
                     <PivotItem Header="General">
-                        <Grid>
+                        <StackPanel>
                             <TextBlock x:Name="mAboutYou" HorizontalAlignment="Left" Text="The Obligatory Manual: " Style="{StaticResource KshatriyaMediumTitleTextBlockStyleAccentBrush}"/>
 
-                            <TextBlock Text="Please. Please. Please. Read the manual if you have any questions. The link is below, just click on it." Style="{StaticResource ParagraphTextBlockStyle}" Margin="0,30, 0, 10"/>
-                            <TextBlock Text="http://www.somewebsite.org" Margin="0,80,0,0"/>
-                        </Grid>
+                            <TextBlock Text="Please. Please. Please. Read the manual if you have any questions. The link is below, just click on it." Style="{StaticResource ParagraphTextBlockStyle}"/>
+                            <TextBlock Text="http://www.somewebsite.org"/>
+                        </StackPanel>
                     </PivotItem>
 
                     <PivotItem Header="How to Play">
-                        <Grid>
+                        <StackPanel>
                             <TextBlock x:Name="hBasicsHeader" HorizontalAlignment="Left" Text="The Basics" Style="{StaticResource KshatriyaMediumTitleTextBlockStyleAccentBrush}"/>
-                            <TextBlock Text="To play you first must go to the stories page and search for a story that tickles your fancy.
-                                       After you have found a story you will be greeted by a page that lists information about it such as if anyone has recommended it and a brief synopsis.
-                                       Once you click play you will be brought to the playing page, you can then read the story.
-                                       At the end of the page you have a choice to make you can go with option A or a option B.
-                                       For the adventurers out there the writer can give you a super duper special option! Option C, Dun.. Dun.. Dun!!! (A chill down your spin moment) You have a question to answer and if you get it right then you will be laughing but if you fail you will be pretty upset. Awww!
+                            <TextBlock Text="To play you first must go to the stories page and search for a story that tickles your fancy. After you have found a story you will be greeted by a page that lists information about it such as if anyone has recommended it and a brief synopsis. Once you click play you will be brought to the playing page, you can then read the story." Style="{StaticResource ParagraphTextBlockStyle}"/>
+                            <TextBlock Text="At the end of the page you have a choice to make you can go with option A or a option B. For the adventurers out there the writer can give you a super duper special option! Option C, Dun.. Dun.. Dun!!! (A chill down your spin moment) You have a question to answer and if you get it right then you will be laughing but if you fail you will be pretty upset. Awww!" Style="{StaticResource ParagraphTextBlockStyle}"/>
+                            <TextBlock Text="The story can change depending on your choices so you can always replay it and the story wll be different (As long as you make different choices ;) ) Once you have finished it feel free to recommend the story!" Style="{StaticResource ParagraphTextBlockStyle}"/>         
                                        
-                                       The story can change depending on your choices so you can always replay it and the story wll be different (As long as you make different choices ;) )
-                                       Once you have finished it feel free to recommend the story!" Style="{StaticResource ParagraphTextBlockStyle}" Margin="0,30,0,0"/>
-                        </Grid>
+                                        
+                        </StackPanel>
                     </PivotItem>
 
                 </Pivot>

@@ -199,7 +199,7 @@
                         <AdaptiveTrigger MinWindowWidth="1500" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1900" />
+                        <Setter Target="AuthorPivot.Height" Value="2300" />
                         <Setter Target="pageOptionABox.Width" Value="1400" />
                         <Setter Target="pageOptionBBox.Width" Value="1400" />
                         <Setter Target="pageOptionADestBox.Width" Value="1400" />
@@ -234,7 +234,7 @@
                         <AdaptiveTrigger MinWindowWidth="1100" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1700" />
+                        <Setter Target="AuthorPivot.Height" Value="2100" />
                         <Setter Target="pageOptionABox.Width" Value="1100" />
                         <Setter Target="pageOptionBBox.Width" Value="1100" />
                         <Setter Target="pageOptionADestBox.Width" Value="1100" />

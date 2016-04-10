@@ -175,8 +175,22 @@ namespace FableProject.Pages
         {
             var button = (sender as Button);
             var answer = button.Tag.ToString();
+            string destination = "";
 
+            string userAnswer = myAnswerBox.Text.ToUpper();
 
+            if(userAnswer == answer)
+            {
+                destination = countdownClock.Tag.ToString();
+            }
+            else
+            {
+                destination = myMockBox.Tag.ToString();
+            }
+
+            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+
+            searchPages(target, passedParameter, destination);
 
         }
 

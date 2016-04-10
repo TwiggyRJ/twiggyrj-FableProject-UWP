@@ -54,6 +54,8 @@ namespace FableProject.DataModel
 
         public string optionSpecialFailure { get; set; }
 
+        public string Goodies { get; set; }
+
         public string First { get; set; }
 
         public string modContent_2 { get; set; }
