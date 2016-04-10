@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FableProject.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -60,6 +61,7 @@ namespace FableProject
             // just ensure that the window is active
             if (shell == null)
             {
+
                 // Create a Shell which navigates to the first page
                 shell = new Shell();
 

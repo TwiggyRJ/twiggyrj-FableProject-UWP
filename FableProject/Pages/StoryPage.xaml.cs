@@ -1,8 +1,12 @@
 ﻿using FableProject.Data;
+using FableProject.DataModel;
+using FableProject.Functions;
+using FableProject.Presentation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,6 +29,24 @@ namespace FableProject.Pages
         public int countdown;
         public string name;
         public string difficulty;
+        public string selectedPage { get; set; }
+        public string selectedStory { get; set; }
+
+
+        public string passedParameter;
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+
+        {
+
+            passedParameter = e.Parameter.ToString();
+
+            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+
+            searchPages(target, passedParameter, "First");
+
+        }
 
 
         public StoryPage()
@@ -47,11 +69,25 @@ namespace FableProject.Pages
             else if (roamingSetting == "false")
             {
                 name = storage.LoadSettings(nDataKey);
+
+                if (name == "Null")
+                {
+                    name = "No Face";
+                    Notifications.standardToast("Hey Anon!", "I know you want to remain Anonymous but there are benefits to registering!", "app-defined-string");
+                }
+
                 difficulty = storage.LoadSettings(gameDFDatakey);
             }
             else if (roamingSetting == "Null")
             {
                 name = storage.LoadSettings(nDataKey);
+
+                if (name == "Null")
+                {
+                    name = "No Face";
+                    Notifications.standardToast("Hey Anon!", "I know you want to remain Anonymous but there are benefits to registering!", "app-defined-string");
+                }
+
                 difficulty = storage.LoadSettings(gameDFDatakey);
             }
 
@@ -63,15 +99,10 @@ namespace FableProject.Pages
             {
                 countdown = 44;
             }
-            else if (difficulty == "2")
+            else if (difficulty == "2" || difficulty == "3" || difficulty == "4")
             {
                 countdown = 29;
             }
-            else if (difficulty == "3")
-            {
-                countdown = 29;
-            }
-
 
         }
 
@@ -127,6 +158,71 @@ namespace FableProject.Pages
                 interactionAnswer.Visibility = Visibility.Visible;
             }
             
+        }
+
+        private void optionsChosen(object sender, RoutedEventArgs e)
+        {
+            var button = (sender as Button);
+            var destination = button.Tag.ToString();
+
+
+            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+
+            searchPages(target, passedParameter, destination);
+        }
+
+        private void interactionOptions(object sender, RoutedEventArgs e)
+        {
+            var button = (sender as Button);
+            var answer = button.Tag.ToString();
+
+
+
+        }
+
+
+        private async void searchPages(string target, string toGetStory, string toGetPage)
+        {
+
+            var client = new HttpClient();
+
+            var uri = UriExtensions.CreateUriWithQuery(new Uri(target),
+            new NameValueCollection { { "story", toGetStory } },
+            new NameValueCollection { { "page", toGetPage } });
+
+            // call sync
+            var response = client.GetAsync(uri).Result;
+            var responseString = "";
+
+            if (response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+                getSearchResults(responseString);
+            }
+            else
+            {
+                searchProgressRing.IsActive = false;
+                var title = "Error with Application";
+                var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
+                errorDialog(title, message);
+            }
+        }
+
+        private void getSearchResults(string JSON)
+        {
+            var viewModel = new PagesDataSource(JSON);
+            this.DataContext = viewModel;
+            searchProgressRing.IsActive = false;
+
+        }
+
+        private void errorDialog(string title, string messageDetails)
+        {
+            object sender = null;
+            string message = messageDetails;
+            int commands = 1;
+            Dialog.standardDialog(title, message, commands, sender);
+
         }
     }
 }

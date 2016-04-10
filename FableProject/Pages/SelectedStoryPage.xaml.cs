@@ -92,7 +92,8 @@ namespace FableProject.Pages
 
         private void playStory(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(StoryPage), passedParameter);
+            var button = (sender as Button);
+            Frame.Navigate(typeof(StoryPage), button.Tag);
         }
     }
 }
