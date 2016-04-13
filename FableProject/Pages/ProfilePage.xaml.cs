@@ -35,7 +35,6 @@ namespace FableProject.Pages
         public ProfilePage()
         {
             this.InitializeComponent();
-
             Storage storage = new Storage();
 
             string sDataKey = "userDetails";

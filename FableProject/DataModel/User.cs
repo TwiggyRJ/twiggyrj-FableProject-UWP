@@ -1,4 +1,5 @@
 ﻿using FableProject.Data;
+using FableProject.Functions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -91,11 +92,9 @@ namespace FableProject.DataModel
 
             List<User> users = JsonConvert.DeserializeObject<List<User>>(JSON);
 
-            
-
             //users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
 
-            if(dateSetting == "0")
+            if (dateSetting == "0")
             {
                 users[0].modDOB = users[0].DOB.ToString("d MMMM yy");
                 users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
@@ -308,17 +307,7 @@ namespace FableProject.DataModel
                 storage.SaveRoamingSettings(idDataKey, users[0].ID);
                 storage.SaveRoamingSettings(adDatakey, users[0].Admin);
             }
-            else if (roamingSetting == "false")
-            {
-                storage.SaveSettings(sDataKey, JSON);
-                storage.SaveSettings(uDataKey, username);
-                storage.SaveSettings(pDataKey, password);
-                storage.SaveSettings(avDataKey, users[0].Avatar);
-                storage.SaveSettings(aDataKey, users[0].Author);
-                storage.SaveSettings(idDataKey, users[0].ID);
-                storage.SaveSettings(adDatakey, users[0].Admin);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 storage.SaveSettings(sDataKey, JSON);
                 storage.SaveSettings(uDataKey, username);

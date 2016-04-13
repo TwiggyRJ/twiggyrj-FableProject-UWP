@@ -2,6 +2,7 @@
 using FableProject.DataModel;
 using FableProject.Functions;
 using FableProject.Presentation;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,6 +60,88 @@ namespace FableProject.Pages
             }
         }
 
+        private async void searchStories(string target, string toGet)
+        {
+
+            var client = new HttpClient();
+
+            var uri = UriExtensions.CreateUriWithQuery(new Uri(target),
+            new NameValueCollection { { "method", toGet } });
+
+            // call sync
+            var response = client.GetAsync(uri).Result;
+            var responseString = "";
+
+            if (response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+                notifyStory(responseString);
+            }
+            else
+            {
+                searchProgressRing.IsActive = false;
+                var title = "No Search Results :(";
+                var message = "Uh, Oh, Spadoodios! We could not find any results for your search. We feel sad now...";
+                errorDialog(title, message);
+            }
+        }
+
+        private void notifyStory(string JSON)
+        {
+
+            string rDatakey = "roamingDetails";
+            string onloadDatakey = "onloadDetails";
+            string uDataKey = "usernameDetails";
+
+            Storage storage = new Storage();
+
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string name = "";
+            string shown = "";
+
+            if (roamingSetting == "true")
+            {
+                name = storage.LoadRoamingSettings(uDataKey);
+                shown = storage.LoadRoamingSettings(onloadDatakey);
+            }
+            else
+            {
+                name = storage.LoadSettings(uDataKey);
+                shown = storage.LoadSettings(onloadDatakey);
+            }
+
+            List<Stories> stories = JsonConvert.DeserializeObject<List<Stories>>(JSON);
+
+            if (shown != stories[0].Title)
+            {
+                if (name == "Null")
+                {
+                    name = "Anon";
+                }
+
+                
+                string greeting = "Hey " + name + "!";
+                string message = "Our Latest Story is: " + stories[0].Title + "\nCreated by: " + stories[0].OwnerName + ". \nHave a read, we hope you enjoy it!";
+
+                Notifications.standardToast(greeting, message, "app-defined-string");
+                Notifications.standardTileNotification("Newest Story: " + stories[0].Title + "\n", stories[0].Description);
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(onloadDatakey, stories[0].Title);
+                }
+                else
+                {
+                    storage.SaveSettings(onloadDatakey, stories[0].Title);
+                }
+            }
+
+            searchProgressRing.IsActive = false;
+
+
+
+        }
+
         private void errorDialog(string title, string messageDetails)
         {
             object sender = null;
@@ -72,8 +155,52 @@ namespace FableProject.Pages
         {
             var viewModel = new UpdatesDataSource(JSON);
             this.DataContext = viewModel;
-            searchProgressRing.IsActive = false;
 
+            string rDatakey = "roamingDetails";
+            string onloadUpdateDatakey = "onloadUpdateDetails";
+            string uDataKey = "usernameDetails";
+
+            Storage storage = new Storage();
+
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string name = "";
+            string shown = "";
+
+            if (roamingSetting == "true")
+            {
+                name = storage.LoadRoamingSettings(uDataKey);
+                shown = storage.LoadRoamingSettings(onloadUpdateDatakey);
+            }
+            else
+            {
+                name = storage.LoadSettings(uDataKey);
+                shown = storage.LoadSettings(onloadUpdateDatakey);
+            }
+
+            List<Updates> updates = JsonConvert.DeserializeObject<List<Updates>>(JSON);
+
+            if (shown != updates[0].Version)
+            {
+                if (name == "Null")
+                {
+                    name = "Anon";
+                }
+
+                updates[0].modTitle = "What's New in " + updates[0].Version + ":";
+                Notifications.standardTileNotification(updates[0].modTitle, updates[0].About);
+
+                if (roamingSetting == "true")
+                {
+                    storage.SaveRoamingSettings(onloadUpdateDatakey, updates[0].Version);
+                }
+                else
+                {
+                    storage.SaveSettings(onloadUpdateDatakey, updates[0].Version);
+                }
+            }
+
+            searchStories("http://www.kshatriya.co.uk/dev/project/service/tile.php", "latestStory");
+            
         }
     }
 }

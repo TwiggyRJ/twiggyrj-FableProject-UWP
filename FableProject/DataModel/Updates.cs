@@ -1,4 +1,5 @@
 ﻿using FableProject.Data;
+using FableProject.Functions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -82,6 +83,8 @@ namespace FableProject.DataModel
             updates[0].Content_4 = bullet + updates[0].Content_4;
             updates[0].Content_5 = bullet + updates[0].Content_5;
             updates[0].Content_6 = bullet + updates[0].Content_6;
+
+            
 
             if (dateSetting == "0")
             {

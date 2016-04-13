@@ -1,4 +1,5 @@
 ﻿using FableProject.Data;
+using FableProject.Functions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace FableProject.DataModel
         public string vis { get; set; }
 
     }
+
 
     public class StoriesSorted
     {
@@ -155,5 +157,6 @@ namespace FableProject.DataModel
             }
 
         }
+
     }
 }

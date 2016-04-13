@@ -66,19 +66,7 @@ namespace FableProject.Pages
                 name = storage.LoadRoamingSettings(nDataKey);
                 difficulty = storage.LoadRoamingSettings(gameDFDatakey);
             }
-            else if (roamingSetting == "false")
-            {
-                name = storage.LoadSettings(nDataKey);
-
-                if (name == "Null")
-                {
-                    name = "No Face";
-                    Notifications.standardToast("Hey Anon!", "I know you want to remain Anonymous but there are benefits to registering!", "app-defined-string");
-                }
-
-                difficulty = storage.LoadSettings(gameDFDatakey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 name = storage.LoadSettings(nDataKey);
 

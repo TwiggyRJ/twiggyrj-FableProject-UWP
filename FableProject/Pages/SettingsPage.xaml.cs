@@ -77,23 +77,8 @@ namespace FableProject.Pages
                 }
 
             }
-            else if (roamingSetting == "false")
+            else
             {
-                userData = storage.LoadSettings(sDataKey);
-                usernameDetails = storage.LoadSettings(uDataKey);
-                string passwordDetails = storage.LoadSettings(pDataKey);
-
-                string statusData = storage.LoadSettings(stDatakey);
-
-                if (statusData == "false")
-                {
-                    hideStatus.IsOn = true;
-                }
-
-            }
-            else if (roamingSetting == "Null")
-            {
-
                 userData = storage.LoadSettings(sDataKey);
                 usernameDetails = storage.LoadSettings(uDataKey);
                 string passwordDetails = storage.LoadSettings(pDataKey);
@@ -516,6 +501,7 @@ namespace FableProject.Pages
             string pDataKey = "passwordDetails";
             string rDatakey = "roamingDetails";
             string raDataKey = "roamingAlertDetails";
+            string onloadDatakey = "onloadDetails";
 
             string roamingSetting = storage.LoadSettings(rDatakey);
 
@@ -528,6 +514,7 @@ namespace FableProject.Pages
                 storage.SaveRoamingSettings(pDataKey, clearCache);
                 storage.SaveRoamingSettings(rDatakey, clearCache);
                 storage.SaveRoamingSettings(raDataKey, clearCache);
+                storage.SaveRoamingSettings(onloadDatakey, clearCache);
             }
             else
             {
@@ -536,12 +523,13 @@ namespace FableProject.Pages
                 storage.SaveSettings(pDataKey, clearCache);
                 storage.SaveSettings(rDatakey, clearCache);
                 storage.SaveSettings(raDataKey, clearCache);
+                storage.SaveSettings(onloadDatakey, clearCache);
             }
 
             string title = "Clearing Application Data";
 
-            string message = "You have cleared all application data, you will need to restart the application and re login to the application.";
-            feedbackDialog(title, message, 99);
+            string message = "You have cleared all application data, if you have an account then you will need to log back in to the application.";
+            feedbackDialog(title, message);
 
         }
 
