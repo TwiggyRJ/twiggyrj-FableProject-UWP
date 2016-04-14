@@ -73,7 +73,7 @@
                         <AdaptiveTrigger MinWindowWidth="1100" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="StoryHeader.Height" Value="600" />
+                        <Setter Target="StoryHeader.Height" Value="550" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="SemiNarrowState">
@@ -81,7 +81,7 @@
                         <AdaptiveTrigger MinWindowWidth="900" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="StoryHeader.Height" Value="500" />
+                        <Setter Target="StoryHeader.Height" Value="450" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="SlightyNarrowState">

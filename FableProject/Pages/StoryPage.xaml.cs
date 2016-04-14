@@ -27,10 +27,12 @@ namespace FableProject.Pages
     {
 
         public int countdown;
+        public int countdownReset;
         public string name;
         public string difficulty;
         public string selectedPage { get; set; }
         public string selectedStory { get; set; }
+        public DispatcherTimer timer = new DispatcherTimer();
 
 
         public string passedParameter;
@@ -82,14 +84,17 @@ namespace FableProject.Pages
             if (difficulty == "0")
             {
                 countdown = 89;
+                countdownReset = 89;
             }
             else if (difficulty == "1")
             {
                 countdown = 44;
+                countdownReset = 44;
             }
             else if (difficulty == "2" || difficulty == "3" || difficulty == "4")
             {
                 countdown = 29;
+                countdownReset = 29;
             }
 
         }
@@ -97,14 +102,14 @@ namespace FableProject.Pages
 
         private void startInteraction(object sender, RoutedEventArgs e)
         {
-            var timer = new DispatcherTimer();
+           
             timer.Tick += counter;
             timer.Interval = new TimeSpan(0, 0, 0, 1);
             timer.Start();
 
             interactionsGrid.Visibility = Visibility.Visible;
 
-            if (difficulty == "2")
+            if (difficulty == "4")
             {
                 countdownSound.Play();
             }
@@ -176,6 +181,8 @@ namespace FableProject.Pages
                 destination = myMockBox.Tag.ToString();
             }
 
+            myAnswerBox.Text = "";
+
             var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
 
             searchPages(target, passedParameter, destination);
@@ -185,6 +192,15 @@ namespace FableProject.Pages
 
         private async void searchPages(string target, string toGetStory, string toGetPage)
         {
+
+            interactionsGrid.Visibility = Visibility.Collapsed;
+            interactionStart.Visibility = Visibility.Visible;
+
+            countdown = 0;
+            countdown = countdownReset;
+            countdownSound.Stop();
+            timer.Stop();
+            timer = new DispatcherTimer();
 
             var client = new HttpClient();
 

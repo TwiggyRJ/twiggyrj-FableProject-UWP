@@ -138,8 +138,6 @@ namespace FableProject.Pages
 
             searchProgressRing.IsActive = false;
 
-
-
         }
 
         private void errorDialog(string title, string messageDetails)

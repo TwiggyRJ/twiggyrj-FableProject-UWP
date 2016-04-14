@@ -133,6 +133,15 @@
             <Setter Property="Foreground" Value="{ThemeResource SearchBoxTextForegroundBrush}" />
         </Style>
 
+        <Style TargetType="TextBox" x:Key="TextBoxRichStyle">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontFamily" Value="Segoe UI Light" />
+            <Setter Property="Padding" Value="10,10,10,0"/>
+            <Setter Property="FontSize" Value="{ThemeResource SearchBoxAltFontSize}" />
+            <Setter Property="Foreground" Value="{ThemeResource SearchBoxTextForegroundBrush}" />
+        </Style>
+
         <Style TargetType="ComboBox" x:Key="SearchTypeBoxStyle">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Left" />

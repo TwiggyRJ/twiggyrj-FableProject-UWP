@@ -23,7 +23,7 @@
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
             <StackPanel>
                 <StackPanel Visibility="Visible" x:Name="NewStoriesPage">
-                    <TextBlock Text="Create Content on Fable Time" Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock x:Name="AuthorHeader" Text="Create Content on Fable Time" Style="{StaticResource TitleTextBlockStyle}" />
 
                     <Pivot x:Name="AuthorPivot" Margin="-10,-20,0,0" Height="1600">
 
@@ -59,31 +59,34 @@
 
                                 <TextBox x:Name="pageTitleBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Title" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Page Title Here"/>
 
-                                <RichEditBox x:Name="pageContentsTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Make the Page Here" Width="290" Height="200" ToolTipService.ToolTip="Enter the Page's Content in Here"/>
+                                <TextBox x:Name="pageContentsTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Make the Page Here" Width="290" Height="200" ToolTipService.ToolTip="Enter the Page's Content in Here"/>
+
+                                <TextBox x:Name="pageChoiceTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Make the Page Choice Here" Width="290" Height="200" ToolTipService.ToolTip="Enter the Player Choice Here"/>
 
                                 <TextBox x:Name="pageNumberBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Page Number" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
-                                <RichEditBox x:Name="pageInteractionIntroTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Introduce the Optional Question Here" Width="290" Height="150" ToolTipService.ToolTip="Enter the Page's Interaction Question in Here"/>
+                                <TextBox x:Name="pageInteractionIntroTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Introduce the Optional Question Here" Width="290" Height="150" ToolTipService.ToolTip="Enter the Page's Interaction Question in Here"/>
 
                                 <ComboBox x:Name="interactionTypeCombo" Margin="0,10,0,0" Width="250" PlaceholderText="Type of Question">
+                                    <ComboBoxItem Content="No Question"/>
                                     <ComboBoxItem Content="Anagram"/>
                                     <ComboBoxItem Content="Math Equation"/>
                                     <ComboBoxItem Content="Question"/>
                                 </ComboBox>
 
-                                <RichEditBox x:Name="pageEInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Easy Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+                                <TextBox x:Name="pageEInteractionTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Interaction (Easy Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
                                 <TextBox x:Name="pageEInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Easy Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
-                                
-                                <RichEditBox x:Name="pageMInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Medium Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+
+                                <TextBox x:Name="pageMInteractionTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Interaction (Medium Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
                                 <TextBox x:Name="pageMInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Medium Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
-                                <RichEditBox x:Name="pageHInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Hard Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+                                <TextBox x:Name="pageHInteractionTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Interaction (Hard Difficulty)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
                                 <TextBox x:Name="pageHInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Hard Difficulty)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
-                                <RichEditBox x:Name="pageJInteractionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Interaction (Humourous)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
+                                <TextBox x:Name="pageJInteractionTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Interaction (Humourous)" Width="290" Height="100" ToolTipService.ToolTip="Enter the Page's Interaction in Here"/>
 
                                 <TextBox x:Name="pageJInteractionAnswerBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Answer (Humourous)" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
@@ -99,7 +102,7 @@
 
                                 <TextBox x:Name="pageOptionBDestBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Option B Destination" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Where Option B will take the player"/>
 
-                                <RichEditBox x:Name="pageRewardBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="What Goodies will you give the player" Width="290" Height="100" ToolTipService.ToolTip="Enter the goodies the player will get on this page"/>
+                                <TextBox x:Name="pageRewardBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="What Goodies will you give the player" Width="290" Height="100" ToolTipService.ToolTip="Enter the goodies the player will get on this page"/>
 
                                 <CheckBox x:Name="pageDefaultCheck" Content="Stories First Page" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ToolTipService.ToolTip="Check this box if the Page is the first page that will be viewed by the page"/>
 
@@ -199,7 +202,7 @@
                         <AdaptiveTrigger MinWindowWidth="1500" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="2300" />
+                        <Setter Target="AuthorPivot.Height" Value="2450" />
                         <Setter Target="pageOptionABox.Width" Value="1400" />
                         <Setter Target="pageOptionBBox.Width" Value="1400" />
                         <Setter Target="pageOptionADestBox.Width" Value="1400" />
@@ -220,6 +223,8 @@
                         <Setter Target="pageTitleBox.Width" Value="1400" />
                         <Setter Target="pageContentsTextBox.Width" Value="1400" />
                         <Setter Target="pageContentsTextBox.Height" Value="400" />
+                        <Setter Target="pageChoiceTextBox.Width" Value="1400" />
+                        <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="1400" />
                         <Setter Target="selectedStory.Width" Value="1400" />
                         <Setter Target="storyCategory.Width" Value="1400" />
@@ -234,7 +239,7 @@
                         <AdaptiveTrigger MinWindowWidth="1100" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="2100" />
+                        <Setter Target="AuthorPivot.Height" Value="2250" />
                         <Setter Target="pageOptionABox.Width" Value="1100" />
                         <Setter Target="pageOptionBBox.Width" Value="1100" />
                         <Setter Target="pageOptionADestBox.Width" Value="1100" />
@@ -255,6 +260,8 @@
                         <Setter Target="pageTitleBox.Width" Value="1100" />
                         <Setter Target="pageContentsTextBox.Width" Value="1100" />
                         <Setter Target="pageContentsTextBox.Height" Value="300" />
+                        <Setter Target="pageChoiceTextBox.Width" Value="1100" />
+                        <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="1100" />
                         <Setter Target="selectedStory.Width" Value="1100" />
                         <Setter Target="storyCategory.Width" Value="1100" />
@@ -269,7 +276,7 @@
                         <AdaptiveTrigger MinWindowWidth="700" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1700" />
+                        <Setter Target="AuthorPivot.Height" Value="1850" />
                         <Setter Target="pageOptionABox.Width" Value="700" />
                         <Setter Target="pageOptionBBox.Width" Value="700" />
                         <Setter Target="pageOptionADestBox.Width" Value="700" />
@@ -290,6 +297,8 @@
                         <Setter Target="pageTitleBox.Width" Value="700" />
                         <Setter Target="pageContentsTextBox.Width" Value="700" />
                         <Setter Target="pageContentsTextBox.Height" Value="300" />
+                        <Setter Target="pageChoiceTextBox.Width" Value="700" />
+                        <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="700" />
                         <Setter Target="selectedStory.Width" Value="700" />
                         <Setter Target="storyCategory.Width" Value="700" />
@@ -304,7 +313,7 @@
                         <AdaptiveTrigger MinWindowWidth="400" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1700" />
+                        <Setter Target="AuthorPivot.Height" Value="1850" />
                         <Setter Target="pageOptionABox.Width" Value="350" />
                         <Setter Target="pageOptionBBox.Width" Value="350" />
                         <Setter Target="pageOptionADestBox.Width" Value="350" />
@@ -324,6 +333,8 @@
                         <Setter Target="pageTitleBox.Width" Value="350" />
                         <Setter Target="pageContentsTextBox.Width" Value="350" />
                         <Setter Target="pageContentsTextBox.Height" Value="270" />
+                        <Setter Target="pageChoiceTextBox.Width" Value="350" />
+                        <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="350" />
                         <Setter Target="selectedStory.Width" Value="350" />
                         <Setter Target="storyCategory.Width" Value="350" />
@@ -338,7 +349,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1500" />
+                        <Setter Target="AuthorPivot.Height" Value="1650" />
                         <Setter Target="pageOptionABox.Width" Value="290" />
                         <Setter Target="pageOptionBBox.Width" Value="290" />
                         <Setter Target="pageOptionADestBox.Width" Value="290" />
@@ -358,6 +369,8 @@
                         <Setter Target="pageTitleBox.Width" Value="290" />
                         <Setter Target="pageContentsTextBox.Width" Value="290" />
                         <Setter Target="pageContentsTextBox.Height" Value="200" />
+                        <Setter Target="pageChoiceTextBox.Width" Value="290" />
+                        <Setter Target="pageChoiceTextBox.Height" Value="200" />
                         <Setter Target="pageNumberBox.Width" Value="290" />
                         <Setter Target="selectedStory.Width" Value="290" />
                         <Setter Target="storyCategory.Width" Value="290" />

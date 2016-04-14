@@ -546,18 +546,19 @@ namespace FableProject.Pages
         {
 
             string pageTitle = pageTitleBox.Text;
-            string pageContent = Convert.ToString(pageContentsTextBox.Document);
+            string pageContent = pageContentsTextBox.Text;
+            string pageContent_2 = pageChoiceTextBox.Text;
             string pageRoot = "";
             string pageNumber = pageNumberBox.Text;
-            string pageInteraction = Convert.ToString(pageInteractionIntroTextBox.Document);
+            string pageInteraction = pageInteractionIntroTextBox.Text;
             string pageInteractionType = ((ComboBoxItem)interactionTypeCombo.SelectedItem).Content.ToString();
-            string pageEInteraction = Convert.ToString(pageEInteractionTextBox.Document);
+            string pageEInteraction = pageEInteractionTextBox.Text;
             string pageEInteractionAnswer = pageEInteractionAnswerBox.Text;
-            string pageMInteraction = Convert.ToString(pageMInteractionTextBox.Document);
+            string pageMInteraction = pageMInteractionTextBox.Text;
             string pageMInteractionAnswer = pageMInteractionAnswerBox.Text;
-            string pageHInteraction = Convert.ToString(pageHInteractionTextBox.Document);
+            string pageHInteraction = pageHInteractionTextBox.Text;
             string pageHInteractionAnswer = pageHInteractionAnswerBox.Text;
-            string pageJInteraction = Convert.ToString(pageJInteractionTextBox.Document);
+            string pageJInteraction = pageJInteractionTextBox.Text;
             string pageJInteractionAnswer = pageJInteractionAnswerBox.Text;
             string pageFirst = pageDefaultCheck.IsChecked.ToString();
             string pageOptionA = pageOptionABox.Text;
@@ -565,8 +566,8 @@ namespace FableProject.Pages
             string pageOptionADest = pageOptionADestBox.Text;
             string pageOptionBDest = pageOptionBDestBox.Text;
             string pageInteractionOption = pageInteractionRewardBox.Text;
-            string pageReward = Convert.ToString(pageRewardBox.Document);
-
+            string pageInteractionFailure = pageInteractionFailureBox.Text;
+            string pageReward = pageRewardBox.Text;
 
             Storage storage = new Storage();
 
@@ -638,13 +639,12 @@ namespace FableProject.Pages
             }
             else
             {
-                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/service/page.php", pageRoot, pageTitle, pageContent, pageNumber, pageInteraction, pageInteractionType, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest, pageOptionB, pageOptionBDest, pageInteractionOption, pageReward, pageFirst);
+                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/service/page.php", pageRoot, pageTitle, pageContent, pageContent_2, pageNumber, pageInteraction, pageInteractionType, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest, pageOptionB, pageOptionBDest, pageInteractionOption, pageInteractionFailure, pageReward, pageFirst);
             }
-
 
         }
 
-        private void sendPage(string username, string password, string target, string storyTitle, string pageTitle, string pageContent, string pageNumber, string pageInteraction, string pageInteractionType, string pageEInteraction, string pageEInteractionAnswer, string pageMInteraction, string pageMInteractionAnswer, string pageHInteraction, string pageHInteractionAnswer, string pageJInteraction, string pageJInteractionAnswer, string pageOptionA, string pageOptionADest, string pageOptionB, string pageOptionBDest, string pageInteractionOption, string pageReward, string pageFirst)
+        private void sendPage(string username, string password, string target, string storyTitle, string pageTitle, string pageContent, string pageContent_2, string pageNumber, string pageInteraction, string pageInteractionType, string pageEInteraction, string pageEInteractionAnswer, string pageMInteraction, string pageMInteractionAnswer, string pageHInteraction, string pageHInteractionAnswer, string pageJInteraction, string pageJInteractionAnswer, string pageOptionA, string pageOptionADest, string pageOptionB, string pageOptionBDest, string pageInteractionOption, string pageInteractionFailure, string pageReward, string pageFirst)
         {
 
             var client = new HttpClient();
@@ -654,6 +654,7 @@ namespace FableProject.Pages
                 new KeyValuePair<string, string>("storyTitle", storyTitle),
                 new KeyValuePair<string, string>("title", pageTitle),
                 new KeyValuePair<string, string>("content", pageContent),
+                new KeyValuePair<string, string>("content_2", pageContent_2),
                 new KeyValuePair<string, string>("pageNumber", pageNumber),
                 new KeyValuePair<string, string>("pageInteraction", pageInteraction),
                 new KeyValuePair<string, string>("pageInteractionType", pageInteractionType),
@@ -670,6 +671,7 @@ namespace FableProject.Pages
                 new KeyValuePair<string, string>("pageOptionB", pageOptionB),
                 new KeyValuePair<string, string>("pageOptionBDest", pageOptionBDest),
                 new KeyValuePair<string, string>("pageInteractionOption", pageInteractionOption),
+                new KeyValuePair<string, string>("pageInteractionFailure", pageInteractionFailure),
                 new KeyValuePair<string, string>("pageReward", pageReward),
                 new KeyValuePair<string, string>("pageFirst", pageFirst),
                 new KeyValuePair<string, string>("action", "post")
