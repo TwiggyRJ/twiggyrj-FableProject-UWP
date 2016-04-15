@@ -28,32 +28,51 @@
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
             <StackPanel DataContext="{Binding Source={StaticResource UpdatesViewSource}}">
 
-                <TextBlock Text="{Binding modTitle}" Style="{StaticResource TitleTextBlockStyle}" />
+                <Grid>
 
-                <TextBlock Text="Updated:" Style="{StaticResource ParagraphTitleBlockStyle}" />
-                <TextBlock Text="{Binding modDate}" Margin="100,-47,0,0" Style="{StaticResource ParagraphTitleBlockStyle}" />
+                    <TextBlock Text="{Binding modTitle}" Style="{StaticResource TitleTextBlockStyle}" />
 
-                <TextBlock Style="{StaticResource ParagraphTextBlockStyle}" Margin="0,1,0,12">
+                </Grid>
+                <Grid>
+
+                    <TextBlock Text="Updated:" Style="{StaticResource ParagraphTitleBlockStyle}" />
+                    <TextBlock Text="{Binding modDate}" Margin="100,0,0,0" Style="{StaticResource ParagraphTitleBlockStyle}" />
+
+                </Grid>
+                <Grid>
+                    <TextBlock Style="{StaticResource ParagraphTextBlockStyle}" Margin="0,1,0,12">
                     <Run Text="{Binding About}" />
-                
-                </TextBlock>
 
+                    </TextBlock>
 
-                <TextBlock Text="Update" Style="{StaticResource ParagraphTitleBlockStyle}" />
-                <TextBlock Style="{StaticResource ParagraphTextBlockStyle}">
+                </Grid>
+                <Grid>
+
+                    <TextBlock Text="Update" Style="{StaticResource ParagraphTitleBlockStyle}" />
+                    
+                </Grid>
+                <Grid>
+
+                    <TextBlock Style="{StaticResource ParagraphTextBlockStyle}">
                 	<Run Text="{Binding Content}" /><LineBreak />
                 	<Run Text="{Binding Content_2}" /><LineBreak />
                     <Run Text="{Binding Content_3}" /><LineBreak />
                     <Run Text="{Binding Content_4}" /><LineBreak />
                     <Run Text="{Binding Content_5}" /><LineBreak />
                     <Run Text="{Binding Content_6}" /><LineBreak />
-                </TextBlock>
+                    </TextBlock>
 
-                <ProgressRing
+                    <ProgressRing
                         x:Name="searchProgressRing"
                         Height="125"
                         Width="125"
                         Margin="0,-700,0,0"/>
+
+                </Grid>
+
+                <Grid x:Name="ContinueGrid" Visibility="Visible">
+                    <Button x:Name="resumeButton" Click="resumePlay" Content="Continue Where you left off" Style="{ThemeResource LoginMenuButtonStyle}" Tag=""/>
+                </Grid>
 
             </StackPanel>
         </ScrollViewer>

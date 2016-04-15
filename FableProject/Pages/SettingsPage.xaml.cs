@@ -22,6 +22,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using FableProject.DataModel;
+using Windows.Media.SpeechSynthesis;
+using Windows.ApplicationModel.Resources.Core;
 
 namespace FableProject.Pages
 {
@@ -52,8 +54,9 @@ namespace FableProject.Pages
             string rDatakey = "roamingDetails";
             string stDatakey = "statusBarDetails";
             string adDatakey = "adminDetails";
-
+            string audioDatakey = "audiobookDetails";
             string roamingSetting = storage.LoadSettings(rDatakey);
+            string audiobookSetting = "";
 
             string userData = "Null";
             string usernameDetails = "Null";
@@ -68,6 +71,7 @@ namespace FableProject.Pages
                 userData = storage.LoadRoamingSettings(sDataKey);
                 usernameDetails = storage.LoadRoamingSettings(uDataKey);
                 string passwordDetails = storage.LoadRoamingSettings(pDataKey);
+                audiobookSetting = storage.LoadRoamingSettings(audioDatakey);
 
                 string statusData = storage.LoadRoamingSettings(stDatakey);
 
@@ -76,18 +80,29 @@ namespace FableProject.Pages
                     hideStatus.IsOn = true;
                 }
 
+                if(audiobookSetting == "true")
+                {
+                    audiobookmode.IsOn = true;
+                }
+
             }
             else
             {
                 userData = storage.LoadSettings(sDataKey);
                 usernameDetails = storage.LoadSettings(uDataKey);
                 string passwordDetails = storage.LoadSettings(pDataKey);
+                audiobookSetting = storage.LoadSettings(audioDatakey);
 
                 string statusData = storage.LoadSettings(stDatakey);
 
                 if (statusData == "false")
                 {
                     hideStatus.IsOn = true;
+                }
+
+                if (audiobookSetting == "true")
+                {
+                    audiobookmode.IsOn = true;
                 }
 
             }
@@ -801,6 +816,57 @@ namespace FableProject.Pages
 
         }
 
+        private void AudioBookMode(object sender, RoutedEventArgs e)
+        {
 
+            if (audiobookmode.IsOn == false)
+            {
+                disableAudiobook();
+            }
+            else
+            {
+                enableAudiobook();
+            }
+        }
+
+        private void enableAudiobook()
+        {
+
+            Storage storage = new Storage();
+
+            string rDatakey = "roamingDetails";
+            string audioDatakey = "audiobookDetails";
+            string roamingSetting = storage.LoadSettings(rDatakey);
+
+            if (roamingSetting == "true")
+            {
+                storage.SaveRoamingSettings(audioDatakey, "true");
+            }
+            else
+            {
+                storage.SaveSettings(audioDatakey, "true");
+            }
+
+        }
+
+        private void disableAudiobook()
+        {
+
+            Storage storage = new Storage();
+
+            string rDatakey = "roamingDetails";
+            string audioDatakey = "audiobookDetails";
+            string roamingSetting = storage.LoadSettings(rDatakey);
+
+            if (roamingSetting == "true")
+            {
+                storage.SaveRoamingSettings(audioDatakey, "false");
+            }
+            else
+            {
+                storage.SaveSettings(audioDatakey, "false");
+            }
+
+        }
     }
 }

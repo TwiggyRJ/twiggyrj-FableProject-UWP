@@ -91,6 +91,19 @@
                                 </ComboBox>
                             </Grid>
 
+                            <Grid Margin="0,20,0,0">
+                                <TextBlock Text="Audiobook" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                            </Grid>
+
+                            <Grid>
+                                <TextBlock Text="Enable the Audiobook feature by default"/>
+                            </Grid>
+
+                            <Grid>
+                                <ToggleSwitch x:Name="audiobookmode" Toggled="AudioBookMode" ToolTipService.ToolTip="Click to enable audiobook mode"/>
+                                <MediaElement x:Name="audioSetting" AutoPlay="False"/>
+                            </Grid>
+
                         </StackPanel>
                         
                     </PivotItem>

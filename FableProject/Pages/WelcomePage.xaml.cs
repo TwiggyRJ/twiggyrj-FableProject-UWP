@@ -156,22 +156,18 @@ namespace FableProject.Pages
 
             string rDatakey = "roamingDetails";
             string onloadUpdateDatakey = "onloadUpdateDetails";
-            string uDataKey = "usernameDetails";
 
             Storage storage = new Storage();
 
             string roamingSetting = storage.LoadSettings(rDatakey);
-            string name = "";
             string shown = "";
 
             if (roamingSetting == "true")
             {
-                name = storage.LoadRoamingSettings(uDataKey);
                 shown = storage.LoadRoamingSettings(onloadUpdateDatakey);
             }
             else
             {
-                name = storage.LoadSettings(uDataKey);
                 shown = storage.LoadSettings(onloadUpdateDatakey);
             }
 
@@ -179,10 +175,6 @@ namespace FableProject.Pages
 
             if (shown != updates[0].Version)
             {
-                if (name == "Null")
-                {
-                    name = "Anon";
-                }
 
                 updates[0].modTitle = "What's New in " + updates[0].Version + ":";
                 Notifications.standardTileNotification(updates[0].modTitle, updates[0].About);
@@ -199,6 +191,30 @@ namespace FableProject.Pages
 
             searchStories("http://www.kshatriya.co.uk/dev/project/service/tile.php", "latestStory");
             
+        }
+
+        private void resumePlay(object sender, RoutedEventArgs e)
+        {
+            Storage storage = new Storage();
+
+            string rDatakey = "roamingDetails";
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string slDataKey = "saveGameSlot";
+            string slot = "";
+
+            if (roamingSetting == "true")
+            {
+                slot = storage.LoadRoamingSettings(slDataKey);
+            }
+            else
+            {
+                slot = storage.LoadSettings(slDataKey);
+            }
+
+            if (slot == "1" || slot == "2" || slot == "3" || slot == "4" || slot == "5")
+            {
+                Frame.Navigate(typeof(StoryPage), "resumePlay");
+            }
         }
     }
 }

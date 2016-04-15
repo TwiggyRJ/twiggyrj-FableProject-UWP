@@ -8,8 +8,10 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -42,6 +44,11 @@ namespace FableProject.Pages
         public DispatcherTimer timer = new DispatcherTimer();
 
 
+        private SpeechSynthesizer synthesizer;
+        private ResourceContext speechContext;
+        private ResourceMap speechResourceMap;
+
+
         public string passedParameter;
 
 
@@ -51,9 +58,41 @@ namespace FableProject.Pages
 
             passedParameter = e.Parameter.ToString();
 
-            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
 
-            searchPages(target, passedParameter, "First");
+            synthesizer = new SpeechSynthesizer();
+
+            speechContext = ResourceContext.GetForCurrentView();
+            speechContext.Languages = new string[] { SpeechSynthesizer.DefaultVoice.Language };
+
+            speechResourceMap = ResourceManager.Current.MainResourceMap.GetSubtree("LocalizationTTSResources");
+
+
+            if (passedParameter == "resumePlay")
+            {
+                Storage storage = new Storage();
+
+                string rDatakey = "roamingDetails";
+                string roamingSetting = storage.LoadSettings(rDatakey);
+                string slDataKey = "saveGameSlot";
+                string slot = "";
+
+                if (roamingSetting == "true")
+                {
+                    slot = storage.LoadRoamingSettings(slDataKey);
+                }
+                else
+                {
+                    slot = storage.LoadSettings(slDataKey);
+                }
+
+                loadSaveGameData(slot);
+            }
+            else
+            {
+                var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+
+                searchPages(target, passedParameter, "First");
+            }
 
         }
 
@@ -248,6 +287,36 @@ namespace FableProject.Pages
             this.DataContext = viewModel;
             searchProgressRing.IsActive = false;
 
+            Storage storage = new Storage();
+
+            string audioDatakey = "audiobookDetails";
+            string rDatakey = "roamingDetails";
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string audiobookSetting = "";
+
+            if (roamingSetting == "true")
+            {
+
+                audiobookSetting = storage.LoadRoamingSettings(audioDatakey);
+
+                if (audiobookSetting == "true")
+                {
+                    AudioBookMode(null, null);
+                }
+
+            }
+            else
+            {
+
+                audiobookSetting = storage.LoadSettings(audioDatakey);
+
+                if (audiobookSetting == "true")
+                {
+                    AudioBookMode(null, null);
+                }
+
+            }
+
         }
 
         private void errorDialog(string title, string messageDetails)
@@ -292,6 +361,25 @@ namespace FableProject.Pages
             
         }
 
+        private void loadSaveGameData(string slot)
+        {
+            GameData gameData = new GameData();
+            string saveData = gameData.LoadData(slot);
+            saveGameData = saveData.ToString();
+            listSaveData = saveGameData.Split('|').ToList();
+
+            //Updates the page with the saved data
+
+            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+
+            passedParameter = listSaveData[1];
+            pastPages = listSaveData[2];
+            string destination = listSaveData[3];
+            playerBag = listSaveData[4];
+
+            searchPages(target, passedParameter, destination);
+        }
+
         private void loadSaveGameData(object sender, RoutedEventArgs e)
         {
             GameData gameData = new GameData();
@@ -309,6 +397,67 @@ namespace FableProject.Pages
             playerBag = listSaveData[4];
 
             searchPages(target, passedParameter, destination);
+        }
+
+        private async void AudioBookMode(object sender, RoutedEventArgs e)
+        {
+            if (audiobook.CurrentState.Equals(MediaElementState.Playing))
+            {
+                audiobook.Stop();
+                audioBook.Label = "Enable Audiobook Mode";
+            }
+            else
+            {
+
+                string story = StoryHeading.Text;
+                string title = PageTitle.Text;
+                string content_1 = Content_1.Text;
+                string content_2 = Content_2.Text;
+                string interactionQuestion = InteractionQuestionText.Text;
+                string text = "";
+
+                int interactionSpeak = 0;
+
+                while(interactionSpeak == 0)
+                {
+
+                    text = story + ". , " + title + ". ," + content_1 + ". ," + content_2 + ". ," + interactionQuestion;
+
+                    if (!String.IsNullOrEmpty(text))
+                    {
+                        // Change the button label. You could also just disable the button if you don't want any user control.
+                        audioBook.Label = "Stop Audiobook Mode";
+
+                        try
+                        {
+                            // Create a stream from the text. This will be played using a media element.
+                            SpeechSynthesisStream synthesisStream = await synthesizer.SynthesizeTextToStreamAsync(text);
+
+                            // Set the source and start playing the synthesized audio stream.
+                            audiobook.AutoPlay = true;
+                            audiobook.SetSource(synthesisStream, synthesisStream.ContentType);
+                            audiobook.Play();
+                        }
+                        catch (System.IO.FileNotFoundException)
+                        {
+                            // If media player components are unavailable, (eg, using a N SKU of windows), we won't
+                            // be able to start media playback. Handle this gracefully
+                            audioBook.IsEnabled = false;
+                            var messageDialog = new Windows.UI.Popups.MessageDialog("Media player components unavailable");
+                            await messageDialog.ShowAsync();
+                        }
+                        catch (Exception)
+                        {
+                            // If the text is unable to be synthesized, throw an error message to the user.
+                            audiobook.AutoPlay = false;
+                            var messageDialog = new Windows.UI.Popups.MessageDialog("Unable to synthesize text");
+                            await messageDialog.ShowAsync();
+                        }
+                        interactionSpeak = 1;
+                    }
+                }
+                
+            }
         }
     }
 }

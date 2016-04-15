@@ -22,6 +22,7 @@ namespace FableProject.Data
 
         public string rDatakey = "roamingDetails";
         string sgDataKey = "saveGameDetails";
+        string slDataKey = "saveGameSlot";
         string saveData = "";
 
 
@@ -101,10 +102,12 @@ namespace FableProject.Data
             if (roamingSetting == "true")
             {
                 storage.SaveRoamingSettings(sgDataKey, result);
+                storage.SaveRoamingSettings(slDataKey, id);
             }
             else
             {
                 storage.SaveSettings(sgDataKey, result);
+                storage.SaveSettings(slDataKey, id);
             }
 
         }
