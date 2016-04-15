@@ -138,6 +138,23 @@ namespace FableProject.Pages
 
             searchProgressRing.IsActive = false;
 
+            string slDataKey = "saveGameSlot";
+            string slot = "";
+
+            if (roamingSetting == "true")
+            {
+                slot = storage.LoadRoamingSettings(slDataKey);
+            }
+            else
+            {
+                slot = storage.LoadSettings(slDataKey);
+            }
+
+            if (slot != "1" || slot != "2" || slot != "3" || slot != "4" || slot != "5")
+            {
+                ContinueGrid.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         private void errorDialog(string title, string messageDetails)
