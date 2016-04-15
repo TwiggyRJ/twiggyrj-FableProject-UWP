@@ -28,8 +28,8 @@
         <ScrollViewer HorizontalAlignment="Stretch" Style="{StaticResource PageScrollViewerStyleNoPadding}">
             <StackPanel Margin="15,15,15,0" DataContext="{Binding Source={StaticResource PagesViewSource}}">
                 <TextBlock x:Name="StoryHeading" HorizontalAlignment="Left" Text="{Binding Story}" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleAccentBrush}" />
-                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" />
-                <Grid>
+                <TextBlock x:Name="PageTitle" Text="{Binding Title}" Tag="{Binding Number}" Style="{StaticResource TitleTextBlockStyle}" />
+                <Grid x:Name="ContentGrid" Tag="{Binding Goodies}">
                     <TextBlock Text="{Binding Content}" Style="{StaticResource StoryParagraphTextBlockStyle}" />
                 </Grid>
                 <Grid Margin="0,-10,0,0">
@@ -78,5 +78,26 @@
                 
             </StackPanel>
         </ScrollViewer>
+
+        <CommandBar VerticalAlignment="Bottom">
+            <AppBarButton x:Name="saveGame" Click="saveGameProgress" Label="Save Game" >
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE74E;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="loadGame" Click="loadSaveGameData" Label="Load Save" >
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE895;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="SelectSlot1" x:Name="SelectSlot1" Click="SelectSlot" Label="Select Data Slot 1" Tag="1" />
+                <AppBarButton x:Uid="SelectSlot2" x:Name="SelectSlot2" Click="SelectSlot" Label="Select Data Slot 2" Tag="2" />
+                <AppBarButton x:Uid="SelectSlot3" x:Name="SelectSlot3" Click="SelectSlot" Label="Select Data Slot 3" Tag="3" />
+                <AppBarButton x:Uid="SelectSlot4" x:Name="SelectSlot4" Click="SelectSlot" Label="Select Data Slot 4" Tag="4" />
+                <AppBarButton x:Uid="SelectSlot5" x:Name="SelectSlot5" Click="SelectSlot" Label="Select Data Slot 5" Tag="5" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+
     </Grid>
 </Page>

@@ -54,13 +54,7 @@ namespace FableProject.Pages
                 usernameDetails = storage.LoadRoamingSettings(uDataKey);
                 passwordDetails = storage.LoadRoamingSettings(pDataKey);
             }
-            else if (roamingSetting == "false")
-            {
-                userData = storage.LoadSettings(sDataKey);
-                usernameDetails = storage.LoadSettings(uDataKey);
-                passwordDetails = storage.LoadSettings(pDataKey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 userData = storage.LoadSettings(sDataKey);
                 usernameDetails = storage.LoadSettings(uDataKey);
@@ -105,13 +99,7 @@ namespace FableProject.Pages
                 storage.SaveRoamingSettings(uDataKey, defaultValue);
                 storage.SaveRoamingSettings(pDataKey, defaultValue);
             }
-            else if (roamingSetting == "false")
-            {
-                storage.SaveSettings(sDataKey, defaultValue);
-                storage.SaveSettings(uDataKey, defaultValue);
-                storage.SaveSettings(pDataKey, defaultValue);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 storage.SaveSettings(sDataKey, defaultValue);
                 storage.SaveSettings(uDataKey, defaultValue);

@@ -50,11 +50,7 @@ namespace FableProject.Pages
             {
                 userData = storage.LoadRoamingSettings(sDataKey);
             }
-            else if (roamingSetting == "false")
-            {
-                userData = storage.LoadSettings(sDataKey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 userData = storage.LoadSettings(sDataKey);
             }

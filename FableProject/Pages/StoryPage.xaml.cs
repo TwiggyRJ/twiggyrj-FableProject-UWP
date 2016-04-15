@@ -30,6 +30,13 @@ namespace FableProject.Pages
         public int countdownReset;
         public string name;
         public string difficulty;
+        public string dataSlot = "1";
+        public string pastPages;
+        public string playerBag;
+
+        public string saveGameData;
+        public List<string> listSaveData;
+
         public string selectedPage { get; set; }
         public string selectedStory { get; set; }
         public DispatcherTimer timer = new DispatcherTimer();
@@ -161,6 +168,8 @@ namespace FableProject.Pages
 
             var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
 
+            pastPages = PageTitle.Tag.ToString() + "/" + destination;
+
             searchPages(target, passedParameter, destination);
         }
 
@@ -181,9 +190,16 @@ namespace FableProject.Pages
                 destination = myMockBox.Tag.ToString();
             }
 
+            if(ContentGrid.Tag.ToString() != null)
+            {
+                playerBag = ContentGrid.Tag.ToString() + "/";
+            }
+
             myAnswerBox.Text = "";
 
             var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+
+            pastPages = PageTitle.Tag.ToString() + "/" + destination;
 
             searchPages(target, passedParameter, destination);
 
@@ -241,6 +257,58 @@ namespace FableProject.Pages
             int commands = 1;
             Dialog.standardDialog(title, message, commands, sender);
 
+        }
+
+        private void SelectSlot(object sender, RoutedEventArgs e)
+        {
+            var button = (sender as Button);
+            dataSlot = button.Tag.ToString();
+        }
+
+        private void saveGameProgress(object sender, RoutedEventArgs e)
+        {
+            GameData gameData = new GameData();
+
+            if (ContentGrid.Tag.ToString() != null)
+            {
+                playerBag = ContentGrid.Tag.ToString() + "/";
+            }
+
+            if (pastPages == null)
+            {
+                pastPages = PageTitle.Tag.ToString();
+                if(saveGameData == null)
+                {
+                    gameData.SaveData(dataSlot, StoryHeading.Text, pastPages, PageTitle.Tag.ToString(), playerBag);
+                }
+                
+                pastPages = null;
+            }
+            else
+            {
+                gameData.SaveData(dataSlot, StoryHeading.Text, pastPages, PageTitle.Tag.ToString(), ContentGrid.Tag.ToString());
+            }
+
+            
+        }
+
+        private void loadSaveGameData(object sender, RoutedEventArgs e)
+        {
+            GameData gameData = new GameData();
+            string saveData = gameData.LoadData(dataSlot);
+            saveGameData = saveData.ToString();
+            listSaveData = saveGameData.Split('|').ToList();
+
+            //Updates the page with the saved data
+
+            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+
+            passedParameter = listSaveData[1];
+            pastPages = listSaveData[2];
+            string destination = listSaveData[3];
+            playerBag = listSaveData[4];
+
+            searchPages(target, passedParameter, destination);
         }
     }
 }
