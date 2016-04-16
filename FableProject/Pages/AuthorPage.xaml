@@ -55,7 +55,9 @@
 
                             <StackPanel x:Name="PageData" DataContext="{Binding Source={StaticResource StoryViewSource}}">
 
-                                <ComboBox x:Name="selectedStory" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Select a Story" ToolTipService.ToolTip="Select the Story you want to add a Page to"/>
+                                <ComboBox x:Name="selectedStory" Style="{StaticResource SearchTypeBoxStyle}" SelectionChanged="getPageList" SelectedValuePath="Content" Width="290" PlaceholderText="Select a Story" ToolTipService.ToolTip="Select the Story you want to add a Page to"/>
+
+                                <ComboBox x:Name="selectedPage" Margin="0,10,0,0" Style="{StaticResource SearchTypeBoxStyle}" SelectionChanged="modifyPage" SelectedValuePath="Content" Width="290" PlaceholderText="Modify an existing Page" ToolTipService.ToolTip="Select the Page you want to edit"/>
 
                                 <TextBox x:Name="pageTitleBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Title" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Page Title Here"/>
 
@@ -110,6 +112,18 @@
 
                             </StackPanel>
 
+                        </PivotItem>
+
+                        <PivotItem Header="Interactions">
+
+                            <StackPanel>
+
+                                <TextBlock Text="Create Interactions for others to use" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                                
+                                
+
+                            </StackPanel>
+                            
                         </PivotItem>
 
                     </Pivot>
@@ -202,7 +216,7 @@
                         <AdaptiveTrigger MinWindowWidth="1500" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="2450" />
+                        <Setter Target="AuthorPivot.Height" Value="2520" />
                         <Setter Target="pageOptionABox.Width" Value="1400" />
                         <Setter Target="pageOptionBBox.Width" Value="1400" />
                         <Setter Target="pageOptionADestBox.Width" Value="1400" />
@@ -227,6 +241,7 @@
                         <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="1400" />
                         <Setter Target="selectedStory.Width" Value="1400" />
+                        <Setter Target="selectedPage.Width" Value="1400" />
                         <Setter Target="storyCategory.Width" Value="1400" />
                         <Setter Target="storyDescriptionTextBox.Width" Value="1400" />
                         <Setter Target="storyDescriptionTextBox.Height" Value="400" />
@@ -239,7 +254,7 @@
                         <AdaptiveTrigger MinWindowWidth="1100" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="2250" />
+                        <Setter Target="AuthorPivot.Height" Value="2320" />
                         <Setter Target="pageOptionABox.Width" Value="1100" />
                         <Setter Target="pageOptionBBox.Width" Value="1100" />
                         <Setter Target="pageOptionADestBox.Width" Value="1100" />
@@ -264,6 +279,7 @@
                         <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="1100" />
                         <Setter Target="selectedStory.Width" Value="1100" />
+                        <Setter Target="selectedPage.Width" Value="1100" />
                         <Setter Target="storyCategory.Width" Value="1100" />
                         <Setter Target="storyDescriptionTextBox.Width" Value="1100" />
                         <Setter Target="storyDescriptionTextBox.Height" Value="300" />
@@ -276,7 +292,7 @@
                         <AdaptiveTrigger MinWindowWidth="700" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1850" />
+                        <Setter Target="AuthorPivot.Height" Value="1920" />
                         <Setter Target="pageOptionABox.Width" Value="700" />
                         <Setter Target="pageOptionBBox.Width" Value="700" />
                         <Setter Target="pageOptionADestBox.Width" Value="700" />
@@ -301,6 +317,7 @@
                         <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="700" />
                         <Setter Target="selectedStory.Width" Value="700" />
+                        <Setter Target="selectedPage.Width" Value="700" />
                         <Setter Target="storyCategory.Width" Value="700" />
                         <Setter Target="storyDescriptionTextBox.Width" Value="700" />
                         <Setter Target="storyDescriptionTextBox.Height" Value="300" />
@@ -313,7 +330,7 @@
                         <AdaptiveTrigger MinWindowWidth="400" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1850" />
+                        <Setter Target="AuthorPivot.Height" Value="1920" />
                         <Setter Target="pageOptionABox.Width" Value="350" />
                         <Setter Target="pageOptionBBox.Width" Value="350" />
                         <Setter Target="pageOptionADestBox.Width" Value="350" />
@@ -337,6 +354,7 @@
                         <Setter Target="pageChoiceTextBox.Height" Value="270" />
                         <Setter Target="pageNumberBox.Width" Value="350" />
                         <Setter Target="selectedStory.Width" Value="350" />
+                        <Setter Target="selectedPage.Width" Value="350" />
                         <Setter Target="storyCategory.Width" Value="350" />
                         <Setter Target="storyDescriptionTextBox.Width" Value="350" />
                         <Setter Target="storyDescriptionTextBox.Height" Value="270" />
@@ -349,7 +367,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1650" />
+                        <Setter Target="AuthorPivot.Height" Value="1720" />
                         <Setter Target="pageOptionABox.Width" Value="290" />
                         <Setter Target="pageOptionBBox.Width" Value="290" />
                         <Setter Target="pageOptionADestBox.Width" Value="290" />
@@ -373,6 +391,7 @@
                         <Setter Target="pageChoiceTextBox.Height" Value="200" />
                         <Setter Target="pageNumberBox.Width" Value="290" />
                         <Setter Target="selectedStory.Width" Value="290" />
+                        <Setter Target="selectedPage.Width" Value="290" />
                         <Setter Target="storyCategory.Width" Value="290" />
                         <Setter Target="storyDescriptionTextBox.Width" Value="290" />
                         <Setter Target="storyDescriptionTextBox.Height" Value="200" />

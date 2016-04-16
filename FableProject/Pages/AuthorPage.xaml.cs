@@ -132,12 +132,7 @@ namespace FableProject.Pages
                 usernameDetails = storage.LoadRoamingSettings(uDataKey);
                 passwordDetails = storage.LoadRoamingSettings(pDataKey);
             }
-            else if (roamingSetting == "false")
-            {
-                usernameDetails = storage.LoadSettings(uDataKey);
-                passwordDetails = storage.LoadSettings(pDataKey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 usernameDetails = storage.LoadSettings(uDataKey);
                 passwordDetails = storage.LoadSettings(pDataKey);
@@ -151,14 +146,7 @@ namespace FableProject.Pages
 
             string title = "New Story";
 
-            if (storyTitle == "")
-            {
-                string messageDetails = "not entered anything";
-                string template = "You have {0} for the title for the story, please complete the form.";
-                string message = string.Format(template, messageDetails);
-                feedbackDialog(title, message);
-            }
-            else if (storyTitle == null)
+            if (storyTitle == "" || storyTitle == null)
             {
                 string messageDetails = "not entered anything";
                 string template = "You have {0} for the title for the story, please complete the form.";
@@ -229,13 +217,7 @@ namespace FableProject.Pages
                 username = storage.LoadRoamingSettings(uDataKey);
                 password = storage.LoadRoamingSettings(pDataKey);
             }
-            else if (roamingSetting == "false")
-            {
-                userIDDetails = storage.LoadSettings(idDataKey);
-                username = storage.LoadSettings(uDataKey);
-                password = storage.LoadSettings(pDataKey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 userIDDetails = storage.LoadSettings(idDataKey);
                 username = storage.LoadSettings(uDataKey);
@@ -300,6 +282,37 @@ namespace FableProject.Pages
         }
 
 
+        private async void getPageList(object sender, RoutedEventArgs e)
+        {
+
+            string story = selectedStory.SelectedValue.ToString();
+
+            var client = new HttpClient();
+
+            var uri = UriExtensions.CreateUriWithQuery(new Uri("http://www.kshatriya.co.uk/dev/project/service/page.php"),
+            new NameValueCollection { { "story", story } },
+            new NameValueCollection { { "page", "all" } });
+
+            // call sync
+            var response = client.GetAsync(uri).Result;
+            var responseString = "";
+
+            if (response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+                List<StoryPages> pageList = JsonConvert.DeserializeObject<List<StoryPages>>(responseString);
+
+                selectedPage.ItemsSource = pageList;
+                selectedPage.DisplayMemberPath = "Number";
+                selectedPage.SelectedValuePath = "Number";
+            }
+            else
+            {
+                var title = "Error with Application";
+                var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
+                //errorDialog(title, message);
+            }
+        }
 
 
         private void Login_Event(object sender, RoutedEventArgs e)
@@ -581,12 +594,7 @@ namespace FableProject.Pages
                 usernameDetails = storage.LoadRoamingSettings(uDataKey);
                 passwordDetails = storage.LoadRoamingSettings(pDataKey);
             }
-            else if (roamingSetting == "false")
-            {
-                usernameDetails = storage.LoadSettings(uDataKey);
-                passwordDetails = storage.LoadSettings(pDataKey);
-            }
-            else if (roamingSetting == "Null")
+            else
             {
                 usernameDetails = storage.LoadSettings(uDataKey);
                 passwordDetails = storage.LoadSettings(pDataKey);
@@ -693,5 +701,79 @@ namespace FableProject.Pages
             }
         }
 
+        private void modifyPage(object sender, SelectionChangedEventArgs e)
+        {
+            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+            string pageRoot = "";
+            string pageNumber = "";
+
+            if (selectedStory.SelectedIndex != -1)
+            {
+                pageRoot = selectedStory.SelectedValue.ToString();
+            }
+
+            if (selectedPage.SelectedIndex != -1)
+            {
+                pageNumber = selectedPage.SelectedValue.ToString();
+            }
+
+            searchPages(target, pageRoot, pageNumber);
+        }
+
+        private async void searchPages(string target, string toGetStory, string toGetPage)
+        {
+
+            var client = new HttpClient();
+
+            var uri = UriExtensions.CreateUriWithQuery(new Uri(target),
+            new NameValueCollection { { "story", toGetStory } },
+            new NameValueCollection { { "page", toGetPage } });
+
+            // call sync
+            var response = client.GetAsync(uri).Result;
+            var responseString = "";
+
+            if (response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+                getPages(responseString);
+            }
+            else
+            {
+                var title = "Error with Application";
+                var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
+                //errorDialog(title, message);
+            }
+        }
+
+        private void getPages(string JSON)
+        {
+            List<StoryPages> pages = JsonConvert.DeserializeObject<List<StoryPages>>(JSON);
+
+            pageTitleBox.Text = pages[0].Title;
+            pageContentsTextBox.Text = pages[0].Content;
+            pageChoiceTextBox.Text = pages[0].Content_2;
+            pageNumberBox.Text = pages[0].Number;
+
+            pageInteractionIntroTextBox.Text = pages[0].Interaction;
+            interactionTypeCombo.SelectedItem = pages[0].Interaction_Type;
+            pageEInteractionTextBox.Text = pages[0].Easy_Interaction;
+            pageEInteractionAnswerBox.Text = pages[0].Easy_Interaction_Answer;
+            pageMInteractionTextBox.Text = pages[0].Medium_Interaction;
+            pageMInteractionAnswerBox.Text = pages[0].Medium_Interaction_Answer;
+            pageHInteractionTextBox.Text = pages[0].Hard_Interaction;
+            pageHInteractionAnswerBox.Text = pages[0].Hard_Interaction_Answer;
+            pageJInteractionTextBox.Text = pages[0].Humour_Interaction;
+            pageJInteractionAnswerBox.Text = pages[0].Humour_Interaction_Answer;
+
+            pageOptionABox.Text = pages[0].option1;
+            pageOptionBBox.Text = pages[0].option2;
+            pageOptionADestBox.Text = pages[0].option1_Dest;
+            pageOptionBDestBox.Text = pages[0].option2_Dest;
+            pageInteractionRewardBox.Text = pages[0].optionSpecialSuccess;
+            pageInteractionFailureBox.Text = pages[0].optionSpecialFailure;
+            pageRewardBox.Text = pages[0].Goodies;
+
+        }
     }
 }

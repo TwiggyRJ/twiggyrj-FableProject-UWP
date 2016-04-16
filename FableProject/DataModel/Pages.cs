@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FableProject.DataModel
 {
-    public class Pages
+    public class StoryPages
     {
         public string ID { get; set; }
 
@@ -65,22 +65,21 @@ namespace FableProject.DataModel
         public string modInteractionMockery { get; set; }
     }
 
-    public class PagesSorted
+    public class StoryPagesSorted
     {
 
         public string Title { get; set; }
-        public List<Pages> Pages { get; set; }
+        public List<StoryPages> Pages { get; set; }
 
     }
 
     public class PagesDataSource
     {
 
-        public List<PagesSorted> Pages { get; set; }
+        public List<StoryPagesSorted> Pages { get; set; }
 
         public PagesDataSource(string JSON)
         {
-
 
             string pageDataKey = "pageDetails";
             string rDatakey = "roamingDetails";
@@ -106,7 +105,7 @@ namespace FableProject.DataModel
                 difficultySetting = storage.LoadSettings(gameDFDatakey);
             }
 
-            List<Pages> pages = JsonConvert.DeserializeObject<List<Pages>>(JSON);
+            List<StoryPages> pages = JsonConvert.DeserializeObject<List<StoryPages>>(JSON);
 
             string questionPrepend = "Solve this "+ pages[0].Interaction_Type + ": ";
             string insult = "";
@@ -148,7 +147,7 @@ namespace FableProject.DataModel
             pages[0].modInteractionMockery = "Wow... The answer was " + pages[0].modAnswer + "! Unfortunately you have lost your pride and " + insult;
 
             var pagesByTitle = pages.GroupBy(x => x.Title)
-                                .Select(x => new PagesSorted { Title = x.Key, Pages = x.ToList() });
+                                .Select(x => new StoryPagesSorted { Title = x.Key, Pages = x.ToList() });
 
             Pages = pagesByTitle.ToList();
 
