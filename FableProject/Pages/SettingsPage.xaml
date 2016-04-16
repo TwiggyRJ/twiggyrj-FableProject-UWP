@@ -164,7 +164,7 @@
 
                                 <TextBox x:Name="myRegEmailBox" FontSize="24" HorizontalAlignment="Left" Margin="10,210,0,0" PlaceholderText="Email" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Email Here"/>
 
-                                <DatePicker x:Name="myDOB" FontSize="20" Margin="10,263,0,52" ToolTipService.ToolTip="Please Select Your Date of Birth" Width="290"/>
+                                <DatePicker x:Name="myDOB" Style="{StaticResource DatePickerStyle}" Margin="10,263,0,52" ToolTipService.ToolTip="Please Select Your Date of Birth" Width="290"/>
 
                                 <Button x:Name="registerButton" Content="Register" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="0,305,0,-54" VerticalAlignment="Top" Click="Register_Event" Width="163" ToolTipService.ToolTip="Click to Register"/>
 

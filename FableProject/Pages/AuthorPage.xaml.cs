@@ -36,7 +36,7 @@ namespace FableProject.Pages
         public AuthorPage()
         {
             this.InitializeComponent();
-            
+
             Storage storage = new Storage();
 
             string sDataKey = "userDetails";
@@ -310,7 +310,7 @@ namespace FableProject.Pages
             {
                 var title = "Error with Application";
                 var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
-                //errorDialog(title, message);
+                errorDialog(title, message);
             }
         }
 
@@ -623,19 +623,19 @@ namespace FableProject.Pages
                 string message = string.Format(template, messageDetails);
                 feedbackDialog(title, message);
             }
-            else if(pageContent == "" || pageContent == null)
+            else if (pageContent == "" || pageContent == null)
             {
                 string messageDetails = "not entered any content for the Page!  How is anyone supposed to enjoy your content if there isn't any? 0 out of 10 for effort there :(";
                 string message = string.Format(template, messageDetails);
                 feedbackDialog(title, message);
             }
-            else if(pageNumber == "" || pageNumber == null)
+            else if (pageNumber == "" || pageNumber == null)
             {
                 string messageDetails = "not entered the page number! How is Fable Time supposed to link the pages together? Telekinesis? I'm just an App! :(";
                 string message = string.Format(template, messageDetails);
                 feedbackDialog(title, message);
             }
-            else if(pageOptionA == "" || pageOptionA == null)
+            else if (pageOptionA == "" || pageOptionA == null)
             {
                 string messageDetails = "not entered the next page number! How is the user supposed to progress?";
                 string message = string.Format(template, messageDetails);
@@ -652,6 +652,17 @@ namespace FableProject.Pages
         {
 
             var client = new HttpClient();
+
+            string action = "";
+
+            if (newPageButton.Tag.ToString() == "Create")
+            {
+                action = "post";
+            }
+            else
+            {
+                action = "put";
+            }
 
             var postData = new List<KeyValuePair<string, string>>
             {
@@ -678,7 +689,7 @@ namespace FableProject.Pages
                 new KeyValuePair<string, string>("pageInteractionFailure", pageInteractionFailure),
                 new KeyValuePair<string, string>("pageReward", pageReward),
                 new KeyValuePair<string, string>("pageFirst", pageFirst),
-                new KeyValuePair<string, string>("action", "post")
+                new KeyValuePair<string, string>("action", action)
             };
 
             var content = new FormUrlEncodedContent(postData);
@@ -691,7 +702,7 @@ namespace FableProject.Pages
             var response = client.PostAsync(target, content).Result;
             if (response.IsSuccessStatusCode)
             {
-                //storyGet(storyTitle, target);
+                storyGet(storyTitle, target);
             }
             else
             {
@@ -742,7 +753,7 @@ namespace FableProject.Pages
             {
                 var title = "Error with Application";
                 var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
-                //errorDialog(title, message);
+                errorDialog(title, message);
             }
         }
 
@@ -773,6 +784,19 @@ namespace FableProject.Pages
             pageInteractionRewardBox.Text = pages[0].optionSpecialSuccess;
             pageInteractionFailureBox.Text = pages[0].optionSpecialFailure;
             pageRewardBox.Text = pages[0].Goodies;
+
+            newPageButton.Content = "Update Page";
+            newPageButton.Tag = "Update";
+
+        }
+
+        private void errorDialog(string title, string messageDetails)
+        {
+
+            object sender = null;
+            string message = messageDetails;
+            int commands = 1;
+            Dialog.standardDialog(title, message, commands, sender);
 
         }
     }

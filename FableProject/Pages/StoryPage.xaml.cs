@@ -416,6 +416,7 @@ namespace FableProject.Pages
                 string interactionQuestion = InteractionQuestionText.Text;
                 string text = "";
 
+
                 int interactionSpeak = 0;
 
                 while(interactionSpeak == 0)

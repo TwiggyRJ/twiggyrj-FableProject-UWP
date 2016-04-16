@@ -31,6 +31,11 @@
             <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
         </Style>
 
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="{ThemeResource SearchBoxAltFontSize}"/>
+            <Setter Property="Foreground" Value="{ThemeResource SearchBoxTextForegroundBrush}" />
+        </Style>
+
 
         <SolidColorBrush x:Key="kBrush" Color="#3f51b5"/>
         <Style x:Key="KTextStyle" TargetType="TextBlock">

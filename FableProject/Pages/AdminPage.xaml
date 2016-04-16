@@ -14,6 +14,46 @@
 
                     <Pivot x:Name="AdminPivot" Margin="-10,-20,0,0" Height="700">
 
+                    <PivotItem Header="App Updates">
+
+                        <StackPanel>
+
+                            <Grid>
+                                <TextBox x:Name="versionField" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="App Version" VerticalAlignment="Top" Width="295" Height="47" ToolTipService.ToolTip="Enter The New Version Number Here"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <DatePicker x:Name="updatedField" Style="{StaticResource DatePickerStyle}"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <TextBox x:Name="objectiveField" PlaceholderText="Objective Of the Update" Style="{StaticResource SearchBarBoxStyle}" Height="150" Width="295"/>
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+                                <TextBox x:Name="updateItem1" PlaceholderText="What's new (1)" Style="{StaticResource SearchBarBoxStyle}" Width="295"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <TextBox x:Name="updateItem2" PlaceholderText="What's new (2)" Style="{StaticResource SearchBarBoxStyle}" Width="295"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <TextBox x:Name="updateItem3" PlaceholderText="What's new (3)" Style="{StaticResource SearchBarBoxStyle}" Width="295"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <TextBox x:Name="updateItem4" PlaceholderText="What's new (4)" Style="{StaticResource SearchBarBoxStyle}" Width="295"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <TextBox x:Name="updateItem5" PlaceholderText="What's new (5)" Style="{StaticResource SearchBarBoxStyle}" Width="295"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <TextBox x:Name="updateItem6" PlaceholderText="What's new (6)" Style="{StaticResource SearchBarBoxStyle}" Width="295"/>
+                            </Grid>
+                            <Grid Margin="0,10,0,0">
+                                <Button Content="Post Changelog" Click="postChangelog" Style="{ThemeResource LoginMenuButtonStyle}" />
+                            </Grid>
+
+                        </StackPanel>
+                        
+                    </PivotItem>
+
                     <PivotItem Header="Review Stories">
 
                         <StackPanel>
