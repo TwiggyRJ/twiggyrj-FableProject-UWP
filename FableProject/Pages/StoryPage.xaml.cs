@@ -384,19 +384,23 @@ namespace FableProject.Pages
         {
             GameData gameData = new GameData();
             string saveData = gameData.LoadData(dataSlot);
-            saveGameData = saveData.ToString();
-            listSaveData = saveGameData.Split('|').ToList();
+            if (saveData != "Null")
+            {
+                saveGameData = saveData.ToString();
+                listSaveData = saveGameData.Split('|').ToList();
 
-            //Updates the page with the saved data
+                //Updates the page with the saved data
 
-            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+                var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
 
-            passedParameter = listSaveData[1];
-            pastPages = listSaveData[2];
-            string destination = listSaveData[3];
-            playerBag = listSaveData[4];
+                passedParameter = listSaveData[1];
+                pastPages = listSaveData[2];
+                string destination = listSaveData[3];
+                playerBag = listSaveData[4];
 
-            searchPages(target, passedParameter, destination);
+                searchPages(target, passedParameter, destination);
+            }
+            
         }
 
         private async void AudioBookMode(object sender, RoutedEventArgs e)

@@ -81,7 +81,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <CommandBar VerticalAlignment="Bottom">
+        <CommandBar Margin="0,-50,0,0" VerticalAlignment="Bottom">
             <AppBarButton x:Name="saveGame" Click="saveGameProgress" Label="Save Game" >
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE74E;"/>

@@ -140,7 +140,7 @@ namespace FableProject.Pages
 
 
             string storyTitle = storyTitleBox.Text;
-            string storyDesc = Convert.ToString(storyDescriptionTextBox.Document);
+            string storyDesc = storyDescriptionTextBox.Text;
             string storyCat = ((ComboBoxItem)storyCategory.SelectedItem).Content.ToString();
             string storyImage = storyImageBox.Text;
 
@@ -305,12 +305,6 @@ namespace FableProject.Pages
                 selectedPage.ItemsSource = pageList;
                 selectedPage.DisplayMemberPath = "Number";
                 selectedPage.SelectedValuePath = "Number";
-            }
-            else
-            {
-                var title = "Error with Application";
-                var message = "It's not you, it's me! Unfortuantely there is an error connecting with the Fable Time Service";
-                errorDialog(title, message);
             }
         }
 

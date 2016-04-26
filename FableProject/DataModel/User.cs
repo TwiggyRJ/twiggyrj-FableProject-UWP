@@ -62,6 +62,62 @@ namespace FableProject.DataModel
         public List<UserSorted> Users { get; set; }
         public List<StoriesSorted> Stories { get; set; }
 
+        public UserDataSource(string JSON)
+        {
+
+            string rDatakey = "roamingDetails";
+            string dfDatakey = "dateFormatDetails";
+
+            Storage storage = new Storage();
+
+            string roamingSetting = storage.LoadSettings(rDatakey);
+            string dateSetting = "";
+
+            if (roamingSetting == "true")
+            {
+                dateSetting = storage.LoadRoamingSettings(dfDatakey);
+            }
+            else
+            {
+                dateSetting = storage.LoadSettings(dfDatakey);
+            }
+
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(JSON);
+
+            //users[0].modDOB = users[0].DOB.ToString("ddd d MMM yyy");
+
+            if (dateSetting == "0")
+            {
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "1")
+            {
+                users[0].modJoined = users[0].Joined.ToString("dddd d MMMM yyyy");
+            }
+            else if (dateSetting == "2")
+            {
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+            else if (dateSetting == "3")
+            {
+                users[0].modJoined = users[0].Joined.ToString("dd/MM/yyyy");
+            }
+            else if (dateSetting == "4")
+            {
+                users[0].modJoined = users[0].Joined.ToString("M/d/yyyy");
+            }
+            else
+            {
+                users[0].modJoined = users[0].Joined.ToString("ddd d MMM yyy");
+            }
+
+            var usersByName = users.GroupBy(x => x.Username)
+                                .Select(x => new UserSorted { Name = x.Key, Users = x.ToList() });
+
+            Users = usersByName.ToList();
+
+        }
+
         public UserDataSource(string JSON, string username, string password)
         {
 

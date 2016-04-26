@@ -488,12 +488,6 @@ namespace FableProject.Pages
                 responseString = await response.Content.ReadAsStringAsync();
                 authenticated(responseString, JSON, username, password);
             }
-            else
-            {
-                var dialogTitle = "Error with finding the Story";
-                var message = "Unable to find your Story Unfortunately :(";
-                feedbackDialog(dialogTitle, message);
-            }
         }
 
 

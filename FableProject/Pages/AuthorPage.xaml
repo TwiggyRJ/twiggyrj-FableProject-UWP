@@ -33,7 +33,7 @@
 
                                 <TextBox x:Name="storyTitleBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Title" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Story Title Here"/>
 
-                                <RichEditBox x:Name="storyDescriptionTextBox" Margin="0,10,0,0" Style="{StaticResource RichTextBoxStyle}" PlaceholderText="Description" Width="290" Height="176" ToolTipService.ToolTip="Enter the Story's Description in Here"/>
+                                <TextBox x:Name="storyDescriptionTextBox" Margin="0,10,0,0" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Description" Width="290" Height="176" ToolTipService.ToolTip="Enter the Story's Description in Here"/>
 
                                 <ComboBox x:Name="storyCategory" Margin="0,10,0,0" Style="{StaticResource SearchTypeBoxStyle}" SelectedValuePath="Content" Width="290" PlaceholderText="Story Category" ToolTipService.ToolTip="Select the Category that best applies to the Story.">
 
@@ -68,6 +68,8 @@
                                 <TextBox x:Name="pageNumberBox" Margin="0,10,0,0" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="Page Number" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter the Interaction Answer Here"/>
 
                                 <TextBox x:Name="pageInteractionIntroTextBox" Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource TextBoxRichStyle}" PlaceholderText="Introduce the Optional Question Here" Width="290" Height="150" ToolTipService.ToolTip="Enter the Page's Interaction Question in Here"/>
+
+                                <TextBlock Margin="0,10" Text="Interactions: Questions Users will face" FontSize="20"/>
 
                                 <ComboBox x:Name="interactionTypeCombo" Margin="0,10,0,0" Width="250" PlaceholderText="Type of Question">
                                     <ComboBoxItem Content="No Question"/>
@@ -292,7 +294,7 @@
                         <AdaptiveTrigger MinWindowWidth="700" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1920" />
+                        <Setter Target="AuthorPivot.Height" Value="2000" />
                         <Setter Target="pageOptionABox.Width" Value="700" />
                         <Setter Target="pageOptionBBox.Width" Value="700" />
                         <Setter Target="pageOptionADestBox.Width" Value="700" />
@@ -330,7 +332,7 @@
                         <AdaptiveTrigger MinWindowWidth="400" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1920" />
+                        <Setter Target="AuthorPivot.Height" Value="2000" />
                         <Setter Target="pageOptionABox.Width" Value="350" />
                         <Setter Target="pageOptionBBox.Width" Value="350" />
                         <Setter Target="pageOptionADestBox.Width" Value="350" />
@@ -367,7 +369,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="AuthorPivot.Height" Value="1720" />
+                        <Setter Target="AuthorPivot.Height" Value="1800" />
                         <Setter Target="pageOptionABox.Width" Value="290" />
                         <Setter Target="pageOptionBBox.Width" Value="290" />
                         <Setter Target="pageOptionADestBox.Width" Value="290" />

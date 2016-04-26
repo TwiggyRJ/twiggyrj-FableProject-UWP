@@ -1,4 +1,6 @@
 ﻿using FableProject.Data;
+using FableProject.DataModel;
+using FableProject.Functions;
 using FableProject.Presentation;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,8 @@ namespace FableProject.Pages
         public AdminPage()
         {
             this.InitializeComponent();
+
+            getAuthors();
         }
 
         private void postChangelog(object sender, RoutedEventArgs e)
@@ -119,6 +123,80 @@ namespace FableProject.Pages
                 feedbackDialog(title, message);
             }
         }
+
+        private void getAuthors()
+        {
+
+            Storage storage = new Storage();
+
+            string uDataKey = "usernameDetails";
+            string pDataKey = "passwordDetails";
+            string rDataKey = "roamingDetails";
+
+            string roamingSetting = storage.LoadSettings(rDataKey);
+
+            string usernameDetails = "";
+            string passwordDetails = "";
+
+            if (roamingSetting == "true")
+            {
+                usernameDetails = storage.LoadRoamingSettings(uDataKey);
+                passwordDetails = storage.LoadRoamingSettings(pDataKey);
+            }
+            else
+            {
+                usernameDetails = storage.LoadSettings(uDataKey);
+                passwordDetails = storage.LoadSettings(pDataKey);
+            }
+
+            createURI(usernameDetails, passwordDetails);
+
+        }
+
+
+        private async void createURI(string username, string password)
+        {
+            //This is initiated if a registration event has been initiated
+
+            //Creates an instance of a HTTP Client so the Web Service can be interacted with
+            var client = new HttpClient();
+
+            //Create a query string that will be appended to the URL
+            var uri = UriExtensions.CreateUriWithQuery(new Uri("http://www.kshatriya.co.uk/dev/project/service/audit.php"),
+            new NameValueCollection { { "action", "get" } },
+            new NameValueCollection { { "method", "User_Dump" } });
+
+            //Sets the Authentication header to the values of the username and passwords and converts them to Base64 encryption
+            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password)));
+
+            //Sets the Authentication header
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+            // activates the request to the Web Service
+            var response = client.GetAsync(uri).Result;
+
+            //Makes the responseString variable set and available for use in the loop
+            var responseString = "";
+
+            //Checks if the response from the client is successful
+            if (response.IsSuccessStatusCode)
+            {
+                //It is successful get the JSON response and save it to a varaible and then send the JSON reponse to the authenticated function
+                responseString = await response.Content.ReadAsStringAsync();
+                var userData = new UserDataSource(responseString);
+
+                this.DataContext = userData;
+            }
+            else
+            {
+                //Tell the user the request was not successful
+                var title = "Error with Authentication";
+                var message = "Unable to login, Username or Password was incorrect";
+                feedbackDialog(title, message);
+            }
+
+        }
+
 
         private void feedbackDialog(string title, string message)
         {
