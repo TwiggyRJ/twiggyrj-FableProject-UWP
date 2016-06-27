@@ -115,7 +115,7 @@ namespace FableProject.DataModel
             {
                 pages[0].modQuestion = questionPrepend + pages[0].Easy_Interaction;
                 pages[0].modAnswer = pages[0].Easy_Interaction_Answer;
-                insult = "Really??? I mean Really? That was so easy and you have a minute and a half!";
+                insult = "Really??? I mean Really? That was so easy and you had 45 seconds to solve it.";
             }
             else if (difficultySetting == "1")
             {

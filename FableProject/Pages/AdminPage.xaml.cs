@@ -162,7 +162,7 @@ namespace FableProject.Pages
             var client = new HttpClient();
 
             //Create a query string that will be appended to the URL
-            var uri = UriExtensions.CreateUriWithQuery(new Uri("http://www.kshatriya.co.uk/dev/project/service/audit.php"),
+            var uri = UriExtensions.CreateUriWithQuery(new Uri(App.siteURL+"/dev/project/service/audit.php"),
             new NameValueCollection { { "action", "get" } },
             new NameValueCollection { { "method", "User_Dump" } });
 
@@ -206,5 +206,9 @@ namespace FableProject.Pages
 
         }
 
+        private void GroupSection_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }

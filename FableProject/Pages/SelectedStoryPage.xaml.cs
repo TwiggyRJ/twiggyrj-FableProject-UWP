@@ -35,7 +35,7 @@ namespace FableProject.Pages
 
             passedParameter = e.Parameter.ToString();
 
-            var target = "http://www.kshatriya.co.uk/dev/project/service/stories.php";
+            var target = App.siteURL+"/dev/project/service/stories.php";
 
             searchStories(target, passedParameter);
 

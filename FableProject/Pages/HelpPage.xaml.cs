@@ -34,5 +34,18 @@ namespace FableProject.Pages
         {
             this.InitializeComponent();
         }
+
+        private void WebsiteClick(object sender, TappedRoutedEventArgs e)
+        {
+
+            string url = WebsiteHeading.Text;
+            userURL(url);
+
+        }
+
+        public async void userURL(string url)
+        {
+            await Launcher.LaunchUriAsync(new Uri(url));
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace FableProject
             this.Suspending += OnSuspending;
         }
         
+        public static string siteURL = "https://kshatriya.co.uk";
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

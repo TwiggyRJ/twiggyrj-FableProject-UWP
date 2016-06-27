@@ -26,7 +26,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer HorizontalAlignment="Stretch" Style="{StaticResource PageScrollViewerStyleNoPadding}">
-            <StackPanel Margin="15,15,15,0" DataContext="{Binding Source={StaticResource PagesViewSource}}">
+            <StackPanel x:Name="StoryContainer" Margin="15,15,15,0" DataContext="{Binding Source={StaticResource PagesViewSource}}">
                 <TextBlock x:Name="StoryHeading" HorizontalAlignment="Left" Text="{Binding Story}" Style="{StaticResource KshatriyaLargeTitleTextBlockStyleAccentBrush}" />
                 <TextBlock x:Name="PageTitle" Text="{Binding Title}" Tag="{Binding Number}" Style="{StaticResource TitleTextBlockStyle}" />
                 <Grid x:Name="ContentGrid" Tag="{Binding Goodies}">
@@ -57,7 +57,7 @@
                     <Grid x:Name="interactionsGridQuestion" Visibility="Visible">
                         <TextBlock Text="{Binding modQuestion}" Style="{StaticResource QuestionParagraphTextBlockStyle}"/>
                     </Grid>
-                    <Grid x:Name="interactionsGridAnswer" Visibility="Visible">
+                    <Grid x:Name="interactionsGridAnswer" Margin="0,25,0,0" Visibility="Visible">
                         <TextBox x:Name="myAnswerBox" Style="{StaticResource SearchBarBoxStyle}" HorizontalAlignment="Left" TextWrapping="Wrap" PlaceholderText="My Answer"  Width="290" Height="47" ToolTipService.ToolTip="Enter Your Answer Here" Margin="0,10,0,101"/>
                         <TextBlock x:Name="countdownClock" Text="" Margin="0,90,0,0" Style="{StaticResource QuestionParagraphTextBlockStyle}" Tag="{Binding optionSpecialSuccess}"/>
                         <TextBlock x:Name="myMockBox" Text="" Margin="0,120,0,0" Style="{StaticResource QuestionParagraphTextBlockStyle}" Tag="{Binding optionSpecialFailure}"/>
@@ -77,6 +77,8 @@
                         Margin="0,-650,0,0"/>
 
                 <MediaElement x:Name="audiobook" AutoPlay="False"/>
+
+                <Grid x:Name="paddingGrid" Margin="0,75,0,0"></Grid>
 
             </StackPanel>
         </ScrollViewer>

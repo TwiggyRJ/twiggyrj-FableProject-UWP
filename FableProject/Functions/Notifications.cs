@@ -106,7 +106,7 @@ namespace FableProject.Functions
             XmlDocument TileXML = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWideImage);
 
             XmlNodeList imageAttribute = TileXML.GetElementsByTagName("image");
-            ((XmlElement)imageAttribute[0]).SetAttribute("src", "http://www.kshatriya.co.uk/dev/test_case/images/twiggyrj.gif");
+            ((XmlElement)imageAttribute[0]).SetAttribute("src", App.siteURL+"/dev/test_case/images/twiggyrj.gif");
             ((XmlElement)imageAttribute[0]).SetAttribute("alt", message);
             
 

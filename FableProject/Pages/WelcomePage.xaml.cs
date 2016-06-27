@@ -31,7 +31,7 @@ namespace FableProject.Pages
             this.InitializeComponent();
 
             searchProgressRing.IsActive = true;
-            searchUpdates("http://www.kshatriya.co.uk/dev/project/service/updates.php", "latest");
+            searchUpdates(App.siteURL+"/dev/project/service/updates.php", "latest");
         }
 
         private async void searchUpdates(string target, string toGet)
@@ -206,7 +206,7 @@ namespace FableProject.Pages
                 }
             }
 
-            searchStories("http://www.kshatriya.co.uk/dev/project/service/tile.php", "latestStory");
+            searchStories(App.siteURL+"/dev/project/service/tile.php", "latestStory");
             
         }
 

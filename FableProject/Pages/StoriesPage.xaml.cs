@@ -30,7 +30,7 @@ namespace FableProject.Pages
             this.InitializeComponent();
 
             searchProgressRing.IsActive = true;
-            searchStories("http://www.kshatriya.co.uk/dev/project/service/stories.php", "all");
+            searchStories(App.siteURL+"/dev/project/service/stories.php", "all");
         }
         private async void searchStories(string target, string toGet)
         {
@@ -88,14 +88,14 @@ namespace FableProject.Pages
         {
             string story = ((ComboBoxItem)typeComboBox.SelectedItem).Content.ToString();
 
-            searchStories("http://www.kshatriya.co.uk/dev/project/service/stories.php", story);
+            searchStories(App.siteURL + "/dev/project/service/stories.php", story);
         }
 
         private void getButton_Event(object sender, RoutedEventArgs e)
         {
             string story = mySearchBox.Text;
 
-            searchStories("http://www.kshatriya.co.uk/dev/project/service/stories.php", story);
+            searchStories(App.siteURL + "/dev/project/service/stories.php", story);
         }
 
         private void searchHide(object sender, RoutedEventArgs e)

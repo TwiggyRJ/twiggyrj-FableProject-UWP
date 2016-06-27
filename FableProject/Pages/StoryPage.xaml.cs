@@ -89,7 +89,7 @@ namespace FableProject.Pages
             }
             else
             {
-                var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+                var target = App.siteURL+"/dev/project/service/page.php";
 
                 searchPages(target, passedParameter, "First");
             }
@@ -127,20 +127,20 @@ namespace FableProject.Pages
                 difficulty = storage.LoadSettings(gameDFDatakey);
             }
 
-            if (difficulty == "0")
+            if (difficulty == "3")
             {
-                countdown = 89;
-                countdownReset = 89;
+                countdown = 20;
+                countdownReset = 20;
+            } 
+            else if (difficulty != "0")
+            {
+                countdown = 30;
+                countdownReset = 30;
             }
-            else if (difficulty == "1")
+            else
             {
-                countdown = 44;
-                countdownReset = 44;
-            }
-            else if (difficulty == "2" || difficulty == "3" || difficulty == "4")
-            {
-                countdown = 29;
-                countdownReset = 29;
+                countdown = 45;
+                countdownReset = 45;
             }
 
         }
@@ -155,15 +155,16 @@ namespace FableProject.Pages
 
             interactionsGrid.Visibility = Visibility.Visible;
 
-            if (difficulty == "4")
+            if (difficulty == "3")
+            {
+                
+                countdownSound.Play();
+                countdownSound.Position = new TimeSpan(0,0,0, 10);
+            }
+            else if (difficulty != "0")
             {
                 countdownSound.Play();
             }
-            else if (difficulty == "3")
-            {
-                countdownSound.Play();
-            }
-
 
         }
 
@@ -178,15 +179,23 @@ namespace FableProject.Pages
 
             countdownClock.Text = clock;
 
-            if (countdown == 15)
+            if(countdown == 55 || countdown == 40 || countdown == 25)
+            {
+                myMockBox.Text = "Nobody distract "+name;
+            }
+            else if (countdown == 15)
             {
                 myMockBox.Text = name + "... " + name + "... You have 15 seconds left!";
             }
-            else if (countdown == 10)
+            else if(countdown == 10)
+            {
+                myMockBox.Text = "Don't worry "+ name + " you've got this one.";
+            }
+            else if (countdown == 5)
             {
                 myMockBox.Text = "This is the easiest problem you have ever had...";
             }
-            else if (countdown == 5)
+            else if (countdown == 2)
             {
                 myMockBox.Text = "Wow... You have definitely won this one!";
             }
@@ -205,7 +214,7 @@ namespace FableProject.Pages
             var destination = button.Tag.ToString();
 
 
-            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+            var target = App.siteURL+"/dev/project/service/page.php";
 
             pastPages = PageTitle.Tag.ToString() + "/" + destination;
 
@@ -236,7 +245,7 @@ namespace FableProject.Pages
 
             myAnswerBox.Text = "";
 
-            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+            var target = App.siteURL+"/dev/project/service/page.php";
 
             pastPages = PageTitle.Tag.ToString() + "/" + destination;
 
@@ -250,6 +259,8 @@ namespace FableProject.Pages
 
             interactionsGrid.Visibility = Visibility.Collapsed;
             interactionStart.Visibility = Visibility.Visible;
+            interactionAnswer.Visibility = Visibility.Collapsed;
+            myMockBox.Text = "";
 
             countdown = 0;
             countdown = countdownReset;
@@ -286,6 +297,7 @@ namespace FableProject.Pages
             var viewModel = new PagesDataSource(JSON);
             this.DataContext = viewModel;
             searchProgressRing.IsActive = false;
+            //StoryContainer.Height = StoryContainer.ActualHeight + 50;
 
             Storage storage = new Storage();
 
@@ -370,7 +382,7 @@ namespace FableProject.Pages
 
             //Updates the page with the saved data
 
-            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+            var target = App.siteURL+"/dev/project/service/page.php";
 
             passedParameter = listSaveData[1];
             pastPages = listSaveData[2];
@@ -391,7 +403,7 @@ namespace FableProject.Pages
 
                 //Updates the page with the saved data
 
-                var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+                var target = App.siteURL+"/dev/project/service/page.php";
 
                 passedParameter = listSaveData[1];
                 pastPages = listSaveData[2];

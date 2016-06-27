@@ -22,7 +22,6 @@
             ItemsPath="Users"/>
         <DataTemplate x:Key="UsersBoxes">
             <Grid Height="75" Width="300" HorizontalAlignment="Left">
-
                 <Border BorderThickness="0" Width="75" Height="75" HorizontalAlignment="Left">
                     <Ellipse Width="75" Height="75" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <Ellipse.Fill>
@@ -151,8 +150,27 @@
 
                     <PivotItem Header="Review Stories">
 
-                        <StackPanel>
+                        <StackPanel DataContext="{Binding Source={StaticResource storiesViewSource}}">
 
+                            <Hub>
+                                <HubSection x:Uid="HubSection1" Header="Stories To Approve" DataContext="{Binding Source={StaticResource storiesViewSource}}">
+                                    <DataTemplate>
+                                        <ListView
+                                            ItemsSource="{Binding}"
+                                            IsItemClickEnabled="True"
+                                            ItemClick="GroupSection_ItemClick"
+                                            ContinuumNavigationTransitionInfo.ExitElementContainer="True">  
+                                            <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Margin="0,0,0,27.5">
+                                                            <TextBlock Text="{Binding Title}" Style="{ThemeResource ListViewItemTextBlockStyle}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </DataTemplate>
+                                </HubSection>
+                            </Hub>
 
                         </StackPanel>
 

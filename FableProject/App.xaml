@@ -7,6 +7,13 @@
     RequestedTheme="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Application.Resources>
+        <Style x:Key="ListViewItemTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilySemiLight}" />
+            <Setter Property="FontSize" Value="{ThemeResource TextStyleExtraLargePlusFontSize}" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="LineHeight" Value="33.5" />
+        </Style>
+        
         <Style x:Key="AppTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
             <Setter Property="Margin" Value="12,6,0,6" />
             <Setter Property="VerticalAlignment" Value="Center" />

@@ -118,7 +118,7 @@ namespace FableProject.Pages
 
             }
 
-            searchPolicies("http://www.kshatriya.co.uk/dev/project/service/updates.php", "privacy");
+            searchPolicies(App.siteURL+"/dev/project/service/updates.php", "privacy");
 
         }
 
@@ -154,7 +154,7 @@ namespace FableProject.Pages
         {
             //Going to Kshatriya.co.uk
 
-            await Launcher.LaunchUriAsync(new Uri("http://www.kshatriya.co.uk"));
+            await Launcher.LaunchUriAsync(new Uri(App.siteURL+""));
 
         }
 
@@ -269,7 +269,7 @@ namespace FableProject.Pages
                 //If the username and password variables contains a value
 
                 //sends the following data to the createURI function that sends data to the service
-                createURI(username, password, "http://www.kshatriya.co.uk/dev/project/service/auth.php", eventStarted);
+                createURI(username, password, App.siteURL+"/dev/project/service/auth.php", eventStarted);
             }
         }
 
@@ -310,7 +310,7 @@ namespace FableProject.Pages
                 //If the desired variables contains a value
 
                 //sends the following data to the createURI function that sends data to the service
-                createURI(username, name, password, email, DOB, "http://www.kshatriya.co.uk/dev/project/service/auth.php", eventStarted);
+                createURI(username, name, password, email, DOB, App.siteURL+"/dev/project/service/auth.php", eventStarted);
             }
         }
 
@@ -706,7 +706,7 @@ namespace FableProject.Pages
 
             if (difficulty == "Easy")
             {
-                difficultyInfoHeader.Text = "Easy: 90 Seconds to answer and easy questions, so no worries then.";
+                difficultyInfoHeader.Text = "Easy: 45 Seconds to answer and easy questions, so no worries then.";
 
                 if (roamingSetting == "true")
                 {
@@ -719,7 +719,7 @@ namespace FableProject.Pages
             }
             else if (difficulty == "Normal")
             {
-                difficultyInfoHeader.Text = "Normal: 60 Seconds to answer and average difficulty questions, enjoy for your 'meh' experience.";
+                difficultyInfoHeader.Text = "Normal: 30 Seconds to answer and average difficulty questions, enjoy for your 'meh' experience.";
 
                 if (roamingSetting == "true")
                 {
@@ -732,7 +732,7 @@ namespace FableProject.Pages
             }
             else if (difficulty == "Hard")
             {
-                difficultyInfoHeader.Text = "Hard: 45 Seconds to answer and hard questions, unleash your inner nerd!";
+                difficultyInfoHeader.Text = "Hard: 30 Seconds to answer and hard questions, Let's do this Countdown style!";
 
                 if (roamingSetting == "true")
                 {
@@ -745,7 +745,7 @@ namespace FableProject.Pages
             }
             else if (difficulty == "Very Hard")
             {
-                difficultyInfoHeader.Text = "Very Hard: 30 Seconds to answer but the questions are the same as on hard. Let's do this Countdown style!";
+                difficultyInfoHeader.Text = "Very Hard: 20 Seconds to answer but the questions are the same as on hard. Unleash your inner nerd!";
 
                 if (roamingSetting == "true")
                 {

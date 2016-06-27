@@ -18,8 +18,8 @@
                         <StackPanel>
                             <TextBlock x:Name="mAboutYou" HorizontalAlignment="Left" Text="The Obligatory Manual: " Style="{StaticResource KshatriyaMediumTitleTextBlockStyleAccentBrush}"/>
 
-                            <TextBlock Text="Please. Please. Please. Read the manual if you have any questions. The link is below, just click on it." Style="{StaticResource ParagraphTextBlockStyle}"/>
-                            <TextBlock Text="http://www.somewebsite.org"/>
+                            <TextBlock Text="Please. Please. Please. Read the manual if you have any questions. The link is below, just click on it." Style="{StaticResource StoryParagraphTextBlockStyle}"/>
+                            <TextBlock x:Name="WebsiteHeading" Text="https://twiggyrj.gitbooks.io/fable-time-documentation/content/" Tapped="WebsiteClick" Style="{StaticResource StoryParagraphTextBlockStyle}"/>
                         </StackPanel>
                     </PivotItem>
 

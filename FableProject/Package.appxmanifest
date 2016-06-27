@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="28487343-c1e8-43de-a0ba-b00bd5cc2669" Publisher="CN=Aaron" Version="0.3.22.0" />
+  <Identity Name="28487343-c1e8-43de-a0ba-b00bd5cc2669" Publisher="CN=Aaron" Version="0.9.22.0" />
   <mp:PhoneIdentity PhoneProductId="28487343-c1e8-43de-a0ba-b00bd5cc2669" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>FableProject</DisplayName>
+    <DisplayName>Fable Time</DisplayName>
     <PublisherDisplayName>Aaron Fryer (TwiggyRJ)</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

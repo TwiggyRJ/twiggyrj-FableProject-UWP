@@ -78,7 +78,7 @@
                                 <TextBlock Text="Difficulty" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
                             </Grid>
                             <Grid>
-                                <TextBlock x:Name="difficultyInfoHeader" Text="Easy: 90 Seconds to answer and easy questions, so no worries" Style="{StaticResource ParagraphTextBlockStyle}"/>
+                                <TextBlock x:Name="difficultyInfoHeader" Text="Easy: 45 Seconds to answer and easy questions, so no worries" Style="{StaticResource ParagraphTextBlockStyle}"/>
                             </Grid>
                             
                             <Grid Margin="0,-25,0,0">

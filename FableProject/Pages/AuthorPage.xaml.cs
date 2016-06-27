@@ -57,7 +57,7 @@ namespace FableProject.Pages
 
             if (userData != "Null")
             {
-                storyGet("titleOnly", "http://www.kshatriya.co.uk/dev/project/service/stories.php");
+                storyGet("titleOnly", App.siteURL+"/dev/project/service/stories.php");
                 Authenticate.Visibility = Visibility.Collapsed;
             }
             else
@@ -157,7 +157,7 @@ namespace FableProject.Pages
             {
                 if (usernameDetails != "Null" && passwordDetails != "Null")
                 {
-                    sendStory(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/service/stories.php", storyTitle, storyDesc, storyCat, storyImage);
+                    sendStory(usernameDetails, passwordDetails, App.siteURL+"/dev/project/service/stories.php", storyTitle, storyDesc, storyCat, storyImage);
                 }
             }
         }
@@ -289,7 +289,7 @@ namespace FableProject.Pages
 
             var client = new HttpClient();
 
-            var uri = UriExtensions.CreateUriWithQuery(new Uri("http://www.kshatriya.co.uk/dev/project/service/page.php"),
+            var uri = UriExtensions.CreateUriWithQuery(new Uri(App.siteURL+"/dev/project/service/page.php"),
             new NameValueCollection { { "story", story } },
             new NameValueCollection { { "page", "all" } });
 
@@ -340,7 +340,7 @@ namespace FableProject.Pages
                 //If the username and password variables contains a value
 
                 //sends the following data to the createURI function that sends data to the service
-                createURI(username, password, "http://www.kshatriya.co.uk/dev/project/service/auth.php", eventStarted);
+                createURI(username, password, App.siteURL+"/dev/project/service/auth.php", eventStarted);
             }
         }
 
@@ -381,7 +381,7 @@ namespace FableProject.Pages
                 //If the desired variables contains a value
 
                 //sends the following data to the createURI function that sends data to the service
-                createURI(username, name, password, email, DOB, "http://www.kshatriya.co.uk/dev/project/service/auth.php", eventStarted);
+                createURI(username, name, password, email, DOB, App.siteURL+"/dev/project/service/auth.php", eventStarted);
             }
         }
 
@@ -637,7 +637,7 @@ namespace FableProject.Pages
             }
             else
             {
-                sendPage(usernameDetails, passwordDetails, "http://www.kshatriya.co.uk/dev/project/service/page.php", pageRoot, pageTitle, pageContent, pageContent_2, pageNumber, pageInteraction, pageInteractionType, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest, pageOptionB, pageOptionBDest, pageInteractionOption, pageInteractionFailure, pageReward, pageFirst);
+                sendPage(usernameDetails, passwordDetails, App.siteURL+"/dev/project/service/page.php", pageRoot, pageTitle, pageContent, pageContent_2, pageNumber, pageInteraction, pageInteractionType, pageEInteraction, pageEInteractionAnswer, pageMInteraction, pageMInteractionAnswer, pageHInteraction, pageHInteractionAnswer, pageJInteraction, pageJInteractionAnswer, pageOptionA, pageOptionADest, pageOptionB, pageOptionBDest, pageInteractionOption, pageInteractionFailure, pageReward, pageFirst);
             }
 
         }
@@ -708,7 +708,7 @@ namespace FableProject.Pages
 
         private void modifyPage(object sender, SelectionChangedEventArgs e)
         {
-            var target = "http://www.kshatriya.co.uk/dev/project/service/page.php";
+            var target = App.siteURL+"/dev/project/service/page.php";
             string pageRoot = "";
             string pageNumber = "";
 

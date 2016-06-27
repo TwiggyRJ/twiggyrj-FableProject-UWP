@@ -337,7 +337,7 @@ namespace FableProject.Pages
                 username = storage.LoadSettings(uDataKey);
             }
 
-            createURI(username, name, newPassword, password, email, website, avatar, "http://www.kshatriya.co.uk/dev/project/service/auth.php");
+            createURI(username, name, newPassword, password, email, website, avatar, App.siteURL+"/dev/project/service/auth.php");
 
         }
 
@@ -420,7 +420,7 @@ namespace FableProject.Pages
             {
                 //It is successful get the JSON response and save it to a varaible and then send the JSON reponse to the authenticated function
                 responseString = await response.Content.ReadAsStringAsync();
-                storyGet(responseString, username, password, "allStoryData", "http://www.kshatriya.co.uk/dev/project/service/stories.php");
+                storyGet(responseString, username, password, "allStoryData", App.siteURL+"/dev/project/service/stories.php");
             }
             else
             {
@@ -525,7 +525,7 @@ namespace FableProject.Pages
                 //If the username and password variables contains a value
 
                 //sends the following data to the createURI function that sends data to the service
-                createURI(username, password, "http://www.kshatriya.co.uk/dev/project/service/auth.php", eventStarted);
+                createURI(username, password, App.siteURL+"/dev/project/service/auth.php", eventStarted);
             }
         }
 
@@ -566,7 +566,7 @@ namespace FableProject.Pages
                 //If the desired variables contains a value
 
                 //sends the following data to the createURI function that sends data to the service
-                createURI(username, name, password, email, DOB, "http://www.kshatriya.co.uk/dev/project/service/auth.php", eventStarted);
+                createURI(username, name, password, email, DOB, App.siteURL+"/dev/project/service/auth.php", eventStarted);
             }
         }
 
@@ -700,7 +700,7 @@ namespace FableProject.Pages
                     string message = "Your user credentials have been registered with the Fable Project, we will store your details to allow unguided login when you open the app. Your details will now be displayed and used to access the Fable Project. Please Restart the app for the application to enable content for logged in Users.";
 
                     feedbackDialog(title, message);
-                    storyGet(JSON, username, password, "allStoryData", "http://www.kshatriya.co.uk/dev/project/service/stories.php");
+                    storyGet(JSON, username, password, "allStoryData", App.siteURL+"/dev/project/service/stories.php");
 
                 }
                 else if (eventStarted == "login")
@@ -725,7 +725,7 @@ namespace FableProject.Pages
                     string message = string.Format(template, username);
 
                     feedbackDialog(title, message);
-                    storyGet(JSON, username, password, "allStoryData", "http://www.kshatriya.co.uk/dev/project/service/stories.php");
+                    storyGet(JSON, username, password, "allStoryData", App.siteURL+"/dev/project/service/stories.php");
 
                 }
 
