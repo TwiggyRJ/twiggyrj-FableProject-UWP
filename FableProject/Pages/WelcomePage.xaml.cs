@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -30,8 +31,33 @@ namespace FableProject.Pages
         {
             this.InitializeComponent();
 
-            searchProgressRing.IsActive = true;
-            searchUpdates(App.siteURL+"/dev/project/service/updates.php", "latest");
+            connectionCheck();    
+        
+        }
+
+        private void connectionRetry(object sender, RoutedEventArgs e)
+        {
+            connectionCheck();
+        }
+
+        private void connectionCheck()
+        {
+            bool isInternetConnected = NetworkInterface.GetIsNetworkAvailable();
+
+            if (isInternetConnected == true)
+            {
+                RestartGrid.Visibility = Visibility.Collapsed;
+                searchProgressRing.IsActive = true;
+                searchUpdates(App.siteURL + "/dev/project/service/updates.php", "latest");
+            }
+            else
+            {
+                updatedBlock.Visibility = Visibility.Collapsed;
+                updateTextBlock.Visibility = Visibility.Collapsed;
+                ContinueGrid.Visibility = Visibility.Collapsed;
+                RestartGrid.Visibility = Visibility.Visible;
+                errorDialog("No internet connection.", "Unfortunately this app requires an internet connection to function. This is due to the fact that the stories are stored on the internet and not locally. Please connect to the internet.");
+            }
         }
 
         private async void searchUpdates(string target, string toGet)
@@ -233,5 +259,6 @@ namespace FableProject.Pages
                 Frame.Navigate(typeof(StoryPage), "resumePlay");
             }
         }
+
     }
 }

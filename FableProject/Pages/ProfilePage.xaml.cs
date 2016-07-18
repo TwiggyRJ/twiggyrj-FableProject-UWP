@@ -13,6 +13,7 @@ using System.Text;
 using Windows.ApplicationModel.Email;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -21,6 +22,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace FableProject.Pages
@@ -30,7 +32,10 @@ namespace FableProject.Pages
     /// </summary>
     public sealed partial class ProfilePage : Page
     {
-       public FileOpenPicker avatarPicker = null;
+       public StorageFile file = null;
+       public string base64Av = null;
+       public string gUsername = null;
+       public string gPassword = null;
 
         public ProfilePage()
         {
@@ -63,6 +68,8 @@ namespace FableProject.Pages
 
             if(userData != "Null")
             {
+                gUsername = usernameDetails;
+                gPassword = passwordDetails;
                 var viewModel = new UserDataSource(userData, usernameDetails, passwordDetails);
                 this.DataContext = viewModel;
             }
@@ -197,7 +204,6 @@ namespace FableProject.Pages
 
             string name = myUpdNameBox.Text;
             string email = myUpdEmailBox.Text;
-            string avatar = myUpdAvatarBox.Text;
             string newPassword = myUpdPasswordBox.Password;
             string website = myUpdWebsiteBox.Text;
 
@@ -217,42 +223,6 @@ namespace FableProject.Pages
             else if (email == "")
             {
                 email = EmailHeading.Text;
-            }
-
-            if (avatar == null)
-            {
-                string avDataKey = "avatarDetails";
-
-                if (roamingSetting == "true")
-                {
-                    avatar = storage.LoadRoamingSettings(avDataKey);
-                }
-                else if (roamingSetting == "false")
-                {
-                    avatar = storage.LoadSettings(avDataKey);
-                }
-                else if (roamingSetting == "Null")
-                {
-                    avatar = storage.LoadSettings(avDataKey);
-                }
-
-            }
-            else if (avatar == "")
-            {
-                string avDataKey = "avatarDetails";
-
-                if (roamingSetting == "true")
-                {
-                    avatar = storage.LoadRoamingSettings(avDataKey);
-                }
-                else if (roamingSetting == "false")
-                {
-                    avatar = storage.LoadSettings(avDataKey);
-                }
-                else if (roamingSetting == "Null")
-                {
-                    avatar = storage.LoadSettings(avDataKey);
-                }
             }
 
             if (website == null)
@@ -337,7 +307,7 @@ namespace FableProject.Pages
                 username = storage.LoadSettings(uDataKey);
             }
 
-            createURI(username, name, newPassword, password, email, website, avatar, App.siteURL+"/dev/project/service/auth.php");
+            createURI(username, name, newPassword, password, email, website, App.siteURL+"/dev/project/service/auth.php");
 
         }
 
@@ -388,6 +358,51 @@ namespace FableProject.Pages
                 var message = "Unable to register";
                 feedbackDialog(title, message);
             }
+
+        }
+
+
+        private void createURI(string username, string password, string avatar, string target, string method)
+        {
+            //This is initiated if a registration event has been initiated
+
+            //Creates an instance of a HTTP Client so the Web Service can be interacted with
+            var client = new HttpClient();
+
+            //Starts the progress Ring in the GUI to provide feedback to the User that the registration process has started
+            updateProgressRing.IsActive = true;
+
+            //Sets the Authentication header to the values of the username and passwords and converts them to Base64 encryption
+            var credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password)));
+
+            //Sets the Authentication header
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+            // activates the request to the Web Service
+            HttpContent image = new StringContent(avatar);
+            HttpContent action = new StringContent("post");
+            using (var formData = new MultipartFormDataContent())
+            {
+                formData.Add(image, "image");
+                formData.Add(action, "action");
+                var response = client.PostAsync(target, formData).Result;
+                if (!response.IsSuccessStatusCode)
+                {
+                    //Tell the user the request was not successful
+                    updateProgressRing.IsActive = false;
+                    var title = "Error with Updating Profile";
+                    var message = "Unable to update your profile unfortunately.";
+                    feedbackDialog(title, message);
+
+                }
+                else
+                {
+                    updateProgressRing.IsActive = false;
+                    createURI(username, password, target, "update");
+                }
+                
+            }
+               
 
         }
 
@@ -728,10 +743,57 @@ namespace FableProject.Pages
                     storyGet(JSON, username, password, "allStoryData", App.siteURL+"/dev/project/service/stories.php");
 
                 }
+                else if(eventStarted == "update")
+                {
+                    //Tell the user the request was successful
+                    updateProgressRing.IsActive = false;
+
+                    this.DataContext = loginData;
+
+                    string title = "Profile Update Successful";
+                    string template = "Your user credentials and information for {0} have been updated, we will now use the new and updated credentials.";
+                    string message = string.Format(template, username);
+
+                    feedbackDialog(title, message);
+
+                }
 
             }
 
         }
+
+
+        private async void SelectAPicture_Click(object sender, RoutedEventArgs e)
+        {  
+            FileOpenPicker openPicker = new FileOpenPicker();  
+            openPicker.ViewMode = PickerViewMode.Thumbnail;  
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;  
+            openPicker.FileTypeFilter.Add(".jpg");  
+            openPicker.FileTypeFilter.Add(".jpeg");  
+            openPicker.FileTypeFilter.Add(".png");
+            openPicker.FileTypeFilter.Add(".gif");
+            file = await openPicker.PickSingleFileAsync();  
+            if (file != null)  
+            {
+                myUpdAvatarNotification.Text = "Selected Photo: " + file.Name;  
+            }  
+            else  
+            {
+                myUpdAvatarNotification.Text = "No File Picked";  
+            }   
+        }
+        
+        private async void updateProfileAvatar(object sender, RoutedEventArgs e)
+        {
+
+            var stream = await file.OpenStreamForReadAsync();
+            var bytes = new byte[(int)stream.Length];
+            stream.Read(bytes, 0, (int)stream.Length);
+
+            var base64String = Convert.ToBase64String(bytes);
+
+            createURI(gUsername, gPassword, base64String, App.siteURL+"/dev/project/service/auth.php", "update");
+        }  
 
 
 

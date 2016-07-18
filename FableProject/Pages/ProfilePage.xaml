@@ -152,9 +152,15 @@
                     <TextBox x:Name="myUpdEmailBox" FontSize="24" HorizontalAlignment="Left" Margin="10,156,0,0" PlaceholderText="Email" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Email Here"/>
                     <TextBox x:Name="myUpdWebsiteBox" FontSize="24" HorizontalAlignment="Left" Margin="10,208,0,0" PlaceholderText="Website" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Website Here"/>
 
-                    <TextBox x:Name="myUpdAvatarBox" FontSize="24" HorizontalAlignment="Left" Margin="10,260,0,0" PlaceholderText="Avatar URL" VerticalAlignment="Top" Width="290" Height="47" ToolTipService.ToolTip="Enter Your Avatar URL"/>
+                    <Button x:Name="updateProfileButton" Content="Update Profile" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Click="updateProfile" ToolTipService.ToolTip="Click to Update Profile" Width="163"/>
 
-                    <Button x:Name="updateProfileButton" Content="Update Profile" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Click="updateProfile"  ToolTipService.ToolTip="Click to Update Profile" Width="163"/>
+
+                    <TextBlock x:Name="myUpdAvatarTextBlock" Margin="10, 400,0,0" HorizontalAlignment="Left" Text="Add a profile image" VerticalAlignment="Top" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+                    <Button Content="Add Image" Margin="200, 400, 0, 0" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="SelectAPicture_Click" ToolTipService.ToolTip="Click to Select a Profile Image" Width="163"/>
+
+                    <TextBlock x:Name="myUpdAvatarNotification" Margin="10, 450, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource KshatriyaSubtitleTextBlockStyle}"/>
+
+                    <Button x:Name="updateProfileImageButton" Content="Update Profile Image" Style="{StaticResource LoginMenuButtonStyle}" HorizontalAlignment="Left" Margin="10,520,0,0" VerticalAlignment="Top" Click="updateProfileAvatar" ToolTipService.ToolTip="Click to Update Profile Image" Width="250"/>
 
                 </Grid>
 

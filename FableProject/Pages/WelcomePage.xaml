@@ -33,7 +33,7 @@
                     <TextBlock Text="{Binding modTitle}" Style="{StaticResource TitleTextBlockStyle}" />
 
                 </Grid>
-                <Grid>
+                <Grid x:Name="updatedBlock">
 
                     <TextBlock Text="Updated:" Style="{StaticResource ParagraphTitleBlockStyle}" />
                     <TextBlock Text="{Binding modDate}" Margin="100,0,0,0" Style="{StaticResource ParagraphTitleBlockStyle}" />
@@ -46,7 +46,7 @@
                     </TextBlock>
 
                 </Grid>
-                <Grid>
+                <Grid x:Name="updateTextBlock">
 
                     <TextBlock Text="Update" Style="{StaticResource ParagraphTitleBlockStyle}" />
                     
@@ -72,6 +72,10 @@
 
                 <Grid x:Name="ContinueGrid" Visibility="Visible">
                     <Button x:Name="resumeButton" Click="resumePlay" Content="Continue Where you left off" Style="{ThemeResource LoginMenuButtonStyle}" Tag=""/>
+                </Grid>
+
+                <Grid x:Name="RestartGrid" Visibility="Collapsed">
+                    <Button x:Name="restartButton" Click="connectionRetry" Content="Attempt to connect to Fable Time" Style="{ThemeResource LoginMenuButtonStyle}"/>
                 </Grid>
 
             </StackPanel>

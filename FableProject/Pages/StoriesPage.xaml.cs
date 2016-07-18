@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -29,9 +30,31 @@ namespace FableProject.Pages
         {
             this.InitializeComponent();
 
-            searchProgressRing.IsActive = true;
-            searchStories(App.siteURL+"/dev/project/service/stories.php", "all");
+            connectionCheck();
+
         }
+
+        private void connectionRetry(object sender, RoutedEventArgs e)
+        {
+            connectionCheck();
+        }
+
+        private void connectionCheck()
+        {
+            bool isInternetConnected = NetworkInterface.GetIsNetworkAvailable();
+
+            if (isInternetConnected == true)
+            {
+                //RestartGrid.Visibility = Visibility.Collapsed;
+                searchProgressRing.IsActive = true;
+                searchStories(App.siteURL + "/dev/project/service/stories.php", "all");
+            }
+            else
+            {
+                errorDialog("No internet connection.", "Unfortunately this app requires an internet connection to function. This is due to the fact that the stories are stored on the internet and not locally. Please connect to the internet.");
+            }
+        }
+
         private async void searchStories(string target, string toGet)
         {
 
